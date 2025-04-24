@@ -2,8 +2,8 @@
 
 --!SerializeField
 local phaseInfos = {
-    Preparation = {"Preparation", 180, "Fishing starts in:"},
-    Fishing = {"Fishing", 300, "Kraken appears in:"},
+    Preparation = {"Preparation", 10, "Fishing starts in:"}, --180
+    Fishing = {"Fishing", 300, "Kraken appears in:"}, --300
     Kraken = {"Kraken"}
 }
 
@@ -13,6 +13,10 @@ local trackPlayer = Event.new("Track Player")
 
 local getPhaseInfo = Event.new("Get Phase Info")
 local getPhaseInfoResponse = Event.new("Get Phase Info Response")
+
+local startPreparationPhase = Event.new("Start Preparation Phase")
+local startFishingPhase = Event.new("Start Fishing Phase")
+local startKrakenPhase = Event.new("Start Kraken Phase")
 
 players_storage = {}
 phaseStartTime = nil
@@ -52,10 +56,46 @@ function self:ServerStart()
 end
 
 function GameLoopStart()
-    print("GAME STARTED")
+    print("PREPARATION STARTED")
 
     phaseStartTime = os.time(os.date("*t"))
     phase = "Preparation"
+end
+
+function self:ServerFixedUpdate()
+    CheckPhase()
+end
+
+function CheckPhase()
+    if(phaseStartTime == nil) then return end
+    if(phase == "Kraken") then return end
+
+    timeLeft = phaseInfos[phase][2] - (os.time(os.date("*t")) - phaseStartTime)
+
+    if(timeLeft <= 0) then
+        ChangePhase()
+    end
+end
+
+function ChangePhase()
+    phaseStartTime = os.time(os.date("*t"))
+
+    if(phase == "Preparation") then
+        print("FISHING STARTED")
+
+        phase = "Fishing"
+        startFishingPhase:FireAllClients(phaseStartTime, phase)
+    elseif(phase == "Fishing") then
+        print("KRAKEN STARTED")
+
+        phase = "Kraken"
+        startKrakenPhase:FireAllClients(phaseStartTime, phase)
+    elseif(phase == "Kraken") then
+        print("PREPARATION STARTED")
+
+        phase = "Preparation"
+        startPreparationPhase:FireAllClients(phaseStartTime, phase)
+    end
 end
 
 
@@ -71,9 +111,22 @@ function self:ClientAwake()
 
     --Get Phase Start Time Response
     getPhaseInfoResponse:Connect(function(st, p)
-        phaseStartTime = st
-        currentPhaseInfo = phaseInfos[p]
-        UIManagerModule.SetPhaseInfo(st, currentPhaseInfo)
+        UpdatePhaseInfo(st, p)
+    end)
+
+    --Start Preparation Phase
+    startPreparationPhase:Connect(function(st, p)
+        UpdatePhaseInfo(st, p)
+    end)
+
+    --Start Fishing Phase
+    startFishingPhase:Connect(function(st, p)
+        UpdatePhaseInfo(st, p)
+    end)
+
+    --Start Kraken Phase
+    startKrakenPhase:Connect(function(st, p)
+        UpdatePhaseInfo(st, p)
     end)
 end
 
@@ -83,4 +136,10 @@ end
 
 function GetPhaseInfo()
     return currentPhaseInfo
+end
+
+function UpdatePhaseInfo(st, p)
+    phaseStartTime = st
+    currentPhaseInfo = phaseInfos[p]
+    UIManagerModule.SetPhaseInfo(st, currentPhaseInfo)
 end

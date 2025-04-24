@@ -33,7 +33,7 @@ function SetPhaseInfo(st, cpi)
     startTime = st
     phaseInfo = cpi
 
-    if(phaseInfo[0] == "Kraken") then
+    if(phaseInfo[1] == "Kraken") then
         _PhaseText:SetPrelocalizedText("")
     else
         _PhaseText:SetPrelocalizedText(phaseInfo[3])
@@ -43,7 +43,7 @@ end
 function UpdateCountdown()
     if(startTime == nil) then return end
 
-    if(phaseInfo[0] == "Kraken") then
+    if(phaseInfo[1] == "Kraken") then
         _Countdown:SetPrelocalizedText("")
     else
         timeLeft = phaseInfo[2] - (os.time(os.date("*t")) - startTime)
