@@ -1,0 +1,98 @@
+.h-u-d_-u-i {
+
+}
+
+:root {
+    --primary-color: rgb(255, 255, 255);
+    --secondary-color: rgb(232, 235, 237);
+
+    --primary-border-color:rgb(195, 207, 217);
+    --primary-border-width: 2px;
+    --primary-border-radius: 20px;
+
+    --primary-text-color: rgb(64, 64, 64);
+}
+
+.left-container {
+    position: absolute;
+    left: 8px;
+    margin-top: 8px;
+
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.right-container {
+    position: absolute;
+    right: 8px;
+    margin-top: 8px;
+
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.top-container {
+    top: 8px;
+    margin-top: 40px;
+
+    align-self: center;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.hud-button {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+
+    height: 40px;
+    width: 40px;
+
+    margin: 4px;
+}
+
+.leaderboard-icon{
+    background-image: url("project://database/Assets/Art/Icons/Trophy.png");
+}
+
+.gem-icon{
+    background-image: url("project://database/Assets/Art/Icons/Gem.png");
+
+    height: 32px;
+    width: 32px;
+}
+
+.currency-container {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    
+    margin-top: 8px;
+}
+
+.currency-text {
+    color: white;
+    -unity-text-outline: 1px black;
+    -unity-font-style: bold;
+
+    font-size: 24px;
+    padding: 4px;
+}
+
+.white-text {
+    color: white;
+    -unity-text-outline: 1px black;
+    -unity-font-style: bold;
+}
+
+.small-text {
+    font-size: 20px;
+}
+
+.medium-text {
+    font-size: 24px;
+}

@@ -16,3 +16,4 @@ MonoBehaviour:
   _isAgeVerifiedAbove18: 0
   _virtualPlayerProfiles:
   - {fileID: 11400000, guid: 77b8c48dac44e8e4f8b937b3d1ab6ce0, type: 2}
+  - {fileID: 11400000, guid: ac9fb1ffaa5eb044282f53e8d6669025, type: 2}
