@@ -2,12 +2,13 @@
 
 --!SerializeField
 local phaseInfos = {
-    Preparation = {"Preparation", 10, "Fishing starts in:"}, --180
-    Fishing = {"Fishing", 300, "Kraken appears in:"}, --300
+    Preparation = {"Preparation", 5, "Fishing starts in:"}, --180
+    Fishing = {"Fishing", 300, "Fishing ends in:"}, --300
     Kraken = {"Kraken"}
 }
 
 local UIManagerModule = require("UIManagerModule")
+local FishingSpotsModule = require("FishingSpotsModule")
 
 local trackPlayer = Event.new("Track Player")
 
@@ -35,17 +36,19 @@ function self:ServerAwake()
                 MostDamageDelt = 0,
             },
         }
+
+        print(player.name .. " connected to the server")
     end)
 
     --Untrack Player
     game.PlayerDisconnected:Connect(function(player)
-        --CloudSaveModule.SavePlayerDataToCloud(player, players_storage[player])
         players_storage[player] = nil
+        print(player.name .. " disconnected from the server")
     end)
 
-    --Get Phase Start Time
-    getPhaseInfo:Connect(function(player: Player)
-        getPhaseInfoResponse:FireClient(player, phaseStartTime, phase)
+    --Get Phase Info
+    getPhaseInfo:Connect(function(player: Player, onJoin)
+        getPhaseInfoResponse:FireClient(player, phaseStartTime, phase, onJoin)
     end)
 end
 
@@ -85,11 +88,15 @@ function ChangePhase()
 
         phase = "Fishing"
         startFishingPhase:FireAllClients(phaseStartTime, phase)
+
+        FishingSpotsModule.StartFishingPhase()
     elseif(phase == "Fishing") then
         print("KRAKEN STARTED")
 
         phase = "Kraken"
         startKrakenPhase:FireAllClients(phaseStartTime, phase)
+
+        FishingSpotsModule.StopFishingPhase()
     elseif(phase == "Kraken") then
         print("PREPARATION STARTED")
 
@@ -110,8 +117,14 @@ function self:ClientAwake()
     trackPlayer:FireServer(client.localPlayer)
 
     --Get Phase Start Time Response
-    getPhaseInfoResponse:Connect(function(st, p)
+    getPhaseInfoResponse:Connect(function(st, p, onJoin)
         UpdatePhaseInfo(st, p)
+
+        if(not onJoin) then return end
+
+        if(currentPhaseInfo[1] == "Fishing") then
+            FishingSpotsModule.LoadFishingSpots()
+        end
     end)
 
     --Start Preparation Phase
@@ -131,7 +144,7 @@ function self:ClientAwake()
 end
 
 function self:ClientStart()
-    getPhaseInfo:FireServer(client.localPlayer)
+    getPhaseInfo:FireServer(client.localPlayer, true)
 end
 
 function GetPhaseInfo()

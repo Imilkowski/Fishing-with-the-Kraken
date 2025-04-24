@@ -17,7 +17,7 @@ local startTime = nil
 local phaseInfo = nil
 
 function self:Awake()
-    _Currency:SetPrelocalizedText("20")
+    _Currency:SetPrelocalizedText("0")
 end
 
 function self:Update()
