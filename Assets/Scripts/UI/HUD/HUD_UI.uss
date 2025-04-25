@@ -2,17 +2,6 @@
 
 }
 
-:root {
-    --primary-color: rgb(255, 255, 255);
-    --secondary-color: rgb(232, 235, 237);
-
-    --primary-border-color:rgb(195, 207, 217);
-    --primary-border-width: 2px;
-    --primary-border-radius: 20px;
-
-    --primary-text-color: rgb(64, 64, 64);
-}
-
 .left-container {
     position: absolute;
     left: 8px;
@@ -87,6 +76,7 @@
     color: white;
     -unity-text-outline: 1px black;
     -unity-font-style: bold;
+    -unity-font-definition: url("project://database/Assets/Art/Fonts/Nunito-Black.ttf");
 }
 
 .small-text {

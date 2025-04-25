@@ -25,15 +25,15 @@ function StartFishingPhase()
 end
 
 function SpawnFishingObject()
-    posId = math.random(1, self.transform.childCount)
+    spotId = math.random(1, self.transform.childCount)
     objectType = "fish"
 
-    if(fishingSpotsObjects[posId] == nil) then
-        spawnFishingObject:FireAllClients(posId, objectType)
-        fishingSpotsObjects[posId] = objectType
+    if(fishingSpotsObjects[spotId] == nil) then
+        spawnFishingObject:FireAllClients(spotId, objectType)
+        fishingSpotsObjects[spotId] = objectType
     end
 
-    --print("Spawned " .. objectType .. " on position ID " .. posId)
+    --print("Spawned " .. objectType .. " on position ID " .. spotId)
 end
 
 function StopFishingPhase()
@@ -47,8 +47,8 @@ end
 
 function self:ClientAwake()
     --Spawn Fishing Object
-    spawnFishingObject:Connect(function(posId, objectType)
-        SpawnObject(posId, objectType)
+    spawnFishingObject:Connect(function(spotId, objectType)
+        SpawnObject(spotId, objectType)
     end)
 
     --Load Fishing Spots Response
@@ -63,9 +63,10 @@ function LoadFishingSpots()
     loadFishingSpots:FireServer(client.localPlayer)
 end
 
-function SpawnObject(posId, objectType)
-    fishingPoint = self.transform:GetChild(posId)
+function SpawnObject(spotId, objectType)
+    fishingPoint = self.transform:GetChild(spotId)
 
     local spawnedObject = Object.Instantiate(fishPrefab, fishingPoint.transform.position)
     spawnedObject.transform.parent = fishingPoint
+    spawnedObject:GetComponent(Fish).SetFishingSpotId(spotId)
 end

@@ -2,6 +2,8 @@
 
 --!SerializeField
 local hudUI : HUD_UI = nil
+--!SerializeField
+local fishingUI : Fishing_UI = nil
 
 function self:ClientStart()
     --ClosePanel(inventoryUI)
@@ -23,4 +25,8 @@ function ShowLeaderboard()
     -- if(show) then
     --     inventoryUI.UpdateItemsList(SaveModule.players_storage[client.localPlayer].inventory)
     -- end
+end
+
+function ShowFishingUI(show)
+    fishingUI.gameObject:SetActive(show)
 end

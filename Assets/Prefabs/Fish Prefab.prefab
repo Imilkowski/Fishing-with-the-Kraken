@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1210554480927304641}
   - component: {fileID: 3947837333608125230}
   - component: {fileID: 8612195169146259657}
+  - component: {fileID: 2290978637614209621}
   m_Layer: 8
   m_Name: Fish Prefab
   m_TagString: Untagged
@@ -50,7 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _checkDistance: 1
-  _distance: 1
+  _distance: 10
   _moveTo: 1
   _moveTarget: {fileID: 1666241172860065470}
 --- !u!65 &3947837333608125230
@@ -95,6 +96,29 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2290978637614209621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479281532990685287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9bd816ce470a61182a400ecc42210c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _networkId: 0
+  _script: {fileID: -974389366465450183, guid: 036281b95eafa6c4387b00397efd1013, type: 3}
+  _properties: []
+  _uiOutput: 0
+  _uiOutputSettings:
+    rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!1001 &3670732547887126166
 PrefabInstance:
   m_ObjectHideFlags: 0
