@@ -8,6 +8,9 @@ local spawnFishingObject = Event.new("Spawn Fishing Object")
 local loadFishingSpots = Event.new("Load Fishing Spots")
 local loadFishingSpotsResponse = Event.new("Load Fishing Spots Response")
 
+local destroySpotObject = Event.new("Destroy Spot Object")
+local destroySpotObjectResponse = Event.new("Destroy Spot Object Response")
+
 local fishingTimer : Timer | nil = nil
 fishingSpotsObjects = {}
 
@@ -18,6 +21,11 @@ function self:ServerAwake()
     loadFishingSpots:Connect(function(player: Player)
         loadFishingSpotsResponse:FireClient(player, fishingSpotsObjects)
     end)
+
+    --Destroy Spot Object
+    destroySpotObject:Connect(function(player: Player, spotId)
+        destroySpotObjectResponse:FireAllClients(spotId)
+    end)
 end
 
 function StartFishingPhase()
@@ -25,7 +33,7 @@ function StartFishingPhase()
 end
 
 function SpawnFishingObject()
-    spotId = math.random(1, self.transform.childCount)
+    spotId = math.random(1, self.transform.childCount - 1)
     objectType = "fish"
 
     if(fishingSpotsObjects[spotId] == nil) then
@@ -57,6 +65,11 @@ function self:ClientAwake()
             SpawnObject(k, v)
         end
     end)
+
+    --Destroy Spot Object Response
+    destroySpotObjectResponse:Connect(function(spotId)
+        DestroySpotObject(spotId)
+    end)
 end
 
 function LoadFishingSpots()
@@ -69,4 +82,21 @@ function SpawnObject(spotId, objectType)
     local spawnedObject = Object.Instantiate(fishPrefab, fishingPoint.transform.position)
     spawnedObject.transform.parent = fishingPoint
     spawnedObject:GetComponent(Fish).SetFishingSpotId(spotId)
+end
+
+function RemoveObject(spotId)
+    destroySpotObject:FireServer(spotId)
+end
+
+function DestroySpotObject(spotId)
+    local status, result = pcall(function()
+        fishingPoint = self.transform:GetChild(spotId)
+        object = fishingPoint:GetChild(0).gameObject
+    
+        GameObject.Destroy(object)
+    end)
+    
+    if not status then
+        print("An error occurred in FishingSpotsModule: " .. result)
+    end
 end

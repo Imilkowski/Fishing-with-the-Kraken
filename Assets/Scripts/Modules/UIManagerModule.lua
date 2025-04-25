@@ -6,7 +6,7 @@ local hudUI : HUD_UI = nil
 local fishingUI : Fishing_UI = nil
 
 function self:ClientStart()
-    --ClosePanel(inventoryUI)
+    ClosePanel(fishingUI)
 end
 
 function ClosePanel(panel)
@@ -17,6 +17,11 @@ function SetPhaseInfo(startTime, currentPhaseInfo)
     hudUI.SetPhaseInfo(startTime, currentPhaseInfo)
 end
 
+function ShowFishingUI(show)
+    fishingUI.ResetProperties()
+    fishingUI.gameObject:SetActive(show)
+end
+
 function ShowLeaderboard()
     -- show = not inventoryUI.gameObject.activeSelf
 
@@ -25,8 +30,4 @@ function ShowLeaderboard()
     -- if(show) then
     --     inventoryUI.UpdateItemsList(SaveModule.players_storage[client.localPlayer].inventory)
     -- end
-end
-
-function ShowFishingUI(show)
-    fishingUI.gameObject:SetActive(show)
 end

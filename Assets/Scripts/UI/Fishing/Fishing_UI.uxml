@@ -15,6 +15,7 @@
 
       <VisualElement class="catch">
         <VisualElement class="catch-area" name="_CatchArea"></VisualElement>
+        <Image class="fish-icon" name="_Fish"/>
       </VisualElement>
 
       <VisualElement class="pull-button" name="_PullButton">

@@ -96,3 +96,12 @@
 
     flex-shrink: 0;
 }
+
+.fish-icon{
+    background-image: url("project://database/Assets/Art/Icons/Fish.png");
+
+    position: absolute;
+
+    height: 32px;
+    width: 32px;
+}
