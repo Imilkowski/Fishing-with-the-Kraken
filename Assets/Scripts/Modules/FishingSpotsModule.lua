@@ -25,7 +25,7 @@ function StartFishingPhase()
 end
 
 function SpawnFishingObject()
-    posId = math.random(1, 50)
+    posId = math.random(1, self.transform.childCount)
     objectType = "fish"
 
     if(fishingSpotsObjects[posId] == nil) then
