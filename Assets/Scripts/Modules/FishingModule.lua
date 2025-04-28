@@ -2,22 +2,21 @@
 
 local UIManagerModule = require("UIManagerModule")
 local FishingSpotsModule = require("FishingSpotsModule")
+local PlayerControllerModule = require("PlayerControllerModule")
 
 local fishingAtSpot = 0
 
 function StartFishing(spotId)
     print("Started fishing at spot " .. spotId)
     fishingAtSpot = spotId
-
-    client.localPlayer.character:PlayEmote("fishing-cast", false, function()
-        client.localPlayer.character:PlayEmote("fishing-idle", true)
-    end)
+    
+    PlayerControllerModule.PlayEmote("fishing-cast", false)
 
     UIManagerModule.ShowFishingUI(true)
 end
 
 function StopFishing(fishCaught)
-    client.localPlayer.character:PlayEmote("fishing-pull", false)
+    PlayerControllerModule.PlayEmote("fishing-pull", false)
 
     UIManagerModule.ShowFishingUI(false)
 
