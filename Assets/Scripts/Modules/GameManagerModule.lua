@@ -9,6 +9,7 @@ local phaseInfos = {
 
 local UIManagerModule = require("UIManagerModule")
 local FishingSpotsModule = require("FishingSpotsModule")
+local KrakenSpotsModule = require("KrakenSpotsModule")
 
 local trackPlayer = Event.new("Track Player")
 
@@ -97,11 +98,14 @@ function ChangePhase()
         startKrakenPhase:FireAllClients(phaseStartTime, phase)
 
         FishingSpotsModule.StopFishingPhase()
+        KrakenSpotsModule.StartKrakenPhase()
     elseif(phase == "Kraken") then
         print("PREPARATION STARTED")
 
         phase = "Preparation"
         startPreparationPhase:FireAllClients(phaseStartTime, phase)
+
+        KrakenSpotsModule.StopKrakenPhase()
     end
 end
 

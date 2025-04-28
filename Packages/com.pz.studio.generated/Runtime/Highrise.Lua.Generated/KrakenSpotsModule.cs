@@ -18,15 +18,16 @@ using Highrise.Lua;
 
 namespace Highrise.Lua.Generated
 {
-    [AddComponentMenu("Lua/FishingSpotsModule")]
-    [LuaRegisterType(0xf07cadff2ffbd486, typeof(LuaBehaviour))]
-    public class FishingSpotsModule : LuaBehaviourThunk
+    [AddComponentMenu("Lua/KrakenSpotsModule")]
+    [LuaRegisterType(0xeb58e737059b2988, typeof(LuaBehaviour))]
+    public class KrakenSpotsModule : LuaBehaviourThunk
     {
-        private const string s_scriptGUID = "35d80d62871f0b04283cbdd2ceb73862";
+        private const string s_scriptGUID = "5482d24130ed0e34ca22d230899d161a";
         public override string ScriptGUID => s_scriptGUID;
 
-        [SerializeField] public UnityEngine.GameObject m_fishPrefab = default;
+        [SerializeField] public UnityEngine.GameObject m_tentaclePrefab = default;
         [SerializeField] public System.Double m_spawnRate = 0;
+        [SerializeField] public System.Double m_tentaclesMaxCount = 0;
 
         protected override SerializedPropertyValue[] SerializeProperties()
         {
@@ -35,8 +36,9 @@ namespace Highrise.Lua.Generated
 
             return new SerializedPropertyValue[]
             {
-                CreateSerializedProperty(_script.GetPropertyAt(0), m_fishPrefab),
+                CreateSerializedProperty(_script.GetPropertyAt(0), m_tentaclePrefab),
                 CreateSerializedProperty(_script.GetPropertyAt(1), m_spawnRate),
+                CreateSerializedProperty(_script.GetPropertyAt(2), m_tentaclesMaxCount),
             };
         }
     }

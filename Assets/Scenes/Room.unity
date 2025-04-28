@@ -124,6 +124,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &10035367
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 10035368}
+  m_Layer: 0
+  m_Name: Kraken Spot
+  m_TagString: Untagged
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &10035368
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10035367}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.70710576, z: -0, w: 0.70710784}
+  m_LocalPosition: {x: 27, y: -2.5, z: -44.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 696025116}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &18595578 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: bda3cea365b95dd4eb14643cd31ad55a,
@@ -1577,6 +1608,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.5000005, y: 0.9279999, z: 2.5126922}
   m_Center: {x: 0.0000076293945, y: 0.46399996, z: -0.00000011920929}
+--- !u!1 &158116738
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 158116739}
+  m_Layer: 0
+  m_Name: Kraken Spot (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &158116739
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 158116738}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 10.5, y: -2.5, z: -23}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 696025116}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1001 &168609364
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1837,6 +1899,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.5000005, y: 0.9279999, z: 2.5126922}
   m_Center: {x: 0.0000076293945, y: 0.46399996, z: -0.00000011920929}
+--- !u!1 &182428769
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 182428770}
+  m_Layer: 0
+  m_Name: Kraken Spot (7)
+  m_TagString: Untagged
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &182428770
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182428769}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -18.5, y: -2.5, z: -37}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 696025116}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &190498246
 GameObject:
   m_ObjectHideFlags: 0
@@ -1923,6 +2016,68 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+--- !u!1 &217944369
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 217944370}
+  m_Layer: 0
+  m_Name: Kraken Spot (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &217944370
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217944369}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.5, y: -2.5, z: -56}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 696025116}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &218606364
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 218606365}
+  m_Layer: 0
+  m_Name: Kraken Spot (5)
+  m_TagString: Untagged
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &218606365
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218606364}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 15.5, y: -2.5, z: -56}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 696025116}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &230087119
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2856,6 +3011,7 @@ MonoBehaviour:
     rid: -2
   m_fishPrefab: {fileID: 479281532990685287, guid: e7f79ef5005082d49ab0f1c6304c0ea1,
     type: 3}
+  m_spawnRate: 1
   references:
     version: 2
     RefIds:
@@ -3022,6 +3178,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 274715235}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &306971779
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 306971780}
+  m_Layer: 0
+  m_Name: Kraken Spot (6)
+  m_TagString: Untagged
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &306971780
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 306971779}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -1, y: -2.5, z: -47}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 696025116}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1001 &310391137
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5915,6 +6102,75 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.5000012, y: 2.2, z: 2.5000012}
   m_Center: {x: -0.0000076293945, y: 1.1, z: 0}
+--- !u!1 &696025115
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 696025116}
+  - component: {fileID: 696025117}
+  m_Layer: 0
+  m_Name: Kraken Spots
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &696025116
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696025115}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 10035368}
+  - {fileID: 956542713}
+  - {fileID: 158116739}
+  - {fileID: 2079772772}
+  - {fileID: 217944370}
+  - {fileID: 218606365}
+  - {fileID: 306971780}
+  - {fileID: 182428770}
+  - {fileID: 1748838606}
+  - {fileID: 1398378944}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &696025117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696025115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee5dd2948a320ee170fdd2e5334216cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _networkId: 0
+  _script: {fileID: -974389366465450183, guid: 5482d24130ed0e34ca22d230899d161a, type: 3}
+  _properties: []
+  _uiOutput: 0
+  _uiOutputSettings:
+    rid: -2
+  m_tentaclePrefab: {fileID: 2325363421364870328, guid: e6a28b88034495d4b9972c75ae587cbb,
+    type: 3}
+  m_spawnRate: 2.5
+  m_tentaclesMaxCount: 5
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!1001 &696400701
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7813,229 +8069,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.5000005, y: 0.9279999, z: 2.5126922}
   m_Center: {x: 0.0000076293945, y: 0.46399996, z: 0}
---- !u!1001 &861263390
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1088614654458262732, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -7.0914817
-      objectReference: {fileID: 0}
-    - target: {fileID: 1088614654458262732, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -0.0012021444
-      objectReference: {fileID: 0}
-    - target: {fileID: 1088614654458262732, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0.013322189
-      objectReference: {fileID: 0}
-    - target: {fileID: 1750324963018252801, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 8.25311
-      objectReference: {fileID: 0}
-    - target: {fileID: 1750324963018252801, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -0.32347798
-      objectReference: {fileID: 0}
-    - target: {fileID: 1750324963018252801, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -1.1398182
-      objectReference: {fileID: 0}
-    - target: {fileID: 2945776030354905098, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -7.0918016
-      objectReference: {fileID: 0}
-    - target: {fileID: 2945776030354905098, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0.010448372
-      objectReference: {fileID: 0}
-    - target: {fileID: 2945776030354905098, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0.01311969
-      objectReference: {fileID: 0}
-    - target: {fileID: 3406434067962000078, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 27.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3406434067962000078, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3406434067962000078, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -44.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3406434067962000078, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.70710576
-      objectReference: {fileID: 0}
-    - target: {fileID: 3406434067962000078, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3406434067962000078, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.7071079
-      objectReference: {fileID: 0}
-    - target: {fileID: 3406434067962000078, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3406434067962000078, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3406434067962000078, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 270
-      objectReference: {fileID: 0}
-    - target: {fileID: 3406434067962000078, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3635900849476446550, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0.9320712
-      objectReference: {fileID: 0}
-    - target: {fileID: 3635900849476446550, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -0.1481751
-      objectReference: {fileID: 0}
-    - target: {fileID: 3635900849476446550, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -1.1012894
-      objectReference: {fileID: 0}
-    - target: {fileID: 4306388145218661395, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -7.091639
-      objectReference: {fileID: 0}
-    - target: {fileID: 4306388145218661395, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0.0042473753
-      objectReference: {fileID: 0}
-    - target: {fileID: 4306388145218661395, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0.015787961
-      objectReference: {fileID: 0}
-    - target: {fileID: 5452014573823554577, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -89.98021
-      objectReference: {fileID: 0}
-    - target: {fileID: 6066959283356088447, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -11.410117
-      objectReference: {fileID: 0}
-    - target: {fileID: 6066959283356088447, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 4.918226
-      objectReference: {fileID: 0}
-    - target: {fileID: 6066959283356088447, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -0.3869033
-      objectReference: {fileID: 0}
-    - target: {fileID: 6347809995251826209, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 6.203422
-      objectReference: {fileID: 0}
-    - target: {fileID: 6347809995251826209, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -0.11529856
-      objectReference: {fileID: 0}
-    - target: {fileID: 6347809995251826209, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -1.1584095
-      objectReference: {fileID: 0}
-    - target: {fileID: 7337693603030308081, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -9.457251
-      objectReference: {fileID: 0}
-    - target: {fileID: 7337693603030308081, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -0.0017827525
-      objectReference: {fileID: 0}
-    - target: {fileID: 7337693603030308081, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -0.002155656
-      objectReference: {fileID: 0}
-    - target: {fileID: 7363821738002800112, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 87.25066
-      objectReference: {fileID: 0}
-    - target: {fileID: 7363821738002800112, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7363821738002800112, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7393038517176559565, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -7.09197
-      objectReference: {fileID: 0}
-    - target: {fileID: 7393038517176559565, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0.016885541
-      objectReference: {fileID: 0}
-    - target: {fileID: 7393038517176559565, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -0.001413893
-      objectReference: {fileID: 0}
-    - target: {fileID: 9212770485999944722, guid: 0c2ef289d43454e4197ed17968a155f6,
-        type: 3}
-      propertyPath: m_Name
-      value: Tentacle_V2
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 0c2ef289d43454e4197ed17968a155f6, type: 3}
 --- !u!1 &861283612
 GameObject:
   m_ObjectHideFlags: 0
@@ -9195,6 +9228,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.5000005, y: 0.9279999, z: 2.5126922}
   m_Center: {x: 0.0000076293945, y: 0.46399996, z: 0}
+--- !u!1 &956542712
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 956542713}
+  m_Layer: 0
+  m_Name: Kraken Spot (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &956542713
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956542712}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 18, y: -2.5, z: -25.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 696025116}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &968494278
 GameObject:
   m_ObjectHideFlags: 0
@@ -13051,6 +13115,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 274715235}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1398378943
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1398378944}
+  m_Layer: 0
+  m_Name: Kraken Spot (9)
+  m_TagString: Untagged
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1398378944
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398378943}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -1, y: -2.5, z: -39.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 696025116}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &1406988131
 GameObject:
   m_ObjectHideFlags: 0
@@ -15416,7 +15511,7 @@ PrefabInstance:
     - target: {fileID: 3551931345751937580, guid: 4db44322431f6d6439fa69e352e81b67,
         type: 3}
       propertyPath: m_keepPlayerInViewPanDuration
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5279981243723839846, guid: 4db44322431f6d6439fa69e352e81b67,
         type: 3}
@@ -17079,6 +17174,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.5000005, y: 0.9279999, z: 2.5126922}
   m_Center: {x: 0.0000076293945, y: 0.46399996, z: 0}
+--- !u!1 &1748838605
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1748838606}
+  m_Layer: 0
+  m_Name: Kraken Spot (8)
+  m_TagString: Untagged
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1748838606
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1748838605}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 22, y: -2.5, z: -34.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 696025116}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1001 &1750990699
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19557,6 +19683,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.5000005, y: 0.9279999, z: 2.5126922}
   m_Center: {x: 0.0000076293945, y: 0.46399996, z: 0}
+--- !u!1 &2079772771
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2079772772}
+  m_Layer: 0
+  m_Name: Kraken Spot (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2079772772
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2079772771}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -13.5, y: -2.5, z: -44.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 696025116}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1001 &2094153195
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20523,5 +20680,5 @@ SceneRoots:
   - {fileID: 351935030}
   - {fileID: 1436795296}
   - {fileID: 274715235}
+  - {fileID: 696025116}
   - {fileID: 1360186540}
-  - {fileID: 861263390}

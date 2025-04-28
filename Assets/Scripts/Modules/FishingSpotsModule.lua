@@ -2,6 +2,8 @@
 
 --!SerializeField
 local fishPrefab : GameObject = nil
+--!SerializeField
+local spawnRate : number = 0 
 
 local spawnFishingObject = Event.new("Spawn Fishing Object")
 
@@ -10,6 +12,8 @@ local loadFishingSpotsResponse = Event.new("Load Fishing Spots Response")
 
 local destroySpotObject = Event.new("Destroy Spot Object")
 local destroySpotObjectResponse = Event.new("Destroy Spot Object Response")
+
+local clearFishingSpots = Event.new("Clear Fishing Spots")
 
 local fishingTimer : Timer | nil = nil
 fishingSpotsObjects = {}
@@ -30,11 +34,11 @@ function self:ServerAwake()
 end
 
 function StartFishingPhase()
-    fishingTimer = Timer.Every(1, SpawnFishingObject)
+    fishingTimer = Timer.Every(spawnRate, SpawnFishingObject)
 end
 
 function SpawnFishingObject()
-    spotId = math.random(1, self.transform.childCount - 1)
+    spotId = math.random(0, self.transform.childCount - 1)
     objectType = "fish"
 
     if(fishingSpotsObjects[spotId] == nil) then
@@ -50,6 +54,9 @@ function StopFishingPhase()
         fishingTimer:Stop()
         fishingTimer = nil
     end
+
+    fishingSpotsObjects = {}
+    clearFishingSpots:FireAllClients()
 end
 
 -- [Client Side]
@@ -70,6 +77,18 @@ function self:ClientAwake()
     --Destroy Spot Object Response
     destroySpotObjectResponse:Connect(function(spotId)
         DestroySpotObject(spotId)
+    end)
+
+    --Clear Fishing Spots
+    clearFishingSpots:Connect(function()
+        local parentTransform = self.transform
+        for i = 0, parentTransform.childCount - 1 do
+            local fs = parentTransform:GetChild(i)
+            
+            if(fs.childCount > 0) then
+                GameObject.Destroy(fs:GetChild(0).gameObject)
+            end
+        end
     end)
 end
 
