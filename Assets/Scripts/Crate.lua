@@ -8,6 +8,7 @@ self.gameObject:GetComponent(TapHandler).Tapped:Connect(function()
     phaseInfo = GameManagerModule.GetPhaseInfo()
 
     if(phaseInfo[1] ~= "Kraken") then return end
+    if(PlayerControllerModule.carriesCannonBall) then return end
 
     PlayerControllerModule.CarryCannonBall()
 end)

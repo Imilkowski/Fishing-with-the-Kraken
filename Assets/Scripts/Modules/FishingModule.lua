@@ -10,13 +10,13 @@ function StartFishing(spotId)
     print("Started fishing at spot " .. spotId)
     fishingAtSpot = spotId
     
-    PlayerControllerModule.PlayEmote("fishing-cast", false)
+    PlayerControllerModule.ChangePlayerState(client.localPlayer, "start fishing")
 
     UIManagerModule.ShowFishingUI(true)
 end
 
 function StopFishing(fishCaught)
-    PlayerControllerModule.PlayEmote("fishing-pull", false)
+    PlayerControllerModule.ChangePlayerState(client.localPlayer, "finish fishing")
 
     UIManagerModule.ShowFishingUI(false)
 

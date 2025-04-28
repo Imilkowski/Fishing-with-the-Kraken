@@ -5363,6 +5363,8 @@ MonoBehaviour:
   _uiOutput: 0
   _uiOutputSettings:
     rid: -2
+  m_cannonBallPrefab: {fileID: 3576816334703849343, guid: 57d086ab25009e9419b7283928f228ac,
+    type: 3}
   references:
     version: 2
     RefIds:

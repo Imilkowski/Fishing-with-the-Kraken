@@ -4,11 +4,9 @@ local PlayerControllerModule = require("PlayerControllerModule")
 
 -- Connect to the Tapped event
 self.gameObject:GetComponent(TapHandler).Tapped:Connect(function()
-    if(PlayerControllerModule.carriesCannonBall == true) then 
-        PlayerControllerModule.CannonBallLeft()
+    if(PlayerControllerModule.carriesCannonBall == false) then return end
+
+    PlayerControllerModule.CannonBallLeft()
         
-        print("Loaded a cannon")
-    else 
-        print("Requires a cannon ball")
-    end
+    print("Loaded a cannon")
 end)
