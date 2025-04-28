@@ -3,7 +3,7 @@
 --!SerializeField
 local phaseInfos = {
     Preparation = {"Preparation", 5, "Fishing starts in:"}, --180
-    Fishing = {"Fishing", 300, "Fishing ends in:"}, --300
+    Fishing = {"Fishing", 5, "Fishing ends in:"}, --300
     Kraken = {"Kraken"}
 }
 

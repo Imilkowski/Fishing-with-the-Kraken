@@ -24,6 +24,7 @@ function self:ServerAwake()
 
     --Destroy Spot Object
     destroySpotObject:Connect(function(player: Player, spotId)
+        fishingSpotsObjects[spotId] = nil
         destroySpotObjectResponse:FireAllClients(spotId)
     end)
 end
