@@ -33,11 +33,7 @@ function SetPhaseInfo(st, cpi)
     startTime = st
     phaseInfo = cpi
 
-    if(phaseInfo[1] == "Kraken") then
-        _PhaseText:SetPrelocalizedText("")
-    else
-        _PhaseText:SetPrelocalizedText(phaseInfo[3])
-    end
+    _PhaseText:SetPrelocalizedText(phaseInfo[3])
 end
 
 function UpdateCountdown()

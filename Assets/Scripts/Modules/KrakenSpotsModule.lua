@@ -104,12 +104,11 @@ function LoadKrakenSpots()
 end
 
 function SpawnTentacle(spotId)
-    fishingPoint = self.transform:GetChild(spotId)
+    krakenPoint = self.transform:GetChild(spotId)
 
-    local spawnedObject = Object.Instantiate(tentaclePrefab, fishingPoint.transform.position)
-    spawnedObject.transform.rotation = fishingPoint.rotation
-    spawnedObject.transform.parent = fishingPoint
-    --spawnedObject:GetComponent(Fish).SetFishingSpotId(spotId)
+    local spawnedObject = Object.Instantiate(tentaclePrefab, krakenPoint.transform.position)
+    spawnedObject.transform.rotation = krakenPoint.rotation
+    spawnedObject.transform.parent = krakenPoint
 end
 
 function RemoveTentacle(spotId)

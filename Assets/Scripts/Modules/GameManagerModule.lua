@@ -4,7 +4,7 @@
 local phaseInfos = {
     Preparation = {"Preparation", 5, "Fishing starts in:"}, --180
     Fishing = {"Fishing", 5, "Fishing ends in:"}, --300
-    Kraken = {"Kraken"}
+    Kraken = {"Kraken", 0, "Defeat the Kraken"}
 }
 
 local UIManagerModule = require("UIManagerModule")
@@ -128,6 +128,10 @@ function self:ClientAwake()
 
         if(currentPhaseInfo[1] == "Fishing") then
             FishingSpotsModule.LoadFishingSpots()
+        end
+
+        if(currentPhaseInfo[1] == "Kraken") then
+            KrakenSpotsModule.LoadKrakenSpots()
         end
     end)
 
