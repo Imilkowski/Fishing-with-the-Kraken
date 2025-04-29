@@ -6330,6 +6330,7 @@ MonoBehaviour:
     type: 3}
   m_spawnRate: 5
   m_tentaclesMaxCount: 5
+  m_cannonsParent: {fileID: 1779720004}
   references:
     version: 2
     RefIds:

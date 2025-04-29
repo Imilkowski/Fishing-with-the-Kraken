@@ -25,6 +25,7 @@ namespace Highrise.Lua.Generated
         private const string s_scriptGUID = "e437acb5cbc6e5d42b3cf629863ddb5b";
         public override string ScriptGUID => s_scriptGUID;
 
+        [SerializeField] public UnityEngine.ParticleSystem m_shotEffect = default;
         [SerializeField] public System.Double m_facingSpot = 0;
 
         protected override SerializedPropertyValue[] SerializeProperties()
@@ -34,7 +35,8 @@ namespace Highrise.Lua.Generated
 
             return new SerializedPropertyValue[]
             {
-                CreateSerializedProperty(_script.GetPropertyAt(0), m_facingSpot),
+                CreateSerializedProperty(_script.GetPropertyAt(0), m_shotEffect),
+                CreateSerializedProperty(_script.GetPropertyAt(1), m_facingSpot),
             };
         }
     }

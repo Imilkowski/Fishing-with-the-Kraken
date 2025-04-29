@@ -9,6 +9,9 @@ local spawnRate : number = 0
 --!SerializeField
 local tentaclesMaxCount : number = 0 
 
+--!SerializeField
+local cannonsParent : Transform = nil
+
 local spawnTentacle = Event.new("Spawn Tentacle")
 
 local loadKrakenSpots = Event.new("Load Kraken Spots")
@@ -18,6 +21,7 @@ local clearKrakenSpots = Event.new("Clear Kraken Spots")
 
 local attackTentacle = Event.new("Attack Tentacle")
 local tentacleHealthResponse = Event.new("Tentacle Health Response")
+local cannonShot = Event.new("Cannon Shot")
 
 local tentacleTimer : Timer | nil = nil
 spotsTentacles = {}
@@ -33,6 +37,8 @@ function self:ServerAwake()
 
     --Attack Tentacle
     attackTentacle:Connect(function(player: Player, spotId, damage)
+        cannonShot:FireAllClients(spotId)
+
         if(spotsTentacles[spotId] == nil) then return end
 
         spotsTentacles[spotId] -= damage
@@ -64,7 +70,7 @@ function SpawnTentacleRequest()
     health = math.random(100, 150)
 
     if(spotsTentacles[spotId] == nil) then
-        spawnTentacle:FireAllClients(spotId)
+        spawnTentacle:FireAllClients(spotId, health)
         spotsTentacles[spotId] = health
         tentaclesCount += 1
     end
@@ -89,14 +95,14 @@ end
 
 function self:ClientAwake()
     --Spawn Tentacle
-    spawnTentacle:Connect(function(spotId)
-        SpawnTentacle(spotId)
+    spawnTentacle:Connect(function(spotId, health)
+        SpawnTentacle(spotId, health)
     end)
 
     --Load Kraken Spots Response
     loadKrakenSpotsResponse:Connect(function(st)
         for k, v in pairs(st) do
-            SpawnTentacle(k)
+            SpawnTentacle(k, v)
         end
     end)
 
@@ -116,18 +122,25 @@ function self:ClientAwake()
     tentacleHealthResponse:Connect(function(spotId, health)
         DamageTentacle(spotId, health)
     end)
+
+    --Cannon Shot
+    cannonShot:Connect(function(spotId)
+        FireCannonEffect(spotId)
+    end)
 end
 
 function LoadKrakenSpots()
     loadKrakenSpots:FireServer(client.localPlayer)
 end
 
-function SpawnTentacle(spotId)
+function SpawnTentacle(spotId, health)
     krakenPoint = self.transform:GetChild(spotId)
 
     local spawnedObject = Object.Instantiate(tentaclePrefab, krakenPoint.transform.position)
     spawnedObject.transform.rotation = krakenPoint.rotation
     spawnedObject.transform.parent = krakenPoint
+
+    spawnedObject:GetComponent(Tentacle).ChangeHealth(health)
 end
 
 function DamageTentacle(spotId, health)
@@ -145,4 +158,16 @@ end
 
 function AttackTentacle(spotId, damage)
     attackTentacle:FireServer(spotId, damage)
+end
+
+function FireCannonEffect(spotId)
+    print("FireCannonEffect ", spotId)
+
+    for i = 0, cannonsParent.childCount - 1 do
+        cannon = cannonsParent:GetChild(i):GetComponent(Cannon)
+        
+        if(cannon.GetSpotId() == spotId) then
+            cannon.ShotEffect()
+        end
+    end
 end
