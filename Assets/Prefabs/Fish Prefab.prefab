@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _checkDistance: 1
-  _distance: 10
+  _distance: 12
   _moveTo: 1
   _moveTarget: {fileID: 1666241172860065470}
 --- !u!65 &3947837333608125230

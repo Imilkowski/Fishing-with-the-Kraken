@@ -19,7 +19,7 @@ using Highrise.Lua;
 namespace Highrise.Lua.Generated
 {
     [AddComponentMenu("Lua/KrakenSpotsModule")]
-    [LuaRegisterType(0xeb58e737059b2988, typeof(LuaBehaviour))]
+    [LuaRegisterType(0xb394979f17a65fe0, typeof(LuaBehaviour))]
     public class KrakenSpotsModule : LuaBehaviourThunk
     {
         private const string s_scriptGUID = "5482d24130ed0e34ca22d230899d161a";
