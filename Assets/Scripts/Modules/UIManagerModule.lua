@@ -22,6 +22,10 @@ function ShowFishingUI(show)
     fishingUI.gameObject:SetActive(show)
 end
 
+function UpdateKrakenHealth(health)
+    hudUI.UpdateKrakenHealth(health)
+end
+
 function ShowLeaderboard()
     -- show = not inventoryUI.gameObject.activeSelf
 

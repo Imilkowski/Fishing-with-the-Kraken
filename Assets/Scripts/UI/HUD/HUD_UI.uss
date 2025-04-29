@@ -86,3 +86,23 @@
 .medium-text {
     font-size: 24px;
 }
+
+.kraken-container{
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    margin-top: -24px;
+
+    width: 100%;
+}
+
+.tentacle-icon{
+    background-image: url("project://database/Assets/Art/Icons/Tentacle.png");
+
+    height: 24px;
+    width: 24px;
+
+    margin: 4px;
+}

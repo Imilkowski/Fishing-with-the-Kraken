@@ -52,6 +52,7 @@ function self:ServerAwake()
 end
 
 function StartKrakenPhase()
+    tentaclesCount = 0
     tentacleTimer = Timer.Every(spawnRate, SpawnTentacleRequest)
 end
 

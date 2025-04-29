@@ -7,6 +7,9 @@ local GameManagerModule = require("GameManagerModule")
 local _LeaderboardButton: VisualElement = nil
 
 --!Bind
+local _TentaclesParent: VisualElement = nil
+
+--!Bind
 local _Currency: UILabel = nil
 --!Bind
 local _PhaseText: UILabel = nil
@@ -45,6 +48,16 @@ function UpdateCountdown()
         timeLeft = phaseInfo[2] - (os.time(os.date("*t")) - startTime)
 
         _Countdown:SetPrelocalizedText(FormatTime(timeLeft))
+    end
+end
+
+function UpdateKrakenHealth(health)
+    _TentaclesParent:Clear()
+
+    for i = 1, health do
+        local _tentacleImage = Image.new();
+        _tentacleImage:AddToClassList("tentacle-icon")
+        _TentaclesParent:Add(_tentacleImage)
     end
 end
 
