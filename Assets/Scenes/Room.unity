@@ -5380,6 +5380,8 @@ MonoBehaviour:
     rid: -2
   m_cannonBallPrefab: {fileID: 3576816334703849343, guid: 57d086ab25009e9419b7283928f228ac,
     type: 3}
+  m_stunnedEffectPrefab: {fileID: 1458411388193221302, guid: 01f47122dc7caac4495a969b5a1896dd,
+    type: 3}
   references:
     version: 2
     RefIds:
@@ -6329,6 +6331,7 @@ MonoBehaviour:
   m_tentaclePrefab: {fileID: 2325363421364870328, guid: e6a28b88034495d4b9972c75ae587cbb,
     type: 3}
   m_spawnRate: 5
+  m_tentacleAttackRate: 5
   m_tentaclesMaxCount: 5
   m_cannonsParent: {fileID: 1779720004}
   references:
@@ -15273,6 +15276,7 @@ MonoBehaviour:
   _uiOutput: 0
   _uiOutputSettings:
     rid: -2
+  m_krakenMaxHealth: 10
   references:
     version: 2
     RefIds:

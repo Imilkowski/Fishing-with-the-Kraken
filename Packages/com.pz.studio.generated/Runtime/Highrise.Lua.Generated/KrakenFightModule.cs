@@ -25,6 +25,7 @@ namespace Highrise.Lua.Generated
         private const string s_scriptGUID = "6040759687d29984da906c0de592833e";
         public override string ScriptGUID => s_scriptGUID;
 
+        [SerializeField] public System.Double m_krakenMaxHealth = 0;
 
         protected override SerializedPropertyValue[] SerializeProperties()
         {
@@ -33,6 +34,7 @@ namespace Highrise.Lua.Generated
 
             return new SerializedPropertyValue[]
             {
+                CreateSerializedProperty(_script.GetPropertyAt(0), m_krakenMaxHealth),
             };
         }
     }

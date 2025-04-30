@@ -7,6 +7,8 @@ local tentaclePrefab : GameObject = nil
 --!SerializeField
 local spawnRate : number = 0 
 --!SerializeField
+local tentacleAttackRate : number = 0 
+--!SerializeField
 local tentaclesMaxCount : number = 0 
 
 --!SerializeField
@@ -21,9 +23,12 @@ local clearKrakenSpots = Event.new("Clear Kraken Spots")
 
 local attackTentacle = Event.new("Attack Tentacle")
 local tentacleHealthResponse = Event.new("Tentacle Health Response")
+
 local cannonShot = Event.new("Cannon Shot")
+local krakenTentacleAttack = Event.new("Kraken Tentacle Attack")
 
 local tentacleTimer : Timer | nil = nil
+local tentacleAttackTimer : Timer | nil = nil
 spotsTentacles = {}
 tentaclesCount = 0
 
@@ -60,6 +65,19 @@ end
 function StartKrakenPhase()
     tentaclesCount = 0
     tentacleTimer = Timer.Every(spawnRate, SpawnTentacleRequest)
+    tentacleAttackTimer = Timer.Every(tentacleAttackRate, TentacleAttackRequest)
+end
+
+function TentacleAttackRequest()
+    tentaclesIds = {}
+
+    for k, v in spotsTentacles do
+        table.insert(tentaclesIds, k)
+    end
+
+    randomId = math.random(1, #tentaclesIds)
+
+    krakenTentacleAttack:FireAllClients(tentaclesIds[randomId])
 end
 
 function SpawnTentacleRequest()
@@ -82,6 +100,11 @@ function StopKrakenPhase()
     if (tentacleTimer) then
         tentacleTimer:Stop()
         tentacleTimer = nil
+    end
+
+    if (tentacleAttackTimer) then
+        tentacleAttackTimer:Stop()
+        tentacleAttackTimer = nil
     end
 
     spotsTentacles = {}
@@ -127,6 +150,11 @@ function self:ClientAwake()
     cannonShot:Connect(function(spotId)
         FireCannonEffect(spotId)
     end)
+
+    --Kraken Tentacle Attack
+    krakenTentacleAttack:Connect(function(spotId)
+        TentacleAttack(spotId)
+    end)
 end
 
 function LoadKrakenSpots()
@@ -161,13 +189,24 @@ function AttackTentacle(spotId, damage)
 end
 
 function FireCannonEffect(spotId)
-    print("FireCannonEffect ", spotId)
-
     for i = 0, cannonsParent.childCount - 1 do
         cannon = cannonsParent:GetChild(i):GetComponent(Cannon)
         
         if(cannon.GetSpotId() == spotId) then
             cannon.ShotEffect()
         end
+    end
+end
+
+function TentacleAttack(spotId)
+    local status, result = pcall(function()
+        krakenPoint = self.transform:GetChild(spotId)
+        tentacle = krakenPoint:GetChild(0):GetComponent(Tentacle)
+    
+        tentacle.Attack()
+    end)
+    
+    if not status then
+        print("An error occurred in KrakenSpotsModule: " .. result)
     end
 end

@@ -27,6 +27,7 @@ namespace Highrise.Lua.Generated
 
         [SerializeField] public UnityEngine.GameObject m_tentaclePrefab = default;
         [SerializeField] public System.Double m_spawnRate = 0;
+        [SerializeField] public System.Double m_tentacleAttackRate = 0;
         [SerializeField] public System.Double m_tentaclesMaxCount = 0;
         [SerializeField] public UnityEngine.Transform m_cannonsParent = default;
 
@@ -39,8 +40,9 @@ namespace Highrise.Lua.Generated
             {
                 CreateSerializedProperty(_script.GetPropertyAt(0), m_tentaclePrefab),
                 CreateSerializedProperty(_script.GetPropertyAt(1), m_spawnRate),
-                CreateSerializedProperty(_script.GetPropertyAt(2), m_tentaclesMaxCount),
-                CreateSerializedProperty(_script.GetPropertyAt(3), m_cannonsParent),
+                CreateSerializedProperty(_script.GetPropertyAt(2), m_tentacleAttackRate),
+                CreateSerializedProperty(_script.GetPropertyAt(3), m_tentaclesMaxCount),
+                CreateSerializedProperty(_script.GetPropertyAt(4), m_cannonsParent),
             };
         }
     }

@@ -25,6 +25,8 @@ namespace Highrise.Lua.Generated
         private const string s_scriptGUID = "fc94fe2cdeb934b42a6dc510dda67c43";
         public override string ScriptGUID => s_scriptGUID;
 
+        [SerializeField] public UnityEngine.Transform m_attackOrigin = default;
+        [SerializeField] public System.Double m_attackRadius = 0;
 
         protected override SerializedPropertyValue[] SerializeProperties()
         {
@@ -33,6 +35,8 @@ namespace Highrise.Lua.Generated
 
             return new SerializedPropertyValue[]
             {
+                CreateSerializedProperty(_script.GetPropertyAt(0), m_attackOrigin),
+                CreateSerializedProperty(_script.GetPropertyAt(1), m_attackRadius),
             };
         }
     }

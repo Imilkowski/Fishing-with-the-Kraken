@@ -2,6 +2,8 @@
 
 --!SerializeField
 local cannonBallPrefab : GameObject = nil
+--!SerializeField
+local stunnedEffectPrefab : GameObject = nil
 
 local changePlayerStateRequest = Event.new("Change Player State Request")
 local changePlayerState = Event.new("Change Player State")
@@ -37,19 +39,11 @@ function ChangePlayerState(player, state)
     changePlayerStateRequest:FireServer(player, state)
 end
 
-function ActivatePlayerState(player, state)
+function ActivatePlayerState(player : Player, state)
     if(state == "standard") then
         player.character.speed = 5.5
 
-        playerTransform = player.character.transform
-        for i = 0, playerTransform.childCount - 1 do
-            local child = playerTransform:GetChild(i)
-            
-            if(child.name == "Cannon Ball(Clone)") then
-                GameObject.Destroy(child.gameObject)
-                return
-            end
-        end
+        RemoveCannonBall(player)
     end
 
     if(state == "cannon ball") then
@@ -65,6 +59,39 @@ function ActivatePlayerState(player, state)
 
     if(state == "finish fishing") then
         PlayEmote(player, "fishing-pull", false) 
+    end
+
+    if(state == "stunned") then
+        player.character.speed = 0
+
+        PlayEmote(player, "emoji-dizzy", true)
+        
+        RemoveCannonBall(player)
+
+        local stunnedEffect = Object.Instantiate(stunnedEffectPrefab, player.character.transform.position + Vector3.new(0, 4, 0))
+        stunnedEffect.transform.parent = player.character.transform
+
+        Timer.After(3, function()
+            ChangePlayerState(player, "standard")
+            GameObject.Destroy(stunnedEffect)
+            PlayEmote(player, "idle", true)
+        end)
+    end
+end
+
+function RemoveCannonBall(player)
+    playerTransform = player.character.transform
+    for i = 0, playerTransform.childCount - 1 do
+        local child = playerTransform:GetChild(i)
+        
+        if(child.name == "Cannon Ball(Clone)") then
+            GameObject.Destroy(child.gameObject)
+            return
+        end
+    end
+
+    if(player == client.localPlayer) then
+        carriesCannonBall = false
     end
 end
 
