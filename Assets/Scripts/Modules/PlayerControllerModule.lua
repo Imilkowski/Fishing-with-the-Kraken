@@ -55,11 +55,13 @@ function ActivatePlayerState(player : Player, state)
 
     if(state == "start fishing") then
         player.character.speed = 0
-        
+
         PlayEmote(player, "fishing-cast", false)
     end
 
     if(state == "finish fishing") then
+        player.character.speed = 5.5
+        
         PlayEmote(player, "fishing-pull", false) 
     end
 

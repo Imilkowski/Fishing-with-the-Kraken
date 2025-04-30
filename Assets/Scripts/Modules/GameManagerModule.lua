@@ -1,6 +1,5 @@
 --!Type(Module)
 
---!SerializeField
 local phaseInfos = {
     Preparation = {"Preparation", 180, "Fishing starts in:"}, --180
     Fishing = {"Fishing", 300, "Fishing ends in:"}, --300
@@ -24,9 +23,22 @@ local startKrakenPhase = Event.new("Start Kraken Phase")
 local updatePlayerInfo = Event.new("Update Player Info")
 local updatePlayerInfoResponse = Event.new("Update Player Info Response")
 
+local buyUpgrade = Event.new("Buy Upgrade")
+local updateUpgrades = Event.new("Update Upgrades")
+
+maxUpgradeLevel = 5
+
 players_storage = {}
 phaseStartTime = nil
 phase = ""
+
+local generalInfoLocal = {}
+
+upgrades = { --name, description, level, base cost,
+    {"Fishing Rod", "Faster fishing", 1, 25},
+    {"Bait", "Fish appear faster", 1, 20},
+    {"Cannons", "More damage delt", 1, 15}
+}
 
 -- [Server Side]
 
@@ -36,10 +48,13 @@ function self:ServerAwake()
         players_storage[player] = {
             player = player,
             generalInfo = {
-                Gems = 0,
+                Gems = 100,
                 FishCaught = 0
             },
         }
+
+        updatePlayerInfoResponse:FireClient(player, players_storage[player].generalInfo)
+        updateUpgrades:FireClient(player, upgrades)
 
         print(player.name .. " connected to the server")
     end)
@@ -66,6 +81,19 @@ function self:ServerAwake()
         end
 
         updatePlayerInfoResponse:FireClient(player, players_storage[player].generalInfo)
+    end)
+
+    --Buy Upgrade
+    buyUpgrade:Connect(function(player: Player, upgradeId)
+        if(upgrades[upgradeId][3] < maxUpgradeLevel) then 
+            if(players_storage[player].generalInfo["Gems"] >= upgrades[upgradeId][4]) then
+                upgrades[upgradeId][3] += 1
+                players_storage[player].generalInfo["Gems"] -= upgrades[upgradeId][4]
+            end
+        end
+
+        updatePlayerInfoResponse:FireClient(player, players_storage[player].generalInfo)
+        updateUpgrades:FireAllClients(upgrades)
     end)
 end
 
@@ -168,7 +196,13 @@ function self:ClientAwake()
     end)
 
     updatePlayerInfoResponse:Connect(function(generalInfo)
-        UIManagerModule.UpdatePlayerInfo(generalInfo)
+        generalInfoLocal = generalInfo
+        UIManagerModule.UpdatePlayerInfo(generalInfoLocal)
+    end)
+
+    updateUpgrades:Connect(function(upgr)
+        upgrades = upgr
+        UIManagerModule.UpdateUpgrades()
     end)
 end
 
@@ -180,10 +214,22 @@ function GetPhaseInfo()
     return currentPhaseInfo
 end
 
+function GetUpgrades()
+    return upgrades
+end
+
 function UpdatePhaseInfo(st, p)
     phaseStartTime = st
     currentPhaseInfo = phaseInfos[p]
     UIManagerModule.SetPhaseInfo(st, currentPhaseInfo)
+end
+
+function GetGeneralInfoLocal()
+    return generalInfoLocal
+end
+
+function BuyUpgrade(upgradeId)
+    buyUpgrade:FireServer(upgradeId)
 end
 
 function AddFish(amount)

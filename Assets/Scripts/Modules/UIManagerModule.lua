@@ -40,3 +40,9 @@ function ShowUpgrades(show)
         upgradesUI.UpdateUpgradesList()
     end
 end
+
+function UpdateUpgrades()
+    if(upgradesUI.gameObject.activeSelf) then
+        upgradesUI.UpdateUpgradesList()
+    end
+end

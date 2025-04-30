@@ -2,6 +2,7 @@
 
 --!SerializeField
 local UIManagerModule = require("UIManagerModule")
+local GameManagerModule = require("GameManagerModule")
 
 --!Bind
 local _UpgradesParent: VisualElement = nil
@@ -13,13 +14,18 @@ local _Currency: UILabel = nil
 
 function self:Awake()
     _Title:SetPrelocalizedText("Upgrades")
-    _Currency:SetPrelocalizedText("0")
+    _Currency:SetPrelocalizedText("-")
 end
 
 function UpdateUpgradesList()
+    generalInfo = GameManagerModule.GetGeneralInfoLocal()
+    _Currency:SetPrelocalizedText(generalInfo["Gems"])
+
+    upgrades = GameManagerModule.GetUpgrades()
+
     _UpgradesParent:Clear()
 
-    for i = 1, 3 do
+    for i, v in ipairs(upgrades) do
         local _upgradeContainer = VisualElement.new();
         _upgradeContainer:AddToClassList("upgrade-container")
         _UpgradesParent:Add(_upgradeContainer)
@@ -35,13 +41,13 @@ function UpdateUpgradesList()
         local _title = UILabel.new();
         _title:AddToClassList("white-text")
         _title:AddToClassList("small-text")
-        _title:SetPrelocalizedText("Title")
+        _title:SetPrelocalizedText(upgrades[i][1] .. " Lvl." .. upgrades[i][3])
         _upgradeDetails:Add(_title)
 
         local _description = UILabel.new();
-        _description:AddToClassList("white-text")
+        _description:AddToClassList("black-text")
         _description:AddToClassList("tiny-text")
-        _description:SetPrelocalizedText("Description")
+        _description:SetPrelocalizedText(upgrades[i][2])
         _upgradeDetails:Add(_description)
 
         local _upgradeButton = VisualElement.new();
@@ -54,10 +60,36 @@ function UpdateUpgradesList()
         _buttonLabel:SetPrelocalizedText("Upgrade")
         _upgradeButton:Add(_buttonLabel)
 
-        -- Register a callback for when the button is pressed
-        _upgradeButton:RegisterPressCallback(function()
-            
-        end)
+        if(upgrades[i][3] < GameManagerModule.maxUpgradeLevel) then
+            local _gemsContainer = VisualElement.new();
+            _gemsContainer:AddToClassList("button-currency-container")
+            _upgradeButton:Add(_gemsContainer)
+    
+            local _gemsLabel = UILabel.new();
+            _gemsLabel:AddToClassList("white-text")
+            _gemsLabel:AddToClassList("tiny-text")
+            _gemsLabel:SetPrelocalizedText(upgrades[i][4])
+            _gemsContainer:Add(_gemsLabel)
+    
+            local _gemIcon = Image.new();
+            _gemIcon:AddToClassList("button-gem-icon")
+            _gemsContainer:Add(_gemIcon)
+
+            if(generalInfo["Gems"] >= upgrades[i][4]) then
+                -- Register a callback for when the button is pressed
+                _upgradeButton:RegisterPressCallback(function()
+                    GameManagerModule.BuyUpgrade(i)
+                end)
+            else
+                _upgradeButton:RemoveFromClassList("upgrade-button")
+                _upgradeButton:AddToClassList("inactive-button")
+            end
+        else
+            _upgradeButton:RemoveFromClassList("upgrade-button")
+            _upgradeButton:AddToClassList("inactive-button")
+
+            _buttonLabel:SetPrelocalizedText("Max Level")
+        end
     end
 
     local _returnButton = VisualElement.new();
