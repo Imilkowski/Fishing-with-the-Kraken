@@ -3,6 +3,7 @@
 local UIManagerModule = require("UIManagerModule")
 local FishingSpotsModule = require("FishingSpotsModule")
 local PlayerControllerModule = require("PlayerControllerModule")
+local GameManagerModule = require("GameManagerModule")
 
 local fishingAtSpot = 0
 
@@ -25,5 +26,5 @@ function StopFishing(fishCaught)
     FishingSpotsModule.RemoveObject(fishingAtSpot)
     fishingAtSpot = 0
     
-    print("Fish caught")
+    GameManagerModule.AddFish(1)
 end

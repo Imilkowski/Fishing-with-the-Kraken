@@ -29,6 +29,8 @@ namespace Highrise.Lua.Generated
         [SerializeField] public UnityEngine.Object m_hudUI = default;
         [LuaScriptPropertyAttribute("47f003f2293188042956abce3fa0e889")]
         [SerializeField] public UnityEngine.Object m_fishingUI = default;
+        [LuaScriptPropertyAttribute("a38c0e96fe00e2341923cb4dfbb970f4")]
+        [SerializeField] public UnityEngine.Object m_upgradesUI = default;
 
         protected override SerializedPropertyValue[] SerializeProperties()
         {
@@ -39,6 +41,7 @@ namespace Highrise.Lua.Generated
             {
                 CreateSerializedProperty(_script.GetPropertyAt(0), m_hudUI),
                 CreateSerializedProperty(_script.GetPropertyAt(1), m_fishingUI),
+                CreateSerializedProperty(_script.GetPropertyAt(2), m_upgradesUI),
             };
         }
     }

@@ -4,9 +4,12 @@
 local hudUI : HUD_UI = nil
 --!SerializeField
 local fishingUI : Fishing_UI = nil
+--!SerializeField
+local upgradesUI : Upgrades_UI = nil
 
 function self:ClientStart()
     ClosePanel(fishingUI)
+    ClosePanel(upgradesUI)
 end
 
 function ClosePanel(panel)
@@ -26,12 +29,14 @@ function UpdateKrakenHealth(health)
     hudUI.UpdateKrakenHealth(health)
 end
 
-function ShowLeaderboard()
-    -- show = not inventoryUI.gameObject.activeSelf
+function UpdatePlayerInfo(generalInfo)
+    hudUI.SetGems(generalInfo["Gems"])
+end
 
-    -- inventoryUI.gameObject:SetActive(show)
+function ShowUpgrades(show)
+    upgradesUI.gameObject:SetActive(show)
 
-    -- if(show) then
-    --     inventoryUI.UpdateItemsList(SaveModule.players_storage[client.localPlayer].inventory)
-    -- end
+    if(show) then
+        upgradesUI.UpdateUpgradesList()
+    end
 end

@@ -3,11 +3,13 @@
 local UIManagerModule = require("UIManagerModule")
 local GameManagerModule = require("GameManagerModule")
 
---!Bind
-local _LeaderboardButton: VisualElement = nil
+-- --!Bind
+-- local _LeaderboardButton: VisualElement = nil
 
 --!Bind
 local _TentaclesParent: VisualElement = nil
+--!Bind
+local _BottomParent: VisualElement = nil
 
 --!Bind
 local _Currency: UILabel = nil
@@ -27,16 +29,49 @@ function self:Update()
     UpdateCountdown()
 end
 
--- Register a callback for when the button is pressed
-_LeaderboardButton:RegisterPressCallback(function()
-    UIManagerModule.ShowLeaderboard()
-end)
+-- -- Register a callback for when the button is pressed
+-- _LeaderboardButton:RegisterPressCallback(function()
+--     UIManagerModule.ShowLeaderboard()
+-- end)
+
+function SetGems(amount)
+    _Currency:SetPrelocalizedText(amount)
+end
 
 function SetPhaseInfo(st, cpi)
     startTime = st
     phaseInfo = cpi
 
     _PhaseText:SetPrelocalizedText(phaseInfo[3])
+
+    if(phaseInfo[1] == "Preparation") then
+        ShowUpgradesButton(true)
+    else
+        ShowUpgradesButton(false)
+    end
+end
+
+function ShowUpgradesButton(show)
+    if(show) then
+        _BottomParent:Clear()
+
+        local _upgradesButton = VisualElement.new();
+        _upgradesButton:AddToClassList("upgrades-button")
+        _BottomParent:Add(_upgradesButton)
+
+        local _label = UILabel.new()
+        _label:AddToClassList("white-text")
+        _label:AddToClassList("small-text")
+        _label:SetPrelocalizedText("Upgrades")
+        _upgradesButton:Add(_label)
+
+        -- Register a callback for when the button is pressed
+        _upgradesButton:RegisterPressCallback(function()
+            UIManagerModule.ShowUpgrades(true)
+        end)
+    else
+        _BottomParent:Clear()
+    end
 end
 
 function UpdateCountdown()

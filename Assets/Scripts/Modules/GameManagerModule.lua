@@ -2,8 +2,8 @@
 
 --!SerializeField
 local phaseInfos = {
-    Preparation = {"Preparation", 5, "Fishing starts in:"}, --180
-    Fishing = {"Fishing", 5, "Fishing ends in:"}, --300
+    Preparation = {"Preparation", 180, "Fishing starts in:"}, --180
+    Fishing = {"Fishing", 300, "Fishing ends in:"}, --300
     Kraken = {"Kraken", 0, "Defeat the Kraken"}
 }
 
@@ -21,6 +21,9 @@ local startPreparationPhase = Event.new("Start Preparation Phase")
 local startFishingPhase = Event.new("Start Fishing Phase")
 local startKrakenPhase = Event.new("Start Kraken Phase")
 
+local updatePlayerInfo = Event.new("Update Player Info")
+local updatePlayerInfoResponse = Event.new("Update Player Info Response")
+
 players_storage = {}
 phaseStartTime = nil
 phase = ""
@@ -34,8 +37,7 @@ function self:ServerAwake()
             player = player,
             generalInfo = {
                 Gems = 0,
-                MostFishCaught = 0,
-                MostDamageDelt = 0,
+                FishCaught = 0
             },
         }
 
@@ -51,6 +53,19 @@ function self:ServerAwake()
     --Get Phase Info
     getPhaseInfo:Connect(function(player: Player, onJoin)
         getPhaseInfoResponse:FireClient(player, phaseStartTime, phase, onJoin)
+    end)
+
+    --Update Player Info
+    updatePlayerInfo:Connect(function(player: Player, gems, fish)
+        if(gems ~= 0) then
+            players_storage[player].generalInfo["Gems"] += gems
+        end
+
+        if(fish ~= 0) then
+            players_storage[player].generalInfo["FishCaught"] += fish
+        end
+
+        updatePlayerInfoResponse:FireClient(player, players_storage[player].generalInfo)
     end)
 end
 
@@ -151,6 +166,10 @@ function self:ClientAwake()
     startKrakenPhase:Connect(function(st, p)
         UpdatePhaseInfo(st, p)
     end)
+
+    updatePlayerInfoResponse:Connect(function(generalInfo)
+        UIManagerModule.UpdatePlayerInfo(generalInfo)
+    end)
 end
 
 function self:ClientStart()
@@ -165,4 +184,12 @@ function UpdatePhaseInfo(st, p)
     phaseStartTime = st
     currentPhaseInfo = phaseInfos[p]
     UIManagerModule.SetPhaseInfo(st, currentPhaseInfo)
+end
+
+function AddFish(amount)
+    updatePlayerInfo:FireServer(0, amount)
+end
+
+function AddGems(amount)
+    updatePlayerInfo:FireServer(amount, 0)
 end

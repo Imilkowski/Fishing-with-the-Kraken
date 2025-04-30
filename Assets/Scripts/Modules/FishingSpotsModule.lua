@@ -3,6 +3,10 @@
 --!SerializeField
 local fishPrefab : GameObject = nil
 --!SerializeField
+local treasurePrefab : GameObject = nil
+--!SerializeField
+local treasureChance : number = 0
+--!SerializeField
 local spawnRate : number = 0 
 
 local spawnFishingObject = Event.new("Spawn Fishing Object")
@@ -39,7 +43,12 @@ end
 
 function SpawnFishingObject()
     spotId = math.random(0, self.transform.childCount - 1)
+
     objectType = "fish"
+    tc = math.random(0, treasureChance)
+    if(tc == treasureChance) then
+        objectType = "treasure"
+    end
 
     if(fishingSpotsObjects[spotId] == nil) then
         spawnFishingObject:FireAllClients(spotId, objectType)
@@ -99,9 +108,16 @@ end
 function SpawnObject(spotId, objectType)
     fishingPoint = self.transform:GetChild(spotId)
 
-    local spawnedObject = Object.Instantiate(fishPrefab, fishingPoint.transform.position)
-    spawnedObject.transform.parent = fishingPoint
-    spawnedObject:GetComponent(Fish).SetFishingSpotId(spotId)
+    if(objectType == "fish") then
+        local spawnedObject = Object.Instantiate(fishPrefab, fishingPoint.transform.position)
+        spawnedObject.transform.parent = fishingPoint
+        spawnedObject:GetComponent(Fish).SetFishingSpotId(spotId)
+    elseif(objectType == "treasure") then
+        local spawnedObject = Object.Instantiate(treasurePrefab, fishingPoint.transform.position)
+        spawnedObject.transform.parent = fishingPoint
+        spawnedObject.transform.rotation = Quaternion.Euler(0, math.random(0, 360), 0)
+        spawnedObject:GetComponent(Treasure).SetFishingSpotId(spotId)
+    end
 end
 
 function RemoveObject(spotId)

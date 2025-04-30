@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="UnityEngine.UIElements"
+    xmlns:hr="Highrise.UI"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd"
+>
+
+  <hr:UILuaView class="upgrades_-u-i">
+  <VisualElement class="center-panel-container">
+  
+      <VisualElement class="header">
+        <hr:UILabel class="white-text medium-text text-title" name="_Title"/>
+
+        <VisualElement class="currency-container">
+          <hr:UILabel class="white-text medium-text" name="_Currency"/>
+          <Image class="gem-icon"/>
+        </VisualElement>
+      </VisualElement>
+
+      <VisualElement class="content" name="_UpgradesParent"></VisualElement>
+
+    </VisualElement>
+  </hr:UILuaView>
+
+</UXML>

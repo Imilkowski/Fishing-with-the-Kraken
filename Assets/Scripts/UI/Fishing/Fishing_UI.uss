@@ -40,9 +40,10 @@
     justify-content: center;
 
     height: 48px;
-    width: 128px;
 
     padding: 8px;
+    padding-left: 16px;
+    padding-right: 16px;
     margin: 4px;
 }
 

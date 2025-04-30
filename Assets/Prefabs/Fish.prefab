@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8612195169146259657}
   - component: {fileID: 2290978637614209621}
   m_Layer: 8
-  m_Name: Fish Prefab
+  m_Name: Fish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
