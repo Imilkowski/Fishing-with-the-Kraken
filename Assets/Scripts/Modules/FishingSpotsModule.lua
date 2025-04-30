@@ -1,13 +1,13 @@
 --!Type(Module)
 
+local GameManagerModule = require("GameManagerModule")
+
 --!SerializeField
 local fishPrefab : GameObject = nil
 --!SerializeField
 local treasurePrefab : GameObject = nil
 --!SerializeField
-local treasureChance : number = 0
---!SerializeField
-local spawnRate : number = 0 
+local treasureChance : number = 0 
 
 local spawnFishingObject = Event.new("Spawn Fishing Object")
 
@@ -38,7 +38,12 @@ function self:ServerAwake()
 end
 
 function StartFishingPhase()
-    fishingTimer = Timer.Every(spawnRate, SpawnFishingObject)
+    fishingTimer = Timer.Every(GetSpawnRateValue(), SpawnFishingObject)
+end
+
+function GetSpawnRateValue()
+    baitUpgrade = GameManagerModule.GetUpgrades()[2][3] - 1
+    return 1.25 - (baitUpgrade / 5)
 end
 
 function SpawnFishingObject()

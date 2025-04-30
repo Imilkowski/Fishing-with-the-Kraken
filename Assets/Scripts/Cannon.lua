@@ -1,5 +1,7 @@
 --!Type(Client)
 
+local GameManagerModule = require("GameManagerModule")
+
 --!SerializeField
 local shotEffect : ParticleSystem = nil
 
@@ -10,7 +12,12 @@ local PlayerControllerModule = require("PlayerControllerModule")
 local KrakenSpotsModule = require("KrakenSpotsModule")
 
 function Fire()
-    KrakenSpotsModule.AttackTentacle(facingSpot, 100)
+    KrakenSpotsModule.AttackTentacle(facingSpot, GetDamageValue())
+end
+
+function GetDamageValue()
+    cannonUpgrade = GameManagerModule.GetUpgrades()[3][3] - 1
+    return 20 + (cannonUpgrade * 5)
 end
 
 function ShotEffect()

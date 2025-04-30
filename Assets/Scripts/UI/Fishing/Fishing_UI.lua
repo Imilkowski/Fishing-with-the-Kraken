@@ -2,6 +2,7 @@
 
 local UIManagerModule = require("UIManagerModule")
 local FishingModule = require("FishingModule")
+local GameManagerModule = require("GameManagerModule")
 
 --!Bind
 local _PullButton: VisualElement = nil
@@ -92,8 +93,13 @@ function CheckCatch()
         return 
     end
 
-    catchProgress += 0.5
+    catchProgress += GetCatchValue()
     catchProgress = math.clamp(catchProgress, 0, 100)
+end
+
+function GetCatchValue()
+    fishingUpgrade = GameManagerModule.GetUpgrades()[1][3] - 1
+    return 0.5 + (fishingUpgrade / 8)
 end
 
 function Progress()

@@ -1,8 +1,8 @@
 --!Type(Module)
 
 local phaseInfos = {
-    Preparation = {"Preparation", 180, "Fishing starts in:"}, --180
-    Fishing = {"Fishing", 300, "Fishing ends in:"}, --300
+    Preparation = {"Preparation", 10, "Fishing starts in:"}, --180
+    Fishing = {"Fishing", 5, "Fishing ends in:"}, --300
     Kraken = {"Kraken", 0, "Defeat the Kraken"}
 }
 
@@ -48,7 +48,7 @@ function self:ServerAwake()
         players_storage[player] = {
             player = player,
             generalInfo = {
-                Gems = 100,
+                Gems = 999,
                 FishCaught = 0
             },
         }
