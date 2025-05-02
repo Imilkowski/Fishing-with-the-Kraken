@@ -5,6 +5,9 @@ local cannonBallPrefab : GameObject = nil
 --!SerializeField
 local stunnedEffectPrefab : GameObject = nil
 
+--!SerializeField
+local sounds: { AudioClip } = nil
+
 local changePlayerStateRequest = Event.new("Change Player State Request")
 local changePlayerState = Event.new("Change Player State")
 
@@ -75,6 +78,10 @@ function ActivatePlayerState(player : Player, state)
         local stunnedEffect = Object.Instantiate(stunnedEffectPrefab, player.character.transform.position + Vector3.new(0, 4, 0))
         stunnedEffect.transform.parent = player.character.transform
 
+        if(player == client.localPlayer) then
+            PlaySoundEffect(2, false)
+        end
+
         Timer.After(3, function()
             ChangePlayerState(player, "standard")
             GameObject.Destroy(stunnedEffect)
@@ -119,4 +126,17 @@ function CannonBallLeft()
     ChangePlayerState(client.localPlayer, "standard")
 
     carriesCannonBall = false
+end
+
+function PlaySoundEffect(soundId, loop)
+    audioSource = self:GetComponent(AudioSource)
+    audioSource.loop = loop
+    audioSource.pitch = Random.Range(0.9, 1.1)
+    audioSource:PlayOneShot(sounds[soundId])
+end
+
+function StopSoundEffect()
+    audioSource = self:GetComponent(AudioSource)
+    audioSource.loop = false
+    audioSource:Stop()
 end

@@ -12,12 +12,14 @@ function StartFishing(spotId)
     fishingAtSpot = spotId
     
     PlayerControllerModule.ChangePlayerState(client.localPlayer, "start fishing")
+    PlayerControllerModule.PlaySoundEffect(1, true)
 
     UIManagerModule.ShowFishingUI(true)
 end
 
 function StopFishing(fishCaught)
     PlayerControllerModule.ChangePlayerState(client.localPlayer, "finish fishing")
+    PlayerControllerModule.StopSoundEffect()
 
     UIManagerModule.ShowFishingUI(false)
 

@@ -22,6 +22,9 @@ end
 
 function ShotEffect()
     shotEffect:Play()
+
+    shotEffect:GetComponent(AudioSource).pitch = Random.Range(0.9, 1.1)
+    shotEffect:GetComponent(AudioSource):Play()
 end
 
 function GetSpotId()

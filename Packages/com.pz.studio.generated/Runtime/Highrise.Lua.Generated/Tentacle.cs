@@ -27,6 +27,7 @@ namespace Highrise.Lua.Generated
 
         [SerializeField] public UnityEngine.Transform m_attackOrigin = default;
         [SerializeField] public System.Double m_attackRadius = 0;
+        [SerializeField] public System.Collections.Generic.List<UnityEngine.AudioClip> m_sounds = default;
 
         protected override SerializedPropertyValue[] SerializeProperties()
         {
@@ -37,6 +38,7 @@ namespace Highrise.Lua.Generated
             {
                 CreateSerializedProperty(_script.GetPropertyAt(0), m_attackOrigin),
                 CreateSerializedProperty(_script.GetPropertyAt(1), m_attackRadius),
+                CreateSerializedProperty(_script.GetPropertyAt(2), m_sounds),
             };
         }
     }

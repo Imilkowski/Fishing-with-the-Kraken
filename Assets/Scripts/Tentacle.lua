@@ -7,12 +7,26 @@ local attackOrigin : Transform = nil
 --!SerializeField
 local attackRadius : number = 0
 
+--!SerializeField
+local sounds: { AudioClip } = nil
+
 local animator : Animator
 
 local health = 0
 
+local rising = true
+
 function self:Awake()
     animator = self:GetComponent(Animator)
+end
+
+function self:Start()
+    self:GetComponent(AudioSource).pitch = Random.Range(0.9, 1.1)
+    self:GetComponent(AudioSource):PlayOneShot(sounds[1])
+
+    Timer.After(2, function()
+        rising = false
+    end)
 end
 
 function ChangeHealth(value)
@@ -32,6 +46,8 @@ function Die()
 end
 
 function Attack()
+    if(rising) then return end
+
     randomAnimationId = math.random(1, 2)
     
     if(randomAnimationId == 1) then

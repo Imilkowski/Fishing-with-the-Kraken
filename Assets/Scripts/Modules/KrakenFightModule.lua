@@ -28,6 +28,10 @@ function TentacleDefeated()
     end
 end
 
+function LoadKrakenHealth(player)
+    updateKrakenHealthUI:FireClient(player, krakenHealth)
+end
+
 function KrakenDead()
     GameManagerModule.ChangePhase()
 end

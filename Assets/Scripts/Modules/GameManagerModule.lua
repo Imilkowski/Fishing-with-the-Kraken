@@ -1,8 +1,8 @@
 --!Type(Module)
 
 local phaseInfos = {
-    Preparation = {"Preparation", 10, "Fishing starts in:"}, --180
-    Fishing = {"Fishing", 100, "Fishing ends in:"}, --300
+    Preparation = {"Preparation", 5, "Fishing starts in:"}, --180
+    Fishing = {"Fishing", 30, "Fishing ends in:"}, --300
     Kraken = {"Kraken", 0, "Defeat the Kraken"}
 }
 
@@ -57,6 +57,10 @@ function self:ServerAwake()
 
         updatePlayerInfoResponse:FireClient(player, players_storage[player].generalInfo)
         updateUpgrades:FireClient(player, upgrades)
+
+        if(phase == "Kraken") then
+            KrakenFightModule.LoadKrakenHealth(player)
+        end
 
         print(player.name .. " connected to the server")
     end)
