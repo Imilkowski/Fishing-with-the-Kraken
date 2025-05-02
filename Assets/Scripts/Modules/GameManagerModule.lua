@@ -2,7 +2,7 @@
 
 local phaseInfos = {
     Preparation = {"Preparation", 10, "Fishing starts in:"}, --180
-    Fishing = {"Fishing", 5, "Fishing ends in:"}, --300
+    Fishing = {"Fishing", 100, "Fishing ends in:"}, --300
     Kraken = {"Kraken", 0, "Defeat the Kraken"}
 }
 
@@ -26,23 +26,25 @@ local updatePlayerInfoResponse = Event.new("Update Player Info Response")
 local buyUpgrade = Event.new("Buy Upgrade")
 local updateUpgrades = Event.new("Update Upgrades")
 
+local generalInfoLocal = {}
+
 maxUpgradeLevel = 5
 
 players_storage = {}
 phaseStartTime = nil
 phase = ""
+fishCaughtAll = 0
 
-local generalInfoLocal = {}
+upgrades = {}
 
-upgrades = { --name, description, level, base cost,
-    {"Fishing Rod", "Faster fishing", 1, 25},
-    {"Bait", "Fish appear faster", 1, 20},
-    {"Cannons", "More damage delt", 1, 15}
-}
+--!SerializeField
+local upgradesIcons : { Texture } = {}
 
 -- [Server Side]
 
 function self:ServerAwake()
+    ResetUpgrades()
+
     --Track Player
     trackPlayer:Connect(function(player: Player)
         players_storage[player] = {
@@ -78,6 +80,7 @@ function self:ServerAwake()
 
         if(fish ~= 0) then
             players_storage[player].generalInfo["FishCaught"] += fish
+            fishCaughtAll += fish
         end
 
         updatePlayerInfoResponse:FireClient(player, players_storage[player].generalInfo)
@@ -134,6 +137,8 @@ function ChangePhase()
         phase = "Fishing"
         startFishingPhase:FireAllClients(phaseStartTime, phase)
 
+        fishCaughtAll = 0
+
         FishingSpotsModule.StartFishingPhase()
     elseif(phase == "Fishing") then
         print("KRAKEN STARTED")
@@ -151,7 +156,18 @@ function ChangePhase()
         startPreparationPhase:FireAllClients(phaseStartTime, phase)
 
         KrakenSpotsModule.StopKrakenPhase()
+        ResetUpgrades()
     end
+end
+
+function ResetUpgrades()
+    upgrades = { --name, description, level, base cost,
+        {"Fishing Rod", "Faster fishing", 1, 25},
+        {"Bait", "Fish appear faster", 1, 20},
+        {"Cannons", "More damage delt", 1, 15}
+    }
+
+    updateUpgrades:FireAllClients(upgrades)
 end
 
 
@@ -215,7 +231,7 @@ function GetPhaseInfo()
 end
 
 function GetUpgrades()
-    return upgrades
+    return upgrades, upgradesIcons
 end
 
 function UpdatePhaseInfo(st, p)

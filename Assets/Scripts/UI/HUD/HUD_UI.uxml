@@ -17,6 +17,14 @@
       <hr:UILabel class="white-text medium-text" name="_Countdown"/>
 
       <VisualElement class="kraken-container" name="_TentaclesParent"></VisualElement>
+
+      <VisualElement class="fish-caught-container" name="_FishCaughtParent">
+        <VisualElement class="fish-container">
+          <hr:UILabel class="white-text medium-text"/>
+          <Image class="fish-icon"/>
+        </VisualElement>
+      </VisualElement>
+      
     </VisualElement>
 
     <VisualElement class="right-container">

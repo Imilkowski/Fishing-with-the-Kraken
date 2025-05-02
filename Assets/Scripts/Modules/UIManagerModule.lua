@@ -31,6 +31,7 @@ end
 
 function UpdatePlayerInfo(generalInfo)
     hudUI.SetGems(generalInfo["Gems"])
+    hudUI.SetFishCaught(generalInfo["FishCaught"])
 end
 
 function ShowUpgrades(show)

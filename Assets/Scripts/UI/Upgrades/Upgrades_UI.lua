@@ -21,7 +21,7 @@ function UpdateUpgradesList()
     generalInfo = GameManagerModule.GetGeneralInfoLocal()
     _Currency:SetPrelocalizedText(generalInfo["Gems"])
 
-    upgrades = GameManagerModule.GetUpgrades()
+    upgrades, upgradesIcons = GameManagerModule.GetUpgrades()
 
     _UpgradesParent:Clear()
 
@@ -32,6 +32,7 @@ function UpdateUpgradesList()
 
         local _upgradeImage = Image.new();
         _upgradeImage:AddToClassList("upgrade-icon")
+        _upgradeImage.image = upgradesIcons[i]
         _upgradeContainer:Add(_upgradeImage)
 
         local _upgradeDetails = VisualElement.new();

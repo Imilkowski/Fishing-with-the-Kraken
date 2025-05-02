@@ -9,6 +9,11 @@ local treasurePrefab : GameObject = nil
 --!SerializeField
 local treasureChance : number = 0 
 
+--!SerializeField
+local fishStorage : Transform = nil
+--!SerializeField
+local fishCaughtUI : FishCaughtWorld_UI = nil
+
 local spawnFishingObject = Event.new("Spawn Fishing Object")
 
 local loadFishingSpots = Event.new("Load Fishing Spots")
@@ -18,6 +23,8 @@ local destroySpotObject = Event.new("Destroy Spot Object")
 local destroySpotObjectResponse = Event.new("Destroy Spot Object Response")
 
 local clearFishingSpots = Event.new("Clear Fishing Spots")
+
+local updateFishStorage = Event.new("Update Fish Storage")
 
 local fishingTimer : Timer | nil = nil
 fishingSpotsObjects = {}
@@ -38,7 +45,10 @@ function self:ServerAwake()
 end
 
 function StartFishingPhase()
-    fishingTimer = Timer.Every(GetSpawnRateValue(), SpawnFishingObject)
+    fishingTimer = Timer.Every(GetSpawnRateValue(), function()
+        SpawnFishingObject()
+        updateFishStorage:FireAllClients(GameManagerModule.fishCaughtAll)
+    end)
 end
 
 function GetSpawnRateValue()
@@ -76,6 +86,8 @@ end
 -- [Client Side]
 
 function self:ClientAwake()
+    fishCaughtUI.gameObject:SetActive(false)
+
     --Spawn Fishing Object
     spawnFishingObject:Connect(function(spotId, objectType)
         SpawnObject(spotId, objectType)
@@ -103,6 +115,13 @@ function self:ClientAwake()
                 GameObject.Destroy(fs:GetChild(0).gameObject)
             end
         end
+
+        fishCaughtUI.gameObject:SetActive(false)
+    end)
+
+    --Update Fish Storage
+    updateFishStorage:Connect(function(fishCaughtAll)
+        UpdateFishStorage(fishCaughtAll)
     end)
 end
 
@@ -140,4 +159,20 @@ function DestroySpotObject(spotId)
     if not status then
         print("An error occurred in FishingSpotsModule: " .. result)
     end
+end
+
+function UpdateFishStorage(fishCaughtAll)
+    fishCaughtUI.gameObject:SetActive(true)
+    
+    for i = 0, fishStorage.childCount - 1 do
+        local crate = fishStorage:GetChild(i)
+        
+        if(i < fishCaughtAll / 100) then
+            crate.gameObject:SetActive(true)
+        else
+            crate.gameObject:SetActive(false)
+        end
+    end
+
+    fishCaughtUI.SetFishCaught(fishCaughtAll)
 end

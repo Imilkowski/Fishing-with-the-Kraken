@@ -28,6 +28,9 @@ namespace Highrise.Lua.Generated
         [SerializeField] public UnityEngine.GameObject m_fishPrefab = default;
         [SerializeField] public UnityEngine.GameObject m_treasurePrefab = default;
         [SerializeField] public System.Double m_treasureChance = 0;
+        [SerializeField] public UnityEngine.Transform m_fishStorage = default;
+        [LuaScriptPropertyAttribute("4a096131050877b47b58fd2a027bfea4")]
+        [SerializeField] public UnityEngine.Object m_fishCaughtUI = default;
 
         protected override SerializedPropertyValue[] SerializeProperties()
         {
@@ -39,6 +42,8 @@ namespace Highrise.Lua.Generated
                 CreateSerializedProperty(_script.GetPropertyAt(0), m_fishPrefab),
                 CreateSerializedProperty(_script.GetPropertyAt(1), m_treasurePrefab),
                 CreateSerializedProperty(_script.GetPropertyAt(2), m_treasureChance),
+                CreateSerializedProperty(_script.GetPropertyAt(3), m_fishStorage),
+                CreateSerializedProperty(_script.GetPropertyAt(4), m_fishCaughtUI),
             };
         }
     }

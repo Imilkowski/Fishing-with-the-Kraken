@@ -1,0 +1,41 @@
+.fish-caught-world_-u-i {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.white-text {
+    color: white;
+    -unity-text-outline: 2px black;
+    -unity-font-style: bold;
+    -unity-font-definition: url("project://database/Assets/Art/Fonts/Nunito-Black.ttf");
+}
+
+.medium-text {
+    font-size: 48px;
+}
+
+.fish-container{
+    background-color: rgb(255, 185, 94);
+    border-color: rgb(172, 123, 59);
+
+    border-width: 2px;
+    border-radius: 48px;
+
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.fish-icon{
+    background-image: url("project://database/Assets/Art/Icons/Fish.png");
+
+    height: 64px;
+    width: 64px;
+
+    margin-left: 8px;
+}
