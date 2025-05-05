@@ -8,7 +8,7 @@
 >
 
   <hr:UILuaView class="upgrades_-u-i">
-  <VisualElement class="center-panel-container">
+    <VisualElement class="center-panel-container">
   
       <VisualElement class="header">
         <hr:UILabel class="white-text medium-text text-title" name="_Title"/>

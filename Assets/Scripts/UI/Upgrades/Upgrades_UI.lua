@@ -1,6 +1,5 @@
 --!Type(UI)
 
---!SerializeField
 local UIManagerModule = require("UIManagerModule")
 local GameManagerModule = require("GameManagerModule")
 
@@ -106,5 +105,6 @@ function UpdateUpgradesList()
     -- Register a callback for when the button is pressed
     _returnButton:RegisterPressCallback(function()
         UIManagerModule.ClosePanel(self.gameObject)
+        UIManagerModule.ShowHUD(true)
     end)
 end

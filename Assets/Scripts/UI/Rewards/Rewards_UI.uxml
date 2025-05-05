@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="UnityEngine.UIElements"
+    xmlns:hr="Highrise.UI"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd"
+>
+
+  <hr:UILuaView class="rewards_-u-i">
+    <VisualElement class="center-panel-container">
+  
+      <VisualElement class="header">
+        <hr:UILabel class="white-text medium-text text-title" name="_Title"/>
+      </VisualElement>
+
+      <VisualElement class="content">
+        <VisualElement class="content-container">
+          <VisualElement class="info-line">
+            <hr:UILabel class="black-text tiny-text" name="_FishCaught"/>
+            <Image class="fish-icon"/>
+          </VisualElement>
+
+          <VisualElement class="info-line">
+            <hr:UILabel class="black-text tiny-text" name="_Contribution"/>
+            <Image class="fish-icon"/>
+          </VisualElement>
+        </VisualElement>
+
+        <VisualElement class="content-container">
+          <hr:UILabel class="white-text medium-text text-title" name="_RewardLabel"/>
+
+          <VisualElement class="reward-container">
+            <hr:UILabel class="white-text big-text" name="_TotalReward"/>
+            <Image class="gold-big-icon"/>
+          </VisualElement>
+
+          <VisualElement class="info-line">
+            <hr:UILabel class="black-text tiny-text" name="_FishCaught_2"/>
+            <Image class="gold-icon"/>
+          </VisualElement>
+
+          <VisualElement class="info-line">
+            <hr:UILabel class="black-text tiny-text" name="_Top10"/>
+            <Image class="gold-icon"/>
+          </VisualElement>
+        </VisualElement>
+
+        <VisualElement class="return-button" name="_ReturnButton">
+          <hr:UILabel class="white-text small-text" name="_ReturnText"/>
+        </VisualElement>
+      </VisualElement>
+
+    </VisualElement>
+  </hr:UILuaView>
+
+</UXML>

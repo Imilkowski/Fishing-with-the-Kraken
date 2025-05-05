@@ -20,6 +20,10 @@ function SetPhaseInfo(startTime, currentPhaseInfo)
     hudUI.SetPhaseInfo(startTime, currentPhaseInfo)
 end
 
+function ShowHUD(show)
+    hudUI.gameObject:SetActive(show)
+end
+
 function ShowFishingUI(show)
     fishingUI.ResetProperties()
     fishingUI.gameObject:SetActive(show)
@@ -36,6 +40,7 @@ end
 
 function ShowUpgrades(show)
     upgradesUI.gameObject:SetActive(show)
+    ShowHUD(not show)
 
     if(show) then
         upgradesUI.UpdateUpgradesList()
@@ -44,6 +49,15 @@ end
 
 function UpdateUpgrades()
     if(upgradesUI.gameObject.activeSelf) then
+        upgradesUI.UpdateUpgradesList()
+    end
+end
+
+function ShowRewards(show)
+    upgradesUI.gameObject:SetActive(show)
+    ShowHUD(not show)
+
+    if(show) then
         upgradesUI.UpdateUpgradesList()
     end
 end

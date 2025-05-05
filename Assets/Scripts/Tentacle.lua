@@ -57,7 +57,7 @@ function Attack()
     end
 
     Timer.After(0.75, function()
-        self:GetComponent(AudioSource).pitch = Random.Range(0.9, 1.1)
+        self:GetComponent(AudioSource).pitch = Random.Range(0.8, 1.2)
         self:GetComponent(AudioSource):PlayOneShot(sounds[2])
     end)
 
