@@ -56,6 +56,11 @@ function Attack()
         animator:Play("SlapR1")
     end
 
+    Timer.After(0.75, function()
+        self:GetComponent(AudioSource).pitch = Random.Range(0.9, 1.1)
+        self:GetComponent(AudioSource):PlayOneShot(sounds[2])
+    end)
+
     Timer.After(1, function()
         local distanceToPlayer = Vector3.Distance(client.localPlayer.character.transform.position, attackOrigin.position)
 

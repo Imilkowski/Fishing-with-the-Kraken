@@ -17,4 +17,7 @@ self.gameObject:GetComponent(TapHandler).Tapped:Connect(function()
     FishingSpotsModule.RemoveObject(fishingSpotId)
 
     GameManagerModule.AddGems(gemsContained)
+
+    self:GetComponent(AudioSource).pitch = Random.Range(0.9, 1.1)
+    self:GetComponent(AudioSource):Play()
 end)

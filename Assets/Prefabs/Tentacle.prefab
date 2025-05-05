@@ -176,6 +176,7 @@ MonoBehaviour:
   m_attackRadius: 6
   m_sounds:
   - {fileID: 8300000, guid: 1ce4bb212793589498cb4e7428283537, type: 3}
+  - {fileID: 8300000, guid: 8a2b02a0550ec9448ae28a32475f098c, type: 3}
   references:
     version: 2
     RefIds:
