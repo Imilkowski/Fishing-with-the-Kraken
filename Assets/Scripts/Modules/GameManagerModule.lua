@@ -1,5 +1,8 @@
 --!Type(Module)
 
+--!SerializeField
+local _mainMusic: AudioShader = nil
+
 local phaseInfos = {
     Preparation = {"Preparation", 5, "Fishing starts in:"}, --180
     Fishing = {"Fishing", 30, "Fishing ends in:"}, --300
@@ -184,6 +187,8 @@ currentPhaseInfo = nil
 
 function self:ClientAwake()
     trackPlayer:FireServer(client.localPlayer)
+
+    Audio:PlayMusic(_mainMusic, 0.15, true, true) -- Play the main music
 
     --Get Phase Start Time Response
     getPhaseInfoResponse:Connect(function(st, p, onJoin)
