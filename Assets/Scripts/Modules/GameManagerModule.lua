@@ -5,7 +5,7 @@ local _mainMusic: AudioShader = nil
 
 local phaseInfos = {
     Preparation = {"Preparation", 5, "Fishing starts in:"}, --180
-    Fishing = {"Fishing", 30, "Fishing ends in:"}, --300
+    Fishing = {"Fishing", 5, "Fishing ends in:"}, --300
     Kraken = {"Kraken", 0, "Defeat the Kraken"}
 }
 
@@ -28,6 +28,8 @@ local updatePlayerInfoResponse = Event.new("Update Player Info Response")
 
 local buyUpgrade = Event.new("Buy Upgrade")
 local updateUpgrades = Event.new("Update Upgrades")
+
+local collectRewards = Event.new("Collect Rewards")
 
 local generalInfoLocal = {}
 
@@ -143,6 +145,7 @@ function ChangePhase()
 
         phase = "Fishing"
         startFishingPhase:FireAllClients(phaseStartTime, phase)
+        GiveOutRewards()
 
         fishCaughtAll = 0
 
@@ -160,10 +163,17 @@ function ChangePhase()
         print("PREPARATION STARTED")
 
         phase = "Preparation"
+        GiveOutRewards()
         startPreparationPhase:FireAllClients(phaseStartTime, phase)
 
         KrakenSpotsModule.StopKrakenPhase()
         ResetUpgrades()
+    end
+end
+
+function GiveOutRewards()
+    for v, k in pairs(players_storage) do
+        collectRewards:FireClient(k.player, fishCaughtAll, k.generalInfo["FishCaught"], false)
     end
 end
 
@@ -220,14 +230,21 @@ function self:ClientAwake()
         UpdatePhaseInfo(st, p)
     end)
 
+    --Update Player Info Response
     updatePlayerInfoResponse:Connect(function(generalInfo)
         generalInfoLocal = generalInfo
         UIManagerModule.UpdatePlayerInfo(generalInfoLocal)
     end)
 
+    --Update Upgrades
     updateUpgrades:Connect(function(upgr)
         upgrades = upgr
         UIManagerModule.UpdateUpgrades()
+    end)
+
+    --Collect Rewards
+    collectRewards:Connect(function(allFishCaught, fishCaught, top10)
+        UIManagerModule.ShowRewards(allFishCaught, fishCaught, top10)
     end)
 end
 

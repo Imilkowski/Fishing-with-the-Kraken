@@ -4177,6 +4177,7 @@ MonoBehaviour:
   m_hudUI: {fileID: 1406988133}
   m_fishingUI: {fileID: 198691146}
   m_upgradesUI: {fileID: 685385178}
+  m_rewardsUI: {fileID: 701877867}
   references:
     version: 2
     RefIds:
@@ -6100,6 +6101,8 @@ MonoBehaviour:
   m_cannonBallPrefab: {fileID: 3576816334703849343, guid: 57d086ab25009e9419b7283928f228ac,
     type: 3}
   m_stunnedEffectPrefab: {fileID: 1458411388193221302, guid: 01f47122dc7caac4495a969b5a1896dd,
+    type: 3}
+  m_fishingRodOutfit: {fileID: -7553472394939420986, guid: 81e9fb66ef0a8f24688b1e6990e8b59d,
     type: 3}
   m_sounds:
   - {fileID: 8300000, guid: 6add50a90f511e94982f8dc4fe2591e4, type: 3}
@@ -17683,7 +17686,7 @@ MonoBehaviour:
   _uiOutput: 0
   _uiOutputSettings:
     rid: -2
-  m_krakenMaxHealth: 1
+  m_krakenMaxHealth: 2
   references:
     version: 2
     RefIds:

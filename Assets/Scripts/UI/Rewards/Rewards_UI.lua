@@ -31,17 +31,23 @@ function self:Awake()
     _Title:SetPrelocalizedText("Kraken defeated!")
     _ReturnText:SetPrelocalizedText("Return to the Docks")
 
-    _FishCaught:SetPrelocalizedText("Fish caught: 367")
-
-    _Contribution:SetPrelocalizedText("Your contribution: 21")
-
     _RewardLabel:SetPrelocalizedText("Your reward:")
+end
 
-    _TotalReward:SetPrelocalizedText("31")
+function SetRewardsInfo(allFishCaught, fishCaught, top10)
+    _FishCaught:SetPrelocalizedText("Fish caught: " .. allFishCaught)
 
-    _FishCaught_2:SetPrelocalizedText("Fish caught: 21")
+    _Contribution:SetPrelocalizedText("Your contribution: " .. fishCaught)
 
-    _Top10:SetPrelocalizedText("+ top 10% bonus: 10")
+    _TotalReward:SetPrelocalizedText("31")--
+
+    _FishCaught_2:SetPrelocalizedText("Fish caught: " .. fishCaught)
+
+    if(top10) then
+        _Top10:SetPrelocalizedText("+ top 10% bonus: 10")
+    else
+        _Top10:SetPrelocalizedText("x")
+    end
 end
 
 -- Register a callback for when the button is pressed

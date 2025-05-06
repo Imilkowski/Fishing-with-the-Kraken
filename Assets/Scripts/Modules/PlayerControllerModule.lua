@@ -6,10 +6,16 @@ local cannonBallPrefab : GameObject = nil
 local stunnedEffectPrefab : GameObject = nil
 
 --!SerializeField
+local fishingRodOutfit : CharacterOutfit = nil
+
+--!SerializeField
 local sounds: { AudioClip } = nil
 
 local changePlayerStateRequest = Event.new("Change Player State Request")
 local changePlayerState = Event.new("Change Player State")
+
+local addFishingRodRequest = Event.new("Add Fishing Rod Request")
+local addFishingRod = Event.new("Add Fishing Rod")
 
 carriesCannonBall = false
 
@@ -19,6 +25,11 @@ function self:ServerAwake()
     --Change Player State Request
     changePlayerStateRequest:Connect(function(player: Player, targetPlayer, state)
         changePlayerState:FireAllClients(targetPlayer, state)
+    end)
+
+    --Add Fishing Rod Request
+    addFishingRodRequest:Connect(function(player: Player)
+        addFishingRod:FireAllClients(player)
     end)
 end
 
@@ -36,6 +47,19 @@ function self:ClientAwake()
             end
         end
     end)
+
+    --Add Fishing Rod
+    addFishingRod:Connect(function(player)
+        player.character:AddOutfit(fishingRodOutfit)
+    end)
+end
+
+function self:ClientStart()
+    for i, v in ipairs(client.players) do
+        v.character:AddOutfit(fishingRodOutfit)
+    end
+    
+    addFishingRodRequest:FireServer(client.localPlayer)
 end
 
 function ChangePlayerState(player, state)

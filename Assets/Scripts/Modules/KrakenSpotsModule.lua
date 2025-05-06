@@ -75,6 +75,8 @@ function TentacleAttackRequest()
         table.insert(tentaclesIds, k)
     end
 
+    if(#tentaclesIds == 0) then return end
+
     randomId = math.random(1, #tentaclesIds)
 
     krakenTentacleAttack:FireAllClients(tentaclesIds[randomId])

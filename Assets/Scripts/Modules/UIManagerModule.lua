@@ -6,10 +6,13 @@ local hudUI : HUD_UI = nil
 local fishingUI : Fishing_UI = nil
 --!SerializeField
 local upgradesUI : Upgrades_UI = nil
+--!SerializeField
+local rewardsUI : Rewards_UI = nil
 
 function self:ClientStart()
     ClosePanel(fishingUI)
     ClosePanel(upgradesUI)
+    ClosePanel(rewardsUI)
 end
 
 function ClosePanel(panel)
@@ -53,11 +56,9 @@ function UpdateUpgrades()
     end
 end
 
-function ShowRewards(show)
-    upgradesUI.gameObject:SetActive(show)
-    ShowHUD(not show)
+function ShowRewards(allFishCaught, fishCaught, top10)
+    rewardsUI.gameObject:SetActive(true)
+    ShowHUD(false)
 
-    if(show) then
-        upgradesUI.UpdateUpgradesList()
-    end
+    rewardsUI.SetRewardsInfo(allFishCaught, fishCaught, top10)
 end

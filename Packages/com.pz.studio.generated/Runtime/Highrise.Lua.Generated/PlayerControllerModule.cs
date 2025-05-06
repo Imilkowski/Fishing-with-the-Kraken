@@ -27,6 +27,7 @@ namespace Highrise.Lua.Generated
 
         [SerializeField] public UnityEngine.GameObject m_cannonBallPrefab = default;
         [SerializeField] public UnityEngine.GameObject m_stunnedEffectPrefab = default;
+        [SerializeField] public Highrise.CharacterOutfit m_fishingRodOutfit = default;
         [SerializeField] public System.Collections.Generic.List<UnityEngine.AudioClip> m_sounds = default;
 
         protected override SerializedPropertyValue[] SerializeProperties()
@@ -38,7 +39,8 @@ namespace Highrise.Lua.Generated
             {
                 CreateSerializedProperty(_script.GetPropertyAt(0), m_cannonBallPrefab),
                 CreateSerializedProperty(_script.GetPropertyAt(1), m_stunnedEffectPrefab),
-                CreateSerializedProperty(_script.GetPropertyAt(2), m_sounds),
+                CreateSerializedProperty(_script.GetPropertyAt(2), m_fishingRodOutfit),
+                CreateSerializedProperty(_script.GetPropertyAt(3), m_sounds),
             };
         }
     }
