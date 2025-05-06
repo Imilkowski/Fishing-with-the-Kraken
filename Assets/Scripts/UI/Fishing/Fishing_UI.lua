@@ -99,7 +99,7 @@ end
 
 function GetCatchValue()
     fishingUpgrade = GameManagerModule.GetUpgrades()[1][3] - 1
-    return 0.5 + (fishingUpgrade / 8)
+    return 0.5 + (fishingUpgrade / 12)
 end
 
 function Progress()

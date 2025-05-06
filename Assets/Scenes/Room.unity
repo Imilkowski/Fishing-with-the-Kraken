@@ -772,7 +772,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &91639463
 Transform:
   m_ObjectHideFlags: 0
@@ -7370,7 +7370,7 @@ MonoBehaviour:
   m_tentaclePrefab: {fileID: 2325363421364870328, guid: e6a28b88034495d4b9972c75ae587cbb,
     type: 3}
   m_spawnRate: 5
-  m_tentacleAttackRate: 3
+  m_tentacleAttackRate: 12
   m_tentaclesMaxCount: 5
   m_cannonsParent: {fileID: 1779720004}
   references:
@@ -17621,6 +17621,8 @@ MonoBehaviour:
   _uiOutputSettings:
     rid: -2
   _mainMusic: {fileID: 11400000, guid: 80e6fb8b133b7a543bc664b46d2f7b82, type: 2}
+  m_fishRewardMultiplier: 1
+  m_bonusReward: 10
   m_upgradesIcons:
   - {fileID: 2800000, guid: d987839a97897da4594bcbc637338a1f, type: 3}
   - {fileID: 2800000, guid: fefd27ce071adae4081e3c598f33689c, type: 3}
@@ -17686,7 +17688,7 @@ MonoBehaviour:
   _uiOutput: 0
   _uiOutputSettings:
     rid: -2
-  m_krakenMaxHealth: 2
+  m_krakenMaxHealth: 1
   references:
     version: 2
     RefIds:

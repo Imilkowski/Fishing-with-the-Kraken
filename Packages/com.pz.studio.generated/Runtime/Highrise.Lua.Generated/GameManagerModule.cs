@@ -26,6 +26,8 @@ namespace Highrise.Lua.Generated
         public override string ScriptGUID => s_scriptGUID;
 
         [SerializeField] public Highrise.AudioShader _mainMusic = default;
+        [SerializeField] public System.Double m_fishRewardMultiplier = 0;
+        [SerializeField] public System.Double m_bonusReward = 0;
         [SerializeField] public System.Collections.Generic.List<UnityEngine.Texture> m_upgradesIcons = default;
 
         protected override SerializedPropertyValue[] SerializeProperties()
@@ -36,7 +38,9 @@ namespace Highrise.Lua.Generated
             return new SerializedPropertyValue[]
             {
                 CreateSerializedProperty(_script.GetPropertyAt(0), _mainMusic),
-                CreateSerializedProperty(_script.GetPropertyAt(1), m_upgradesIcons),
+                CreateSerializedProperty(_script.GetPropertyAt(1), m_fishRewardMultiplier),
+                CreateSerializedProperty(_script.GetPropertyAt(2), m_bonusReward),
+                CreateSerializedProperty(_script.GetPropertyAt(3), m_upgradesIcons),
             };
         }
     }

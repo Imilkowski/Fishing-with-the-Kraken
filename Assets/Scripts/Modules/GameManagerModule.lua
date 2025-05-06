@@ -2,10 +2,14 @@
 
 --!SerializeField
 local _mainMusic: AudioShader = nil
+--!SerializeField
+local fishRewardMultiplier : number = 0
+--!SerializeField
+local bonusReward : number = 0
 
 local phaseInfos = {
     Preparation = {"Preparation", 5, "Fishing starts in:"}, --180
-    Fishing = {"Fishing", 5, "Fishing ends in:"}, --300
+    Fishing = {"Fishing", 45, "Fishing ends in:"}, --300
     Kraken = {"Kraken", 0, "Defeat the Kraken"}
 }
 
@@ -145,7 +149,6 @@ function ChangePhase()
 
         phase = "Fishing"
         startFishingPhase:FireAllClients(phaseStartTime, phase)
-        GiveOutRewards()
 
         fishCaughtAll = 0
 
@@ -160,21 +163,40 @@ function ChangePhase()
         FishingSpotsModule.StopFishingPhase()
         KrakenSpotsModule.StartKrakenPhase()
     elseif(phase == "Kraken") then
-        print("PREPARATION STARTED")
-
-        phase = "Preparation"
-        GiveOutRewards()
-        startPreparationPhase:FireAllClients(phaseStartTime, phase)
-
-        KrakenSpotsModule.StopKrakenPhase()
         ResetUpgrades()
+
+        Timer.After(3, function()
+            print("PREPARATION STARTED")
+
+            phase = "Preparation"
+            GiveOutRewards()
+            startPreparationPhase:FireAllClients(phaseStartTime, phase)
+    
+            KrakenSpotsModule.StopKrakenPhase()
+
+            Timer.After(3, function()
+                fishCaughtAll = 0
+
+                for v, k in pairs(players_storage) do
+                    k.generalInfo["FishCaught"] = 0
+                end
+            end)
+        end)
     end
 end
 
 function GiveOutRewards()
     for v, k in pairs(players_storage) do
-        collectRewards:FireClient(k.player, fishCaughtAll, k.generalInfo["FishCaught"], false)
+        reward = math.floor(fishCaughtAll * fishRewardMultiplier)
+        bonus = bonusReward --check if the player should receive the bonus
+        collectRewards:FireClient(k.player, fishCaughtAll, k.generalInfo["FishCaught"], reward, bonus)
+
+        TransferReward(k.player, reward + bonus)
     end
+end
+
+function TransferReward(player, rewardAmount)
+    --transfer Gold to player
 end
 
 function ResetUpgrades()
@@ -243,8 +265,8 @@ function self:ClientAwake()
     end)
 
     --Collect Rewards
-    collectRewards:Connect(function(allFishCaught, fishCaught, top10)
-        UIManagerModule.ShowRewards(allFishCaught, fishCaught, top10)
+    collectRewards:Connect(function(allFishCaught, fishCaught, r, b)
+        UIManagerModule.ShowRewards(allFishCaught, fishCaught, r, b)
     end)
 end
 

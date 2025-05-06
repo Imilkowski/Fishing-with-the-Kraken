@@ -53,7 +53,7 @@ end
 
 function GetSpawnRateValue()
     baitUpgrade = GameManagerModule.GetUpgrades()[2][3] - 1
-    return 1.25 - (baitUpgrade / 5)
+    return 0.75 - (baitUpgrade / 8)
 end
 
 function SpawnFishingObject()

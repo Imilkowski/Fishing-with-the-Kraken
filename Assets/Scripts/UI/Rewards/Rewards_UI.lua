@@ -34,20 +34,20 @@ function self:Awake()
     _RewardLabel:SetPrelocalizedText("Your reward:")
 end
 
-function SetRewardsInfo(allFishCaught, fishCaught, top10)
+function SetRewardsInfo(allFishCaught, fishCaught, reward, bonus)
+    if(bonus > 0) then
+        _Top10:SetPrelocalizedText("+ top 10% bonus: " .. bonus)
+    else
+        _Top10:SetPrelocalizedText("x")
+    end
+
     _FishCaught:SetPrelocalizedText("Fish caught: " .. allFishCaught)
 
     _Contribution:SetPrelocalizedText("Your contribution: " .. fishCaught)
 
-    _TotalReward:SetPrelocalizedText("31")--
+    _TotalReward:SetPrelocalizedText("" .. reward + bonus)
 
     _FishCaught_2:SetPrelocalizedText("Fish caught: " .. fishCaught)
-
-    if(top10) then
-        _Top10:SetPrelocalizedText("+ top 10% bonus: 10")
-    else
-        _Top10:SetPrelocalizedText("x")
-    end
 end
 
 -- Register a callback for when the button is pressed

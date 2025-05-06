@@ -29,6 +29,7 @@ local krakenTentacleAttack = Event.new("Kraken Tentacle Attack")
 
 local tentacleTimer : Timer | nil = nil
 local tentacleAttackTimer : Timer | nil = nil
+
 spotsTentacles = {}
 tentaclesCount = 0
 
@@ -65,7 +66,8 @@ end
 function StartKrakenPhase()
     tentaclesCount = 0
     tentacleTimer = Timer.Every(spawnRate, SpawnTentacleRequest)
-    tentacleAttackTimer = Timer.Every(tentacleAttackRate, TentacleAttackRequest)
+
+    tentacleAttackTimer = Timer.After(GetAttackDelay(), TentacleAttackRequest)
 end
 
 function TentacleAttackRequest()
@@ -75,11 +77,21 @@ function TentacleAttackRequest()
         table.insert(tentaclesIds, k)
     end
 
-    if(#tentaclesIds == 0) then return end
+    if(tentaclesCount == 0) then return end
 
     randomId = math.random(1, #tentaclesIds)
 
     krakenTentacleAttack:FireAllClients(tentaclesIds[randomId])
+
+    tentacleAttackTimer = Timer.After(GetAttackDelay(), TentacleAttackRequest)
+end
+
+function GetAttackDelay()
+    if(tentaclesCount > 0) then
+        return tentacleAttackRate / tentaclesCount
+    else
+        return tentacleAttackRate
+    end
 end
 
 function SpawnTentacleRequest()
