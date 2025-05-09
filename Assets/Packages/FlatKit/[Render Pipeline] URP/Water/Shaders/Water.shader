@@ -228,23 +228,23 @@
                 return lerp(lerp(d00, d01, fp.y), lerp(d10, d11, fp.y), fp.x) + 0.5;
             }
 
-            inline float DepthFade(float2 uv, VertexOutput i)
-            {
-                const float is_ortho = unity_OrthoParams.w;
-                const float is_persp = 1.0 - unity_OrthoParams.w;
+            //inline float DepthFade(float2 uv, VertexOutput i)
+            //{
+            //    const float is_ortho = unity_OrthoParams.w;
+            //    const float is_persp = 1.0 - unity_OrthoParams.w;
 
-                const float depth_packed = SampleSceneDepth(uv);
+            //    const float depth_packed = SampleSceneDepth(uv);
 
-                // Separately handles orthographic and perspective cameras.
-                const float scene_depth = lerp(_ProjectionParams.z, _ProjectionParams.y, depth_packed) * is_ortho +
-                    LinearEyeDepth(SampleSceneDepth(uv), _ZBufferParams) * is_persp;
-                const float surface_depth = lerp(_ProjectionParams.z, _ProjectionParams.y, i.screenPosition.z) *
-                    is_ortho + i.screenPosition.w * is_persp;
+            //    // Separately handles orthographic and perspective cameras.
+            //    const float scene_depth = lerp(_ProjectionParams.z, _ProjectionParams.y, depth_packed) * is_ortho +
+            //        LinearEyeDepth(SampleSceneDepth(uv), _ZBufferParams) * is_persp;
+            //    const float surface_depth = lerp(_ProjectionParams.z, _ProjectionParams.y, i.screenPosition.z) *
+            //        is_ortho + i.screenPosition.w * is_persp;
 
-                const float water_depth = scene_depth - surface_depth;
+            //    const float water_depth = scene_depth - surface_depth;
 
-                return saturate((water_depth - _FadeDistance) / _WaterDepth);
-            }
+            //    return saturate((water_depth - _FadeDistance) / _WaterDepth);
+            //}
 
             inline float SineWave(float3 pos, float offset)
             {
@@ -358,15 +358,10 @@
                 const float noise01_refraction = GradientNoise(noise_uv_refraction, _RefractionScale);
                 const float noise11_refraction = noise01_refraction * 2.0f - 1.0f;
                 const float2 screen_uv = i.screenPosition.xy / i.screenPosition.w;
-                const float depth_fade_original = DepthFade(screen_uv, i);
-                float2 displaced_uv = screen_uv + noise11_refraction * _RefractionAmplitude * depth_fade_original;
-                float depth_fade = DepthFade(displaced_uv, i);
+                float2 displaced_uv = screen_uv + noise11_refraction * _RefractionAmplitude;
 
-                if (depth_fade <= 0.0f) // If above water surface.
-                {
-                    displaced_uv = screen_uv;
-                    depth_fade = DepthFade(displaced_uv, i);
-                }
+                // Use a fake depth fade based on UV.y (like a horizontal shoreline)
+                float depth_fade = saturate(1.0 - i.uv.y); // or just set to 0.5f if you want flat color blending
 
                 const half3 scene_color = SampleSceneColor(displaced_uv);
                 half3 c = scene_color;

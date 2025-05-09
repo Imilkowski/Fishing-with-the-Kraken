@@ -37,6 +37,16 @@ namespace Highrise.Lua.Generated
         [SerializeField] public System.Double m_maxVolumeDistance = 15;
         [Tooltip("The distance between players where you can no longer hear them")]
         [SerializeField] public System.Double m_minVolumeDistance = 30;
+        [Tooltip("Enable to customize the chat bubble colors")]
+        [SerializeField] public System.Boolean m_customChatBubbleColors = false;
+        [Tooltip("Chat bubble background color used for other players")]
+        [SerializeField] public UnityEngine.Color m_defaultChatBubbleBackgroundColor = new Color(1f, 1f, 1f, 1f);
+        [Tooltip("Chat bubble font color used for other players")]
+        [SerializeField] public UnityEngine.Color m_defaultChatBubbleFontColor = new Color(0f, 0f, 0f, 1f);
+        [Tooltip("Chat bubble background color used for messages you send")]
+        [SerializeField] public UnityEngine.Color m_selfChatBubbleBackgroundColor = new Color(0.157f, 0.153f, 0.176f, 1f);
+        [Tooltip("Chat bubble font color used for messages you send")]
+        [SerializeField] public UnityEngine.Color m_selfChatBubbleFontColor = new Color(0.521f, 0.38f, 1f, 1f);
 
         protected override SerializedPropertyValue[] SerializeProperties()
         {
@@ -54,6 +64,11 @@ namespace Highrise.Lua.Generated
                 CreateSerializedProperty(_script.GetPropertyAt(6), m_enableProximityChat),
                 CreateSerializedProperty(_script.GetPropertyAt(7), m_maxVolumeDistance),
                 CreateSerializedProperty(_script.GetPropertyAt(8), m_minVolumeDistance),
+                CreateSerializedProperty(_script.GetPropertyAt(9), m_customChatBubbleColors),
+                CreateSerializedProperty(_script.GetPropertyAt(10), m_defaultChatBubbleBackgroundColor),
+                CreateSerializedProperty(_script.GetPropertyAt(11), m_defaultChatBubbleFontColor),
+                CreateSerializedProperty(_script.GetPropertyAt(12), m_selfChatBubbleBackgroundColor),
+                CreateSerializedProperty(_script.GetPropertyAt(13), m_selfChatBubbleFontColor),
             };
         }
     }

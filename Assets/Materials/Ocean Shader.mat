@@ -96,7 +96,7 @@ Material:
     - _Depth: 100
     - _DstBlend: 0
     - _EnvironmentReflections: 1
-    - _FadeDistance: 0.07
+    - _FadeDistance: 1.75
     - _FoamAmount: 0.15
     - _FoamDepth: 0.09
     - _FoamDirection: -0.12
@@ -126,7 +126,7 @@ Material:
     - _RefractionScale: 3
     - _RefractionSpeed: 0.1
     - _RefractionStrength: 0.01
-    - _ShadowStrength: 0.02
+    - _ShadowStrength: 0
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -135,21 +135,24 @@ Material:
     - _Surface: 0
     - _UvFadeX: 0.1
     - _UvFadeY: 0.1
-    - _WaterClearness: 0
-    - _WaterDepth: 2.88
+    - _WaterClearness: 0.118
+    - _WaterDepth: 1.86
     - _WaveAmplitude: 0.25
     - _WaveDirection: 0
     - _WaveFrequency: 50
+    - _WaveHeight: 0.5
+    - _WaveLength: 2
     - _WaveMode: 2
     - _WaveNoise: 0.01
     - _WaveSpeed: 0.5
+    - _WaveSteepness: 0.1
     - _WorkflowMode: 1
     - _ZWrite: 0
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 0, g: 1, b: 0.7287984, a: 1}
-    - _ColorDeep: {r: 0.5206479, g: 0.9147554, b: 0.9433962, a: 1}
-    - _ColorShallow: {r: 0.38823533, g: 0.40784317, b: 0.5764706, a: 1}
+    - _ColorDeep: {r: 0.36320752, g: 0.904359, b: 1, a: 1}
+    - _ColorShallow: {r: 0.5235849, g: 0.6191599, b: 0.6981132, a: 1}
     - _CrestColor: {r: 0.70354223, g: 0.9354157, b: 0.9622641, a: 0.21176471}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FoamColor: {r: 1, g: 1, b: 1, a: 0.7176471}
