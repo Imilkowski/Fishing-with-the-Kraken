@@ -3,8 +3,13 @@
 local GameManagerModule = require("GameManagerModule")
 local PlayerControllerModule = require("PlayerControllerModule")
 
+--!SerializeField
+local tapEffect : GameObject = nil
+
 -- Connect to the Tapped event
 self.gameObject:GetComponent(TapHandler).Tapped:Connect(function()
+    local spawnedEffect = Object.Instantiate(tapEffect, self.transform.position + Vector3.new(0, 1.25, 0))
+
     phaseInfo = GameManagerModule.GetPhaseInfo()
 
     if(phaseInfo[1] ~= "Kraken") then return end

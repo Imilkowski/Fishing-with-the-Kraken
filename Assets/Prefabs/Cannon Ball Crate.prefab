@@ -108,6 +108,8 @@ MonoBehaviour:
   _uiOutput: 0
   _uiOutputSettings:
     rid: -2
+  m_tapEffect: {fileID: 4685477216030552484, guid: ee8882da58dc8da429f71235352c0314,
+    type: 3}
   references:
     version: 2
     RefIds:

@@ -3529,6 +3529,8 @@ MonoBehaviour:
   _uiOutput: 0
   _uiOutputSettings:
     rid: -2
+  m_collectedNotification: {fileID: 9201553837991748268, guid: d231f08e1a2a1cf4d81e283fce1d919f,
+    type: 3}
   m_fishPrefab: {fileID: 479281532990685287, guid: e7f79ef5005082d49ab0f1c6304c0ea1,
     type: 3}
   m_treasurePrefab: {fileID: 3348804048492638348, guid: 9e92eaa9064257f4991ee4a4c3bc8302,
@@ -18390,7 +18392,7 @@ PrefabInstance:
     - target: {fileID: 3551931345751937580, guid: 4db44322431f6d6439fa69e352e81b67,
         type: 3}
       propertyPath: m_allowRotation
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3551931345751937580, guid: 4db44322431f6d6439fa69e352e81b67,
         type: 3}

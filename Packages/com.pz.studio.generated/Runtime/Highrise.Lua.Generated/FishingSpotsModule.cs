@@ -25,6 +25,7 @@ namespace Highrise.Lua.Generated
         private const string s_scriptGUID = "35d80d62871f0b04283cbdd2ceb73862";
         public override string ScriptGUID => s_scriptGUID;
 
+        [SerializeField] public UnityEngine.GameObject m_collectedNotification = default;
         [SerializeField] public UnityEngine.GameObject m_fishPrefab = default;
         [SerializeField] public UnityEngine.GameObject m_treasurePrefab = default;
         [SerializeField] public System.Double m_treasureChance = 0;
@@ -39,11 +40,12 @@ namespace Highrise.Lua.Generated
 
             return new SerializedPropertyValue[]
             {
-                CreateSerializedProperty(_script.GetPropertyAt(0), m_fishPrefab),
-                CreateSerializedProperty(_script.GetPropertyAt(1), m_treasurePrefab),
-                CreateSerializedProperty(_script.GetPropertyAt(2), m_treasureChance),
-                CreateSerializedProperty(_script.GetPropertyAt(3), m_fishStorage),
-                CreateSerializedProperty(_script.GetPropertyAt(4), m_fishCaughtUI),
+                CreateSerializedProperty(_script.GetPropertyAt(0), m_collectedNotification),
+                CreateSerializedProperty(_script.GetPropertyAt(1), m_fishPrefab),
+                CreateSerializedProperty(_script.GetPropertyAt(2), m_treasurePrefab),
+                CreateSerializedProperty(_script.GetPropertyAt(3), m_treasureChance),
+                CreateSerializedProperty(_script.GetPropertyAt(4), m_fishStorage),
+                CreateSerializedProperty(_script.GetPropertyAt(5), m_fishCaughtUI),
             };
         }
     }

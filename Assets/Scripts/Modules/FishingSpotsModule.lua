@@ -3,6 +3,8 @@
 local GameManagerModule = require("GameManagerModule")
 
 --!SerializeField
+local collectedNotification : GameObject = nil
+--!SerializeField
 local fishPrefab : GameObject = nil
 --!SerializeField
 local treasurePrefab : GameObject = nil
@@ -175,4 +177,14 @@ function UpdateFishStorage(fishCaughtAll)
     end
 
     fishCaughtUI.SetFishCaught(fishCaughtAll)
+end
+
+function SpawnNotification(spotId)
+    local status, result = pcall(function()
+        fishingPoint = self.transform:GetChild(spotId)
+
+        local spawnedNotification = Object.Instantiate(collectedNotification, fishingPoint.position + Vector3.new(0, 1, 0))
+        spawnedNotification.transform.rotation = Quaternion.Euler(45, 0, 0)
+        spawnedNotification:GetComponent(CollectedNotification_UI).SetText(1, "Fish")
+    end)
 end

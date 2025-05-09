@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="UnityEngine.UIElements"
+    xmlns:hr="Highrise.UI"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd"
+>
+
+  <hr:UILuaView class="collected-notification_-u-i">
+    <VisualElement class="container">
+      <hr:UILabel class="white-text medium-text" name="_Value"/>
+      <Image class="icon" name="_Icon"/>
+    </VisualElement>
+  </hr:UILuaView>
+
+</UXML>

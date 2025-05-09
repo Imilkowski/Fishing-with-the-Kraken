@@ -4,6 +4,8 @@ local GameManagerModule = require("GameManagerModule")
 
 --!SerializeField
 local shotEffect : ParticleSystem = nil
+--!SerializeField
+local tapEffect : GameObject = nil
 
 --!SerializeField
 local facingSpot : number = 0
@@ -33,6 +35,8 @@ end
 
 -- Connect to the Tapped event
 self.gameObject:GetComponent(TapHandler).Tapped:Connect(function()
+    local spawnedEffect = Object.Instantiate(tapEffect, self.transform.position + Vector3.new(0, 1.25, 0))
+
     if(PlayerControllerModule.carriesCannonBall == false) then return end
 
     PlayerControllerModule.CannonBallLeft()

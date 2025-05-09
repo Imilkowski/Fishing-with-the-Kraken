@@ -2,6 +2,9 @@
 
 local FishingModule = require("FishingModule")
 
+--!SerializeField
+local tapEffect : GameObject = nil
+
 local fishingSpotId = 0
 
 function SetFishingSpotId(id)
@@ -10,6 +13,8 @@ end
 
 -- Connect to the Tapped event
 self.gameObject:GetComponent(TapHandler).Tapped:Connect(function()
+    local spawnedEffect = Object.Instantiate(tapEffect, self.transform.position + Vector3.new(0, 0.5, 0))
+
     FishingModule.StartFishing(fishingSpotId)
 
     Timer.After(0.5, function()

@@ -25,6 +25,8 @@ namespace Highrise.Lua.Generated
         private const string s_scriptGUID = "fb3ae033528640f44abd57263c28daf0";
         public override string ScriptGUID => s_scriptGUID;
 
+        [SerializeField] public UnityEngine.GameObject m_tapEffect = default;
+        [SerializeField] public UnityEngine.GameObject m_collectedNotification = default;
         [SerializeField] public System.Double m_gemsContained = 0;
 
         protected override SerializedPropertyValue[] SerializeProperties()
@@ -34,7 +36,9 @@ namespace Highrise.Lua.Generated
 
             return new SerializedPropertyValue[]
             {
-                CreateSerializedProperty(_script.GetPropertyAt(0), m_gemsContained),
+                CreateSerializedProperty(_script.GetPropertyAt(0), m_tapEffect),
+                CreateSerializedProperty(_script.GetPropertyAt(1), m_collectedNotification),
+                CreateSerializedProperty(_script.GetPropertyAt(2), m_gemsContained),
             };
         }
     }

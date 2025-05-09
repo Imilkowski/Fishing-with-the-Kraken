@@ -25,8 +25,22 @@ function StopFishing(fishCaught)
 
     if(fishingAtSpot == 0) then return end
 
+    FishingSpotsModule.SpawnNotification(fishingAtSpot)
     FishingSpotsModule.RemoveObject(fishingAtSpot)
     fishingAtSpot = 0
     
     GameManagerModule.AddFish(1)
+end
+
+function CancelFishing(walkedAway)
+    if(fishingAtSpot == 0) then return end
+
+    if(not walkedAway) then
+        PlayerControllerModule.ChangePlayerState(client.localPlayer, "finish fishing")
+    end
+    PlayerControllerModule.StopSoundEffect()
+
+    UIManagerModule.ShowFishingUI(false)
+
+    fishingAtSpot = 0
 end

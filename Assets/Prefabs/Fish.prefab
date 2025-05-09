@@ -58,7 +58,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.5, y: 0.5, z: 1.5}
+  m_Size: {x: 3, y: 0.5, z: 3}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1210554480927304641
 MonoBehaviour:
@@ -115,6 +115,8 @@ MonoBehaviour:
   _uiOutput: 0
   _uiOutputSettings:
     rid: -2
+  m_tapEffect: {fileID: 4685477216030552484, guid: ee8882da58dc8da429f71235352c0314,
+    type: 3}
   references:
     version: 2
     RefIds:

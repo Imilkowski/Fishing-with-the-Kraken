@@ -1,5 +1,7 @@
 --!Type(Module)
 
+local FishingModule = require("FishingModule")
+
 --!SerializeField
 local cannonBallPrefab : GameObject = nil
 --!SerializeField
@@ -18,6 +20,7 @@ local addFishingRodRequest = Event.new("Add Fishing Rod Request")
 local addFishingRod = Event.new("Add Fishing Rod")
 
 carriesCannonBall = false
+playerState = ""
 
 -- [Server Side]
 
@@ -62,11 +65,22 @@ function self:ClientStart()
     addFishingRodRequest:FireServer(client.localPlayer)
 end
 
+function self:FixedUpdate()
+    if(playerState == "fishing") then
+        characterState = client.localPlayer.character.state
+        if(characterState == 5) then
+            FishingModule.CancelFishing(true)
+        end
+    end
+end
+
 function ChangePlayerState(player, state)
     changePlayerStateRequest:FireServer(player, state)
 end
 
 function ActivatePlayerState(player : Player, state)
+    playerState = state
+
     if(state == "standard") then
         player.character.speed = 5.5
 
@@ -81,15 +95,13 @@ function ActivatePlayerState(player : Player, state)
     end
 
     if(state == "start fishing") then
-        player.character.speed = 0
-
         PlayEmote(player, "fishing-cast", false)
+        playerState = "fishing"
     end
 
     if(state == "finish fishing") then
-        player.character.speed = 5.5
-        
-        PlayEmote(player, "fishing-pull", false) 
+        PlayEmote(player, "fishing-pull", false)
+        playerState = "standard"
     end
 
     if(state == "stunned") then
@@ -156,7 +168,8 @@ function PlaySoundEffect(soundId, loop)
     audioSource = self:GetComponent(AudioSource)
     audioSource.loop = loop
     audioSource.pitch = Random.Range(0.9, 1.1)
-    audioSource:PlayOneShot(sounds[soundId])
+    audioSource.clip = sounds[soundId]
+    audioSource:Play()
 end
 
 function StopSoundEffect()

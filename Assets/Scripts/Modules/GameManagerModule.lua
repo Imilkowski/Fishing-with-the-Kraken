@@ -8,13 +8,14 @@ local fishRewardMultiplier : number = 0
 local bonusReward : number = 0
 
 local phaseInfos = {
-    Preparation = {"Preparation", 60, "Fishing starts in:"}, --120
-    Fishing = {"Fishing", 180, "Fishing ends in:"}, --180
+    Preparation = {"Preparation", 5, "Fishing starts in:"}, --120
+    Fishing = {"Fishing", 45, "Fishing ends in:"}, --180
     Kraken = {"Kraken", 0, "Defeat the Kraken"}
 }
 
 local UIManagerModule = require("UIManagerModule")
 local FishingSpotsModule = require("FishingSpotsModule")
+local FishingModule = require("FishingModule")
 local KrakenSpotsModule = require("KrakenSpotsModule")
 local KrakenFightModule = require("KrakenFightModule")
 
@@ -301,6 +302,8 @@ function self:ClientAwake()
     --Start Kraken Phase
     startKrakenPhase:Connect(function(st, p)
         UpdatePhaseInfo(st, p)
+
+        FishingModule.CancelFishing(false)
     end)
 
     --Update Player Info Response
