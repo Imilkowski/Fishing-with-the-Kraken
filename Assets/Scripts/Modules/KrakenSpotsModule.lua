@@ -99,7 +99,7 @@ function SpawnTentacleRequest()
     if(tentaclesCount >= KrakenFightModule.krakenHealth) then return end
 
     spotId = math.random(0, self.transform.childCount - 1)
-    health = math.random(100, 150)
+    health = math.random(70, 100)
 
     if(spotsTentacles[spotId] == nil) then
         spawnTentacle:FireAllClients(spotId, health)

@@ -92,7 +92,7 @@ MonoBehaviour:
   _uiOutput: 0
   _uiOutputSettings:
     rid: -2
-  m_gemsContained: 20
+  m_gemsContained: 10
   references:
     version: 2
     RefIds:
