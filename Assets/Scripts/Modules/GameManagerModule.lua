@@ -9,10 +9,11 @@ local bonusReward : number = 0
 
 local phaseInfos = {
     Preparation = {"Preparation", 5, "Fishing starts in:"}, --120
-    Fishing = {"Fishing", 5, "Fishing ends in:"}, --180
+    Fishing = {"Fishing", 45, "Fishing ends in:"}, --180
     Kraken = {"Kraken", 0, "Defeat the Kraken"}
 }
 
+local CloudSaveModule = require("CloudSaveModule")
 local UIManagerModule = require("UIManagerModule")
 local FishingSpotsModule = require("FishingSpotsModule")
 local FishingModule = require("FishingModule")
@@ -61,13 +62,15 @@ function self:ServerAwake()
         players_storage[player] = {
             player = player,
             generalInfo = {
-                Gems = 999,
+                Gems = 0,
                 FishCaught = 0
             },
         }
 
         updatePlayerInfoResponse:FireClient(player, players_storage[player].generalInfo)
         updateUpgrades:FireClient(player, upgrades)
+
+        CloudSaveModule.LoadPlayerDataFromCloud(player)
 
         if(phase == "Kraken") then
             KrakenFightModule.LoadKrakenHealth(player)
@@ -78,6 +81,7 @@ function self:ServerAwake()
 
     --Untrack Player
     game.PlayerDisconnected:Connect(function(player)
+        CloudSaveModule.SavePlayerDataToCloud(player, players_storage[player])
         players_storage[player] = nil
         print(player.name .. " disconnected from the server")
     end)
@@ -98,6 +102,7 @@ function self:ServerAwake()
             fishCaughtAll += fish
         end
 
+        CloudSaveModule.SavePlayerDataToCloud(player, players_storage[player])
         updatePlayerInfoResponse:FireClient(player, players_storage[player].generalInfo)
     end)
 
@@ -121,15 +126,27 @@ function self:ServerStart()
     GameLoopStart()
 end
 
+function self:ServerFixedUpdate()
+    CheckPhase()
+end
+
+function LoadData(player, dataType, data)
+    if(data == nil) then
+        return
+    end
+
+    if(dataType == "Gems") then
+        players_storage[player].generalInfo["Gems"] = data
+    end
+
+    updatePlayerInfoResponse:FireClient(player, players_storage[player].generalInfo)
+end
+
 function GameLoopStart()
     print("PREPARATION STARTED")
 
     phaseStartTime = os.time(os.date("*t"))
     phase = "Preparation"
-end
-
-function self:ServerFixedUpdate()
-    CheckPhase()
 end
 
 function CheckPhase()

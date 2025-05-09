@@ -17595,6 +17595,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1539441285}
   - component: {fileID: 1539441284}
+  - component: {fileID: 1539441288}
   - component: {fileID: 1539441286}
   - component: {fileID: 1539441287}
   m_Layer: 0
@@ -17690,7 +17691,29 @@ MonoBehaviour:
   _uiOutput: 0
   _uiOutputSettings:
     rid: -2
-  m_krakenMaxHealth: 10
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+--- !u!114 &1539441288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1539441283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ca8670703418fe1d17ec64c68f1fae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _networkId: 0
+  _script: {fileID: -974389366465450183, guid: e67767d2b99e8f346ba1c699d22efa35, type: 3}
+  _properties: []
+  _uiOutput: 0
+  _uiOutputSettings:
+    rid: -2
   references:
     version: 2
     RefIds:
