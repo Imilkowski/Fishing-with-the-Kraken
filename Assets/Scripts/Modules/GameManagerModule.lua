@@ -231,12 +231,22 @@ function GiveOutRewards()
 
         collectRewards:FireClient(v.player, fishCaughtAll, v.generalInfo["FishCaught"], reward, bonus)
 
-        TransferReward(v.player, reward + bonus)
+        delay = math.random(0, 10) / 10
+        Timer.After(delay, function()
+            TransferGold(v.player, (reward + bonus) * 100) -- * 100 for testing only
+        end)
     end
 end
 
-function TransferReward(player, rewardAmount)
-    --transfer Gold to player
+function TransferGold(player, amount)
+    Wallet.TransferGoldToPlayer(player, amount, function(response, err)
+        if err ~= WalletError.None then
+            error("Something went wrong while transferring gold: " .. WalletError[err])
+            return
+        end
+
+        print("Sent " .. amount .. " Gold, Gold remaining: : ", response.gold)
+    end)
 end
 
 function ResetUpgrades()

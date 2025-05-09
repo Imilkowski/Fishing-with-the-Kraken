@@ -8,7 +8,7 @@ local GameManagerModule = require("GameManagerModule")
 local fishingAtSpot = 0
 
 function StartFishing(spotId)
-    print("Started fishing at spot " .. spotId)
+    --print("Started fishing at spot " .. spotId)
     fishingAtSpot = spotId
     
     PlayerControllerModule.ChangePlayerState(client.localPlayer, "start fishing")
