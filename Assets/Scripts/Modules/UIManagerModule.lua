@@ -56,9 +56,13 @@ function UpdateUpgrades()
     end
 end
 
-function ShowRewards(allFishCaught, fishCaught, reward, bonus)
+function PrepareRewards(allFishCaught, fishCaught, reward, bonus)
+    rewardsUI.PrepareRewardInfo(allFishCaught, fishCaught, reward, bonus)
+end
+
+function ShowRewards(prizePoolAvailable)
     rewardsUI.gameObject:SetActive(true)
     ShowHUD(false)
 
-    rewardsUI.SetRewardsInfo(allFishCaught, fishCaught, reward, bonus)
+    rewardsUI.SetRewardsInfo(prizePoolAvailable)
 end

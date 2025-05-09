@@ -30,13 +30,13 @@
         <VisualElement class="content-container">
           <hr:UILabel class="white-text medium-text text-title" name="_RewardLabel"/>
 
-          <VisualElement class="reward-container">
-            <hr:UILabel class="white-text big-text" name="_TotalReward"/>
+          <VisualElement class="reward-container" name="_TotalRewardLine">
+            <hr:UILabel class="white-text big-text"/>
             <Image class="gold-big-icon"/>
           </VisualElement>
 
-          <VisualElement class="info-line">
-            <hr:UILabel class="black-text tiny-text" name="_FishCaught_2"/>
+          <VisualElement class="info-line" name="_FishCaught_2Line">
+            <hr:UILabel class="black-text tiny-text"/>
             <Image class="gold-icon"/>
           </VisualElement>
 

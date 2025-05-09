@@ -8,8 +8,8 @@ local fishRewardMultiplier : number = 0
 local bonusReward : number = 0
 
 local phaseInfos = {
-    Preparation = {"Preparation", 5, "Fishing starts in:"}, --120
-    Fishing = {"Fishing", 5, "Fishing ends in:"}, --180
+    Preparation = {"Preparation", 60, "Fishing starts in:"}, --120
+    Fishing = {"Fishing", 180, "Fishing ends in:"}, --180
     Kraken = {"Kraken", 0, "Defeat the Kraken"}
 }
 
@@ -33,7 +33,8 @@ local updatePlayerInfoResponse = Event.new("Update Player Info Response")
 local buyUpgrade = Event.new("Buy Upgrade")
 local updateUpgrades = Event.new("Update Upgrades")
 
-local collectRewards = Event.new("Collect Rewards")
+local prepareRewards = Event.new("Prepare Rewards")
+local showRewards = Event.new("Show Rewards")
 
 local generalInfoLocal = {}
 
@@ -229,21 +230,21 @@ function GiveOutRewards()
             end
         end
 
-        collectRewards:FireClient(v.player, fishCaughtAll, v.generalInfo["FishCaught"], reward, bonus)
-
-        delay = math.random(0, 10) / 10
-        Timer.After(delay, function()
-            TransferGold(v.player, (reward + bonus) * 100) -- * 100 for testing only
-        end)
+        prepareRewards:FireClient(v.player, fishCaughtAll, v.generalInfo["FishCaught"], reward, bonus)
+        TransferGold(v.player, reward + bonus)
     end
 end
 
 function TransferGold(player, amount)
     Wallet.TransferGoldToPlayer(player, amount, function(response, err)
         if err ~= WalletError.None then
-            error("Something went wrong while transferring gold: " .. WalletError[err])
+            showRewards:FireClient(player, false)
+
+            error("Error while transferring gold: " .. WalletError[err])
             return
         end
+
+        showRewards:FireClient(player, true)
 
         print("Sent " .. amount .. " Gold, Gold remaining: : ", response.gold)
     end)
@@ -314,9 +315,14 @@ function self:ClientAwake()
         UIManagerModule.UpdateUpgrades()
     end)
 
-    --Collect Rewards
-    collectRewards:Connect(function(allFishCaught, fishCaught, r, b)
-        UIManagerModule.ShowRewards(allFishCaught, fishCaught, r, b)
+    --Prepare Rewards
+    prepareRewards:Connect(function(allFishCaught, fishCaught, r, b)
+        UIManagerModule.PrepareRewards(allFishCaught, fishCaught, r, b)
+    end)
+
+    --Show Rewards
+    showRewards:Connect(function(prizePoolAvailable)
+        UIManagerModule.ShowRewards(prizePoolAvailable)
     end)
 end
 

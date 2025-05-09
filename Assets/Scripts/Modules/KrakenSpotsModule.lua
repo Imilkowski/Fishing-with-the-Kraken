@@ -77,7 +77,7 @@ function TentacleAttackRequest()
         table.insert(tentaclesIds, k)
     end
 
-    if(tentaclesCount == 0) then return end
+    if(#tentaclesIds == 0) then return end
 
     randomId = math.random(1, #tentaclesIds)
 
