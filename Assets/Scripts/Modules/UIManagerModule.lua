@@ -60,6 +60,5 @@ function ShowRewards(allFishCaught, fishCaught, reward, bonus)
     rewardsUI.gameObject:SetActive(true)
     ShowHUD(false)
 
-    print(reward, bonus)
     rewardsUI.SetRewardsInfo(allFishCaught, fishCaught, reward, bonus)
 end

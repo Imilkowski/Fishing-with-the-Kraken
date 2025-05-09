@@ -7,6 +7,9 @@ local GameManagerModule = require("GameManagerModule")
 local _ReturnButton: VisualElement = nil
 
 --!Bind
+local _Top10Line: VisualElement = nil
+
+--!Bind
 local _Title: UILabel = nil
 --!Bind
 local _ReturnText: UILabel = nil
@@ -24,8 +27,6 @@ local _TotalReward: UILabel = nil
 
 --!Bind
 local _FishCaught_2: UILabel = nil
---!Bind
-local _Top10: UILabel = nil
 
 function self:Awake()
     _Title:SetPrelocalizedText("Kraken defeated!")
@@ -35,10 +36,18 @@ function self:Awake()
 end
 
 function SetRewardsInfo(allFishCaught, fishCaught, reward, bonus)
+    _Top10Line:Clear()
+
     if(bonus > 0) then
-        _Top10:SetPrelocalizedText("+ top 10% bonus: " .. bonus)
-    else
-        _Top10:SetPrelocalizedText("x")
+        local _bonusLabel = UILabel.new()
+        _bonusLabel:AddToClassList("black-text")
+        _bonusLabel:AddToClassList("tiny-text")
+        _bonusLabel:SetPrelocalizedText("+ top 10% bonus: " .. bonus)
+        _Top10Line:Add(_bonusLabel)
+
+        local _goldIcon = Image.new()
+        _goldIcon:AddToClassList("gold-icon")
+        _Top10Line:Add(_goldIcon)
     end
 
     _FishCaught:SetPrelocalizedText("Fish caught: " .. allFishCaught)

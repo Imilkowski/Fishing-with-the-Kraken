@@ -40,8 +40,8 @@
             <Image class="gold-icon"/>
           </VisualElement>
 
-          <VisualElement class="info-line">
-            <hr:UILabel class="black-text tiny-text" name="_Top10"/>
+          <VisualElement class="info-line" name="_Top10Line">
+            <hr:UILabel class="black-text tiny-text"/>
             <Image class="gold-icon"/>
           </VisualElement>
         </VisualElement>

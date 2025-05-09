@@ -177,21 +177,61 @@ function ChangePhase()
             Timer.After(3, function()
                 fishCaughtAll = 0
 
-                for v, k in pairs(players_storage) do
-                    k.generalInfo["FishCaught"] = 0
+                for k, v in pairs(players_storage) do
+                    v.generalInfo["FishCaught"] = 0
                 end
             end)
         end)
     end
 end
 
-function GiveOutRewards()
-    for v, k in pairs(players_storage) do
-        reward = math.floor(fishCaughtAll * fishRewardMultiplier)
-        bonus = bonusReward --check if the player should receive the bonus
-        collectRewards:FireClient(k.player, fishCaughtAll, k.generalInfo["FishCaught"], reward, bonus)
+function FindTopPlayers()
+    data = {}
 
-        TransferReward(k.player, reward + bonus)
+    for k, v in pairs(players_storage) do
+        data[v.player] = v.generalInfo["FishCaught"]
+    end
+
+    local totalPlayers = 0
+    for _ in pairs(data) do
+        totalPlayers = totalPlayers + 1
+    end
+
+    local topCount = math.max(1, math.floor(totalPlayers * 0.1))  -- At least 1
+
+    local sortedPlayers = {}
+    for player, fishCount in pairs(data) do
+        table.insert(sortedPlayers, {player = player, fishCount = fishCount})
+    end
+
+    table.sort(sortedPlayers, function(a, b)
+        return a.fishCount > b.fishCount
+    end)
+
+    local topPlayers = {}
+    for i = 1, topCount do
+        table.insert(topPlayers, sortedPlayers[i].player)
+    end
+
+    return topPlayers
+end
+
+function GiveOutRewards()
+    topPlayers = FindTopPlayers()
+
+    for k, v in pairs(players_storage) do
+        reward = math.floor(fishCaughtAll * fishRewardMultiplier)
+
+        bonus = 0
+        for i = 1, #topPlayers do
+            if(topPlayers[i] == v.player) then
+                bonus = bonusReward
+            end
+        end
+
+        collectRewards:FireClient(v.player, fishCaughtAll, v.generalInfo["FishCaught"], reward, bonus)
+
+        TransferReward(v.player, reward + bonus)
     end
 end
 
