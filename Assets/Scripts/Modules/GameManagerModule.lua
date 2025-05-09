@@ -9,7 +9,7 @@ local bonusReward : number = 0
 
 local phaseInfos = {
     Preparation = {"Preparation", 5, "Fishing starts in:"}, --120
-    Fishing = {"Fishing", 45, "Fishing ends in:"}, --180
+    Fishing = {"Fishing", 5, "Fishing ends in:"}, --180
     Kraken = {"Kraken", 0, "Defeat the Kraken"}
 }
 
@@ -161,7 +161,7 @@ function ChangePhase()
         phase = "Kraken"
         startKrakenPhase:FireAllClients(phaseStartTime, phase)
 
-        KrakenFightModule.SetKraken()
+        KrakenFightModule.SetKraken(game.playerCount)
         FishingSpotsModule.StopFishingPhase()
         KrakenSpotsModule.StartKrakenPhase()
     elseif(phase == "Kraken") then

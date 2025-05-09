@@ -3,17 +3,16 @@
 local GameManagerModule = require("GameManagerModule")
 local UIManagerModule = require("UIManagerModule")
 
---!SerializeField
-local krakenMaxHealth : number = 0
-
 local updateKrakenHealthUI = Event.new("Update Kraken Health UI")
 
 krakenHealth = 0
 
 -- [Server Side]
 
-function SetKraken()
-    krakenHealth = krakenMaxHealth
+function SetKraken(playersNum)
+    healthValue = Mathf.Ceil(playersNum / 3)
+
+    krakenHealth = healthValue
     updateKrakenHealthUI:FireAllClients(krakenHealth)
 end
 

@@ -17690,7 +17690,7 @@ MonoBehaviour:
   _uiOutput: 0
   _uiOutputSettings:
     rid: -2
-  m_krakenMaxHealth: 1
+  m_krakenMaxHealth: 10
   references:
     version: 2
     RefIds:
