@@ -8,9 +8,9 @@
 >
 
   <hr:UILuaView class="h-u-d_-u-i" picking-mode="Ignore">
-    <!-- <VisualElement class="left-container">
-      <Image class="hud-button leaderboard-icon" name="_LeaderboardButton"/>
-    </VisualElement> -->
+    <VisualElement class="left-container">
+      <Image class="hud-button tutorial-icon" name="_TutorialButton"/>
+    </VisualElement>
 
     <VisualElement class="top-container" picking-mode="Ignore">
       <hr:UILabel class="white-text small-text" name="_PhaseText"/>

@@ -55,8 +55,8 @@
     margin: 4px;
 }
 
-.leaderboard-icon{
-    background-image: url("project://database/Assets/Art/Icons/Trophy.png");
+.tutorial-icon{
+    background-image: url("project://database/Assets/Art/Icons/Book.png");
 }
 
 .gem-icon{

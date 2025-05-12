@@ -8,11 +8,14 @@ local fishingUI : Fishing_UI = nil
 local upgradesUI : Upgrades_UI = nil
 --!SerializeField
 local rewardsUI : Rewards_UI = nil
+--!SerializeField
+local tutorialUI : Tutorial_UI = nil
 
 function self:ClientStart()
     ClosePanel(fishingUI)
     ClosePanel(upgradesUI)
     ClosePanel(rewardsUI)
+    ClosePanel(tutorialUI)
 end
 
 function ClosePanel(panel)
@@ -69,4 +72,9 @@ end
 
 function ShowMessage(messageText)
     hudUI.ShowMessage(messageText)
+end
+
+function ShowTutorial(show)
+    ShowHUD(not show)
+    tutorialUI.gameObject:SetActive(show)
 end

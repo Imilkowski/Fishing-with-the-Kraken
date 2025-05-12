@@ -11,6 +11,9 @@ local _FishCaughtParent: VisualElement = nil
 local _BottomParent: VisualElement = nil
 
 --!Bind
+local _TutorialButton: VisualElement = nil
+
+--!Bind
 local _Currency: UILabel = nil
 --!Bind
 local _PhaseText: UILabel = nil
@@ -161,3 +164,8 @@ function FormatTime(seconds)
 
     return table.concat(parts, " ")
 end
+
+-- Register a callback for when the button is pressed
+_TutorialButton:RegisterPressCallback(function()
+    UIManagerModule.ShowTutorial(true)
+end)

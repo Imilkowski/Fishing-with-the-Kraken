@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="UnityEngine.UIElements"
+    xmlns:hr="Highrise.UI"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd"
+>
+
+  <hr:UILuaView class="tutorial_-u-i">
+    <VisualElement class="center-panel-container">
+  
+      <VisualElement class="header">
+        <hr:UILabel class="white-text medium-text text-title" name="_Title"/>
+      </VisualElement>
+
+      <VisualElement class="content">
+        <hr:UIScrollView name="_TutorialContent"></hr:UIScrollView>
+      </VisualElement>
+
+      <VisualElement class="return-button" name="_ReturnButton">
+        <hr:UILabel class="white-text small-text" name="_ReturnText"/>
+      </VisualElement>
+
+    </VisualElement>
+  </hr:UILuaView>
+
+</UXML>
