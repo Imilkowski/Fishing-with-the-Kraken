@@ -8,8 +8,8 @@ local fishRewardMultiplier : number = 0
 local bonusReward : number = 0
 
 local phaseInfos = {
-    Preparation = {"Preparation", 5, "Fishing starts in:"}, --120
-    Fishing = {"Fishing", 30, "Fishing ends in:"}, --180
+    Preparation = {"Preparation", 10, "Fishing starts in:"}, --120
+    Fishing = {"Fishing", 60, "Fishing ends in:"}, --180
     Kraken = {"Kraken", 0, "Defeat the Kraken"}
 }
 
