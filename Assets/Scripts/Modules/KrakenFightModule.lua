@@ -23,7 +23,9 @@ function TentacleDefeated()
     updateKrakenHealthUI:FireAllClients(krakenHealth)
 
     if(krakenHealth == Mathf.Floor(maxHealth / 2)) then
-        GameManagerModule.ShowMessage("The Kraken is closer to being defeated, keep fighting!")
+        if(krakenHealth > 0) then
+            GameManagerModule.ShowMessage("The Kraken is closer to being defeated, keep fighting!")
+        end
     end
 
     print("Kraken health: " .. krakenHealth)
