@@ -2,6 +2,7 @@
 
 local GameManagerModule = require("GameManagerModule")
 local PlayerControllerModule = require("PlayerControllerModule")
+local TutorialModule = require("TutorialModule")
 
 --!SerializeField
 local tapEffect : GameObject = nil
@@ -19,4 +20,8 @@ self.gameObject:GetComponent(TapHandler).Tapped:Connect(function()
 
     self:GetComponent(AudioSource).pitch = Random.Range(0.9, 1.1)
     self:GetComponent(AudioSource):Play()
+
+    if(TutorialModule.cannons) then
+        TutorialModule.HighlightCannons()
+    end
 end)

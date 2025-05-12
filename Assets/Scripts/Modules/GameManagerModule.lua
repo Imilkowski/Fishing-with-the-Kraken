@@ -8,7 +8,7 @@ local fishRewardMultiplier : number = 0
 local bonusReward : number = 0
 
 local phaseInfos = {
-    Preparation = {"Preparation", 15, "Fishing starts in:"}, --120
+    Preparation = {"Preparation", 5, "Fishing starts in:"}, --120
     Fishing = {"Fishing", 30, "Fishing ends in:"}, --180
     Kraken = {"Kraken", 0, "Defeat the Kraken"}
 }
@@ -19,6 +19,7 @@ local FishingSpotsModule = require("FishingSpotsModule")
 local FishingModule = require("FishingModule")
 local KrakenSpotsModule = require("KrakenSpotsModule")
 local KrakenFightModule = require("KrakenFightModule")
+local TutorialModule = require("TutorialModule")
 
 local trackPlayer = Event.new("Track Player")
 
@@ -213,6 +214,7 @@ end
 
 function FindTopPlayers()
     data = {}
+    local topPlayers = {}
 
     for k, v in pairs(players_storage) do
         data[v.player] = v.generalInfo["FishCaught"]
@@ -222,6 +224,8 @@ function FindTopPlayers()
     for _ in pairs(data) do
         totalPlayers = totalPlayers + 1
     end
+
+    if(totalPlayers == 1) then return topPlayers end
 
     local topCount = math.max(1, math.floor(totalPlayers * 0.1))  -- At least 1
 
@@ -234,7 +238,6 @@ function FindTopPlayers()
         return a.fishCount > b.fishCount
     end)
 
-    local topPlayers = {}
     for i = 1, topCount do
         table.insert(topPlayers, sortedPlayers[i].player)
     end
@@ -320,6 +323,9 @@ function self:ClientAwake()
     --Start Preparation Phase
     startPreparationPhase:Connect(function(st, p)
         UpdatePhaseInfo(st, p)
+
+        TutorialModule.ResetTutorial()
+        TutorialModule.ClearArrows()
     end)
 
     --Start Fishing Phase
@@ -332,6 +338,7 @@ function self:ClientAwake()
         UpdatePhaseInfo(st, p)
 
         FishingModule.CancelFishing(false)
+        TutorialModule.HighlightCannonBallCrates()
     end)
 
     --Update Player Info Response

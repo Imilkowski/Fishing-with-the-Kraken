@@ -1,6 +1,7 @@
 --!Type(Client)
 
 local FishingModule = require("FishingModule")
+local TutorialModule = require("TutorialModule")
 
 --!SerializeField
 local tapEffect : GameObject = nil
@@ -21,4 +22,7 @@ self.gameObject:GetComponent(TapHandler).Tapped:Connect(function()
         self:GetComponent(AudioSource).pitch = Random.Range(0.9, 1.1)
         self:GetComponent(AudioSource):Play()
     end)
+
+    TutorialModule.fishing = false
+    TutorialModule.ClearArrows()
 end)

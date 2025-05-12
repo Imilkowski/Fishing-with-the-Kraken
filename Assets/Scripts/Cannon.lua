@@ -1,6 +1,7 @@
 --!Type(Client)
 
 local GameManagerModule = require("GameManagerModule")
+local TutorialModule = require("TutorialModule")
 
 --!SerializeField
 local shotEffect : ParticleSystem = nil
@@ -42,4 +43,7 @@ self.gameObject:GetComponent(TapHandler).Tapped:Connect(function()
     PlayerControllerModule.CannonBallLeft()
         
     Fire()
+
+    TutorialModule.cannons = false
+    TutorialModule.ClearArrows()
 end)

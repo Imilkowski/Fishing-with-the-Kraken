@@ -495,6 +495,65 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.5000005, y: 0.9279999, z: 2.5126922}
   m_Center: {x: 0.0000076293945, y: 0.46399996, z: 0}
+--- !u!1 &64835692
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 64835693}
+  - component: {fileID: 64835694}
+  m_Layer: 0
+  m_Name: Tutorial Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &64835693
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 64835692}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &64835694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 64835692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3ddd5b682ad87b1d13aa1e3c96fd124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _networkId: 0
+  _script: {fileID: -974389366465450183, guid: 7902d563387287646be5a13673b0d1f1, type: 3}
+  _properties: []
+  _uiOutput: 0
+  _uiOutputSettings:
+    rid: -2
+  m_arrowPrefab: {fileID: 4890396803174753064, guid: 075163db478be4942a0e2ecbbc978c90,
+    type: 3}
+  m_cannonBallCratesParent: {fileID: 729364128}
+  m_cannonsParent: {fileID: 1779720004}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!1001 &73979010
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24945,5 +25004,6 @@ SceneRoots:
   - {fileID: 1360186540}
   - {fileID: 1539441285}
   - {fileID: 616450914}
+  - {fileID: 64835693}
   - {fileID: 351935030}
   - {fileID: 1436795296}
