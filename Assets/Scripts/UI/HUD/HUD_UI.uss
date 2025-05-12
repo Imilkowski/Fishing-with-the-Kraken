@@ -92,6 +92,10 @@
     -unity-font-definition: url("project://database/Assets/Art/Fonts/Nunito-Black.ttf");
 }
 
+.tiny-text {
+    font-size: 16px;
+}
+
 .small-text {
     font-size: 20px;
 }
@@ -170,4 +174,19 @@
     width: 32px;
 
     margin-left: 4px;
+}
+
+.message{
+    position: absolute;
+    bottom: 192px;
+
+    width: 320px;
+
+    align-self: center;
+
+    -unity-text-align: middle-center;
+
+    overflow: hidden;
+    white-space: normal;
+    -unity-text-overflow-position: end;
 }

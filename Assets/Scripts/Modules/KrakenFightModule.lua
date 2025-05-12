@@ -6,11 +6,13 @@ local UIManagerModule = require("UIManagerModule")
 local updateKrakenHealthUI = Event.new("Update Kraken Health UI")
 
 krakenHealth = 0
+maxHealth = 0
 
 -- [Server Side]
 
 function SetKraken(playersNum)
-    healthValue = Mathf.Ceil(playersNum / 3)
+    local healthValue = Mathf.Ceil(playersNum / 3)
+    maxHealth = healthValue
 
     krakenHealth = healthValue
     updateKrakenHealthUI:FireAllClients(krakenHealth)
@@ -19,6 +21,10 @@ end
 function TentacleDefeated()
     krakenHealth -= 1
     updateKrakenHealthUI:FireAllClients(krakenHealth)
+
+    if(krakenHealth == Mathf.Floor(maxHealth / 2)) then
+        GameManagerModule.ShowMessage("The Kraken is closer to being defeated, keep fighting!")
+    end
 
     print("Kraken health: " .. krakenHealth)
 

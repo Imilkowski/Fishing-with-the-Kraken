@@ -66,3 +66,7 @@ function ShowRewards(prizePoolAvailable)
 
     rewardsUI.SetRewardsInfo(prizePoolAvailable)
 end
+
+function ShowMessage(messageText)
+    hudUI.ShowMessage(messageText)
+end

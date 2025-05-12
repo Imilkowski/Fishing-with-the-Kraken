@@ -3,9 +3,6 @@
 local UIManagerModule = require("UIManagerModule")
 local GameManagerModule = require("GameManagerModule")
 
--- --!Bind
--- local _LeaderboardButton: VisualElement = nil
-
 --!Bind
 local _TentaclesParent: VisualElement = nil
 --!Bind
@@ -19,24 +16,24 @@ local _Currency: UILabel = nil
 local _PhaseText: UILabel = nil
 --!Bind
 local _Countdown: UILabel = nil
+--!Bind
+local _Message: UILabel = nil
 
 local _FishCaught: UILabel = nil
 
 local startTime = nil
 local phaseInfo = nil
 
+local messageTimer : Timer | nil = nil
+
 function self:Awake()
     _Currency:SetPrelocalizedText("0")
+    _Message:SetPrelocalizedText("")
 end
 
 function self:Update()
     UpdateCountdown()
 end
-
--- -- Register a callback for when the button is pressed
--- _LeaderboardButton:RegisterPressCallback(function()
---     UIManagerModule.ShowLeaderboard()
--- end)
 
 function SetGems(amount)
     _Currency:SetPrelocalizedText(amount)
@@ -128,6 +125,21 @@ function UpdateKrakenHealth(health)
         _tentacleImage:AddToClassList("tentacle-icon")
         _TentaclesParent:Add(_tentacleImage)
     end
+end
+
+function ShowMessage(text)
+    _Message:SetPrelocalizedText(text)
+
+    if (messageTimer) then
+        messageTimer:Stop()
+        messageTimer = nil
+    end
+
+    messageTimer = Timer.After(4, HideMessage)
+end
+
+function HideMessage()
+    _Message:SetPrelocalizedText("")
 end
 
 function FormatTime(seconds)

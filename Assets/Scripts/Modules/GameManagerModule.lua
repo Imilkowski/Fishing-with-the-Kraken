@@ -9,7 +9,7 @@ local bonusReward : number = 0
 
 local phaseInfos = {
     Preparation = {"Preparation", 5, "Fishing starts in:"}, --120
-    Fishing = {"Fishing", 45, "Fishing ends in:"}, --180
+    Fishing = {"Fishing", 15, "Fishing ends in:"}, --180
     Kraken = {"Kraken", 0, "Defeat the Kraken"}
 }
 
@@ -37,6 +37,8 @@ local updateUpgrades = Event.new("Update Upgrades")
 
 local prepareRewards = Event.new("Prepare Rewards")
 local showRewards = Event.new("Show Rewards")
+
+local showMessage = Event.new("Show Message")
 
 local generalInfoLocal = {}
 
@@ -100,6 +102,10 @@ function self:ServerAwake()
         if(fish ~= 0) then
             players_storage[player].generalInfo["FishCaught"] += fish
             fishCaughtAll += fish
+
+            if(fishCaughtAll % 100 == 0) then
+                showMessage:FireAllClients("You've caught " .. fishCaughtAll .. " fish together! Keep going!")
+            end
         end
 
         CloudSaveModule.SavePlayerDataToCloud(player, players_storage[player])
@@ -112,11 +118,12 @@ function self:ServerAwake()
             if(players_storage[player].generalInfo["Gems"] >= upgrades[upgradeId][4]) then
                 upgrades[upgradeId][3] += 1
                 players_storage[player].generalInfo["Gems"] -= upgrades[upgradeId][4]
+
+                updatePlayerInfoResponse:FireClient(player, players_storage[player].generalInfo)
+                updateUpgrades:FireAllClients(upgrades)
+                showMessage:FireAllClients(player.name .. " upgraded " .. upgrades[upgradeId][1] .. " to level " .. upgrades[upgradeId][3])
             end
         end
-
-        updatePlayerInfoResponse:FireClient(player, players_storage[player].generalInfo)
-        updateUpgrades:FireAllClients(upgrades)
     end)
 end
 
@@ -278,6 +285,10 @@ function ResetUpgrades()
     updateUpgrades:FireAllClients(upgrades)
 end
 
+function ShowMessage(messageText)
+    showMessage:FireAllClients(messageText)
+end
+
 
 
 -- [Client Side]
@@ -343,6 +354,11 @@ function self:ClientAwake()
     --Show Rewards
     showRewards:Connect(function(prizePoolAvailable)
         UIManagerModule.ShowRewards(prizePoolAvailable)
+    end)
+
+    --Show Message
+    showMessage:Connect(function(messageText)
+        UIManagerModule.ShowMessage(messageText)
     end)
 end
 
