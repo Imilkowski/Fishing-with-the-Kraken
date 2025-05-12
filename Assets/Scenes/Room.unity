@@ -3649,7 +3649,7 @@ MonoBehaviour:
     type: 3}
   m_treasurePrefab: {fileID: 3348804048492638348, guid: 9e92eaa9064257f4991ee4a4c3bc8302,
     type: 3}
-  m_treasureChance: 10
+  m_treasureChance: 15
   m_fishStorage: {fileID: 1870821089}
   m_fishCaughtUI: {fileID: 2140175012}
   references:

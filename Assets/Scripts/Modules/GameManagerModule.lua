@@ -8,8 +8,8 @@ local fishRewardMultiplier : number = 0
 local bonusReward : number = 0
 
 local phaseInfos = {
-    Preparation = {"Preparation", 10, "Fishing starts in:"}, --120
-    Fishing = {"Fishing", 60, "Fishing ends in:"}, --180
+    Preparation = {"Preparation", 90, "Fishing starts in:"}, --90
+    Fishing = {"Fishing", 150, "Fishing ends in:"}, --150
     Kraken = {"Kraken", 0, "Defeat the Kraken"}
 }
 
@@ -249,7 +249,7 @@ function GiveOutRewards()
     topPlayers = FindTopPlayers()
 
     for k, v in pairs(players_storage) do
-        reward = math.floor(fishCaughtAll * fishRewardMultiplier)
+        reward = math.floor(v.generalInfo["FishCaught"] * fishRewardMultiplier)
 
         bonus = 0
         for i = 1, #topPlayers do
@@ -274,7 +274,7 @@ function TransferGold(player, amount)
 
         showRewards:FireClient(player, true)
 
-        print("Sent " .. amount .. " Gold, Gold remaining: : ", response.gold)
+        print("Sent " .. amount .. " Gold to " .. player.name .. " , Gold remaining: : ", response.gold)
     end)
 end
 

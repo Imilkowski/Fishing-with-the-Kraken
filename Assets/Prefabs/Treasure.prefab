@@ -96,7 +96,7 @@ MonoBehaviour:
     type: 3}
   m_collectedNotification: {fileID: 9201553837991748268, guid: d231f08e1a2a1cf4d81e283fce1d919f,
     type: 3}
-  m_gemsContained: 10
+  m_gemsContained: 20
   references:
     version: 2
     RefIds:
