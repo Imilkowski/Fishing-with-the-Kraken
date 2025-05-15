@@ -4,6 +4,8 @@
 local fishIcon : Texture = nil
 --!SerializeField
 local gemIcon : Texture = nil
+--!SerializeField
+local damageIcon : Texture = nil
 
 --!Bind
 local _Value: UILabel = nil
@@ -21,11 +23,15 @@ function self:Start()
 end
 
 function SetText(value, type)
-    _Value:SetPrelocalizedText("+" .. value)
-
     if(type == "Fish") then
+        _Value:SetPrelocalizedText("+" .. value)
         _Icon.image = fishIcon
     elseif(type == "Gems") then
+        _Value:SetPrelocalizedText("+" .. value)
         _Icon.image = gemIcon
+    elseif(type == "Damage") then
+        _Value:SetPrelocalizedText(value)
+        _Icon.image = damageIcon
+        self:GetComponent(AudioSource).enabled = false
     end
 end

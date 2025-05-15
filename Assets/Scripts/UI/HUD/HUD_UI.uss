@@ -27,6 +27,8 @@
     top: 8px;
     margin-top: 40px;
 
+    width: 100%;
+
     align-self: center;
 
     flex-direction: column;
@@ -185,6 +187,16 @@
     align-self: center;
 
     -unity-text-align: middle-center;
+
+    overflow: hidden;
+    white-space: normal;
+    -unity-text-overflow-position: end;
+}
+
+.phase-text{
+    -unity-text-align: middle-center;
+
+    width: 80%;
 
     overflow: hidden;
     white-space: normal;

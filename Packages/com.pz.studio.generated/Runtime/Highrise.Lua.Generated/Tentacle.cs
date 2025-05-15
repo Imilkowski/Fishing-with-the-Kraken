@@ -15,6 +15,7 @@ using UnityEngine;
 using Highrise.Client;
 using Highrise.Studio;
 using Highrise.Lua;
+using UnityEditor;
 
 namespace Highrise.Lua.Generated
 {
@@ -25,6 +26,7 @@ namespace Highrise.Lua.Generated
         private const string s_scriptGUID = "fc94fe2cdeb934b42a6dc510dda67c43";
         public override string ScriptGUID => s_scriptGUID;
 
+        [SerializeField] public UnityEngine.GameObject m_collectedNotification = default;
         [SerializeField] public UnityEngine.Transform m_attackOrigin = default;
         [SerializeField] public System.Double m_attackRadius = 0;
         [SerializeField] public System.Collections.Generic.List<UnityEngine.AudioClip> m_sounds = default;
@@ -36,11 +38,20 @@ namespace Highrise.Lua.Generated
 
             return new SerializedPropertyValue[]
             {
-                CreateSerializedProperty(_script.GetPropertyAt(0), m_attackOrigin),
-                CreateSerializedProperty(_script.GetPropertyAt(1), m_attackRadius),
-                CreateSerializedProperty(_script.GetPropertyAt(2), m_sounds),
+                CreateSerializedProperty(_script.GetPropertyAt(0), m_collectedNotification),
+                CreateSerializedProperty(_script.GetPropertyAt(1), m_attackOrigin),
+                CreateSerializedProperty(_script.GetPropertyAt(2), m_attackRadius),
+                CreateSerializedProperty(_script.GetPropertyAt(3), m_sounds),
             };
         }
+        
+#if HR_STUDIO
+        [MenuItem("CONTEXT/Tentacle/Edit Script")]
+        private static void EditScript()
+        {
+            VisualStudioCodeOpener.OpenPath(AssetDatabase.GUIDToAssetPath(s_scriptGUID));
+        }
+#endif
     }
 }
 

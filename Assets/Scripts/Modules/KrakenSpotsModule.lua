@@ -49,7 +49,7 @@ function self:ServerAwake()
 
         spotsTentacles[spotId] -= damage
 
-        tentacleHealthResponse:FireAllClients(spotId, spotsTentacles[spotId])
+        tentacleHealthResponse:FireAllClients(spotId, spotsTentacles[spotId], damage)
 
         if(spotsTentacles[spotId] <= 0) then
             spotsTentacles[spotId] = nil
@@ -99,7 +99,7 @@ function SpawnTentacleRequest()
     if(tentaclesCount >= KrakenFightModule.krakenHealth) then return end
 
     spotId = math.random(0, self.transform.childCount - 1)
-    health = math.random(50, 80)
+    health = math.random(70, 100)
 
     if(spotsTentacles[spotId] == nil) then
         spawnTentacle:FireAllClients(spotId, health)
@@ -156,8 +156,8 @@ function self:ClientAwake()
     end)
 
     --Tentacle Health Response
-    tentacleHealthResponse:Connect(function(spotId, health)
-        DamageTentacle(spotId, health)
+    tentacleHealthResponse:Connect(function(spotId, health, damage)
+        DamageTentacle(spotId, health, damage)
     end)
 
     --Cannon Shot
@@ -185,12 +185,13 @@ function SpawnTentacle(spotId, health)
     spawnedObject:GetComponent(Tentacle).ChangeHealth(health)
 end
 
-function DamageTentacle(spotId, health)
+function DamageTentacle(spotId, health, damage)
     local status, result = pcall(function()
         krakenPoint = self.transform:GetChild(spotId)
         tentacle = krakenPoint:GetChild(0):GetComponent(Tentacle)
     
         tentacle.ChangeHealth(health)
+        tentacle.SpawnNotification(damage)
     end)
     
     if not status then

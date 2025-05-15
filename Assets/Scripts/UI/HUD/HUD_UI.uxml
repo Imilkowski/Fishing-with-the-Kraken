@@ -13,7 +13,7 @@
     </VisualElement>
 
     <VisualElement class="top-container" picking-mode="Ignore">
-      <hr:UILabel class="white-text small-text" name="_PhaseText"/>
+      <hr:UILabel class="white-text small-text phase-text" name="_PhaseText"/>
       <hr:UILabel class="white-text medium-text" name="_Countdown"/>
 
       <VisualElement class="kraken-container" name="_TentaclesParent"></VisualElement>

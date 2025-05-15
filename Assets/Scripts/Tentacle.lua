@@ -3,6 +3,9 @@
 local PlayerControllerModule = require("PlayerControllerModule")
 
 --!SerializeField
+local collectedNotification : GameObject = nil
+
+--!SerializeField
 local attackOrigin : Transform = nil
 --!SerializeField
 local attackRadius : number = 0
@@ -68,4 +71,10 @@ function Attack()
             PlayerControllerModule.ChangePlayerState(client.localPlayer, "stunned")
         end
     end)
+end
+
+function SpawnNotification(damage)
+    local spawnedNotification = Object.Instantiate(collectedNotification, self.transform.position + Vector3.new(0, 5, -2.5))
+    spawnedNotification.transform.rotation = Quaternion.Euler(45, 0, 0)
+    spawnedNotification:GetComponent(CollectedNotification_UI).SetText(damage, "Damage")
 end

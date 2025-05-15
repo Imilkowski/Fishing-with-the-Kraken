@@ -105,6 +105,7 @@ MonoBehaviour:
     rid: 8574370116040130568
   m_fishIcon: {fileID: 2800000, guid: 681087b1b0291f547a448faf20a74b4d, type: 3}
   m_gemIcon: {fileID: 2800000, guid: 1e0a8b2562192314093b8de00af369b3, type: 3}
+  m_damageIcon: {fileID: 2800000, guid: b00fc7b720101ea4780391881428f3a3, type: 3}
   references:
     version: 2
     RefIds:

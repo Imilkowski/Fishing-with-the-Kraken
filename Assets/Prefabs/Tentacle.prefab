@@ -172,6 +172,8 @@ MonoBehaviour:
   _uiOutput: 0
   _uiOutputSettings:
     rid: -2
+  m_collectedNotification: {fileID: 9201553837991748268, guid: d231f08e1a2a1cf4d81e283fce1d919f,
+    type: 3}
   m_attackOrigin: {fileID: 1852161504535347049}
   m_attackRadius: 6
   m_sounds:

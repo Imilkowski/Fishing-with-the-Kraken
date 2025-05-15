@@ -15,6 +15,7 @@ using UnityEngine;
 using Highrise.Client;
 using Highrise.Studio;
 using Highrise.Lua;
+using UnityEditor;
 
 namespace Highrise.Lua.Generated
 {
@@ -27,6 +28,7 @@ namespace Highrise.Lua.Generated
 
         [SerializeField] public UnityEngine.Texture m_fishIcon = default;
         [SerializeField] public UnityEngine.Texture m_gemIcon = default;
+        [SerializeField] public UnityEngine.Texture m_damageIcon = default;
 
         protected override SerializedPropertyValue[] SerializeProperties()
         {
@@ -37,10 +39,19 @@ namespace Highrise.Lua.Generated
             {
                 CreateSerializedProperty(_script.GetPropertyAt(0), m_fishIcon),
                 CreateSerializedProperty(_script.GetPropertyAt(1), m_gemIcon),
-                CreateSerializedProperty(_script.GetPropertyAt(2), null),
+                CreateSerializedProperty(_script.GetPropertyAt(2), m_damageIcon),
                 CreateSerializedProperty(_script.GetPropertyAt(3), null),
+                CreateSerializedProperty(_script.GetPropertyAt(4), null),
             };
         }
+        
+#if HR_STUDIO
+        [MenuItem("CONTEXT/CollectedNotification_UI/Edit Script")]
+        private static void EditScript()
+        {
+            VisualStudioCodeOpener.OpenPath(AssetDatabase.GUIDToAssetPath(s_scriptGUID));
+        }
+#endif
     }
 }
 
