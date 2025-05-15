@@ -2,6 +2,7 @@
 
 local UIManagerModule = require("UIManagerModule")
 local GameManagerModule = require("GameManagerModule")
+local PlayerControllerModule = require("PlayerControllerModule")
 
 --!Bind
 local _ReturnButton: VisualElement = nil
@@ -99,4 +100,5 @@ end
 _ReturnButton:RegisterPressCallback(function()
     UIManagerModule.ClosePanel(self.gameObject)
     UIManagerModule.ShowHUD(true)
+    PlayerControllerModule.CannonBallLeft()
 end)
