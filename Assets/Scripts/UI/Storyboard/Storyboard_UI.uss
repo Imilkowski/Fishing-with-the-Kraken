@@ -1,0 +1,28 @@
+.storyboard_-u-i {
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    
+    padding: 8px;
+
+    height: 100%;
+    width: 100%;
+}
+
+.tutorial-image{
+    width: 100%;
+    height: 100%;
+}
+
+.white-text {
+    color: white;
+    -unity-text-outline: 1px black;
+    -unity-font-style: bold;
+    -unity-font-definition: url("project://database/Assets/Art/Fonts/Nunito-Black.ttf");
+
+    margin: 4px;
+}
+
+.continue-text {
+    font-size: 20px;
+}

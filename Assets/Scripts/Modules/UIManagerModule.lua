@@ -12,6 +12,7 @@ local rewardsUI : Rewards_UI = nil
 local tutorialUI : Tutorial_UI = nil
 
 function self:ClientStart()
+    ShowHUD(false)
     ClosePanel(fishingUI)
     ClosePanel(upgradesUI)
     ClosePanel(rewardsUI)
