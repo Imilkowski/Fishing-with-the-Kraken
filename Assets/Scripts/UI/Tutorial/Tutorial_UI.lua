@@ -2,56 +2,54 @@
 
 local UIManagerModule = require("UIManagerModule")
 
---!Bind
-local _TutorialContent: VisualElement = nil
---!Bind
-local _ReturnButton: VisualElement = nil
+--!SerializeField
+local tutorialImages : { Texture } = nil
+--!SerializeField
+local tutorialDescriptions : { string } = nil
 
 --!Bind
 local _Title: UILabel = nil
+
 --!Bind
-local _ReturnText: UILabel = nil
+local _TutorialImage: Image = nil
+--!Bind
+local _TutorialDescription: UILabel = nil
+
+--!Bind
+local _NextButton : UIButton = nil
+--!Bind
+local _NextButtonLabel: UILabel = nil
+
+local tutorialId
 
 function self:Awake()
-    _Title:SetPrelocalizedText("About the game")
-    _ReturnText:SetPrelocalizedText("Let's fish!")
-
-    CreateContent()
+    _Title:SetPrelocalizedText("Tutorial")
+    ResetTutorial()
 end
 
-function AddText(text)
-    local _label = UILabel.new()
-    _label:AddToClassList("black-text")
-    _label:AddToClassList("tiny-text")
-    _label:AddToClassList("tutorial-text")
-    _label:SetPrelocalizedText(text)
-    _TutorialContent:Add(_label)
+function ResetTutorial()
+    tutorialId = 1
+    _TutorialImage.image = tutorialImages[1];
+    _TutorialDescription:SetPrelocalizedText(tutorialDescriptions[1])
+    _NextButtonLabel:SetPrelocalizedText("Next")
 end
 
-function AddImage(name)
-    local _imageContainer = VisualElement.new()
-    _imageContainer:AddToClassList("image-container")
-    _TutorialContent:Add(_imageContainer)
+function NextTutorial()
+    tutorialId += 1
 
-    local _image = Image.new()
-    _image:AddToClassList("image")
-    _image:AddToClassList(name .. "-image")
-    _imageContainer:Add(_image)
-end
+    if(tutorialId == #tutorialImages) then
+        _NextButtonLabel:SetPrelocalizedText("Close")
+    elseif(tutorialId > #tutorialImages) then
+        ResetTutorial()
+        UIManagerModule.ClosePanel(self.gameObject)
+        UIManagerModule.ShowHUD(true)
+    end
 
-function CreateContent()
-    AddImage("tutorial_1")
-    AddText("Fish, fight and earn rewards!")
-    AddImage("tutorial_2")
-    AddText("Gather together and collect as many fish you can. Look out for the treasures as they will grant you gems used to buy upgrades for the whole room!")
-    AddImage("tutorial_3")
-    AddText("Fight off the Kraken at the end by firing cannons! Watch out for the tentacle slams!")
-    AddImage("tutorial_4")
-    AddText("At the end receive the real treasure for the fish you've collected. Collaborate with others to maximize the rewards!")
+    _TutorialImage.image = tutorialImages[tutorialId];
+    _TutorialDescription:SetPrelocalizedText(tutorialDescriptions[tutorialId])
 end
 
 -- Register a callback for when the button is pressed
-_ReturnButton:RegisterPressCallback(function()
-    UIManagerModule.ClosePanel(self.gameObject)
-    UIManagerModule.ShowHUD(true)
+_NextButton:RegisterPressCallback(function()
+    NextTutorial()
 end)

@@ -1,6 +1,8 @@
 --!Type(UI)
 
+local GameManagerModule = require("GameManagerModule")
 local UIManagerModule = require("UIManagerModule")
+local TutorialModule = require("TutorialModule")
 
 --!SerializeField
 local storyboard : { Texture } = {}
@@ -23,7 +25,15 @@ function NextImage()
 
     if(currentImage > #storyboard) then
         UIManagerModule.ClosePanel(self.gameObject)
-        UIManagerModule.ShowHUD(true)
+
+        local tutorialVersion = TutorialModule.GetTutorialVersion()
+        if(tutorialVersion > GameManagerModule.GetTutorialVersion()) then
+            GameManagerModule.SetTutorialVersion(tutorialVersion)
+            UIManagerModule.ShowTutorial(true)
+        else
+            UIManagerModule.ShowHUD(true)
+        end
+
         return
     end
 

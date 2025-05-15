@@ -15,6 +15,7 @@ using UnityEngine;
 using Highrise.Client;
 using Highrise.Studio;
 using Highrise.Lua;
+using UnityEditor;
 
 namespace Highrise.Lua.Generated
 {
@@ -22,9 +23,11 @@ namespace Highrise.Lua.Generated
     [LuaRegisterType(0x2167fbbe16ab4e2, typeof(LuaBehaviour))]
     public class Tutorial_UI : LuaBehaviourThunk
     {
-        private const string s_scriptGUID = "b9740889bf2ac75449e90156b659139d";
+        private const string s_scriptGUID = "5048b09a707222d429a8533888707e1d";
         public override string ScriptGUID => s_scriptGUID;
 
+        [SerializeField] public System.Collections.Generic.List<UnityEngine.Texture> m_tutorialImages = default;
+        [SerializeField] public System.Collections.Generic.List<System.String> m_tutorialDescriptions = default;
 
         protected override SerializedPropertyValue[] SerializeProperties()
         {
@@ -33,12 +36,23 @@ namespace Highrise.Lua.Generated
 
             return new SerializedPropertyValue[]
             {
-                CreateSerializedProperty(_script.GetPropertyAt(0), null),
-                CreateSerializedProperty(_script.GetPropertyAt(1), null),
+                CreateSerializedProperty(_script.GetPropertyAt(0), m_tutorialImages),
+                CreateSerializedProperty(_script.GetPropertyAt(1), m_tutorialDescriptions),
                 CreateSerializedProperty(_script.GetPropertyAt(2), null),
                 CreateSerializedProperty(_script.GetPropertyAt(3), null),
+                CreateSerializedProperty(_script.GetPropertyAt(4), null),
+                CreateSerializedProperty(_script.GetPropertyAt(5), null),
+                CreateSerializedProperty(_script.GetPropertyAt(6), null),
             };
         }
+        
+#if HR_STUDIO
+        [MenuItem("CONTEXT/Tutorial_UI/Edit Script")]
+        private static void EditScript()
+        {
+            VisualStudioCodeOpener.OpenPath(AssetDatabase.GUIDToAssetPath(s_scriptGUID));
+        }
+#endif
     }
 }
 

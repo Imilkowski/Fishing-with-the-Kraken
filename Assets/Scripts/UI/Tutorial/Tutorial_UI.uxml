@@ -7,20 +7,30 @@
     xsi:noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd"
 >
 
-  <hr:UILuaView class="tutorial_-u-i">
+  <hr:UILuaView class="tutorial_-u-i" picking-mode="Ignore">
     <VisualElement class="center-panel-container">
-  
+
       <VisualElement class="header">
         <hr:UILabel class="white-text medium-text text-title" name="_Title"/>
       </VisualElement>
 
-      <VisualElement class="content">
-        <hr:UIScrollView name="_TutorialContent"></hr:UIScrollView>
+      <VisualElement class="content-separator"></VisualElement>
+
+      <VisualElement class="tutorial-container" name="_TutorialContainter">
+
+        <VisualElement class="tutorial-image-container">
+          <Image class="tutorial-image" name="_TutorialImage" />
+        </VisualElement>
+        
+        <VisualElement class="tutorial-description-container">
+          <hr:UILabel class="black-text small-text tutorial-description" name="_TutorialDescription"/>
+        </VisualElement>
+        
       </VisualElement>
 
-      <VisualElement class="return-button" name="_ReturnButton">
-        <hr:UILabel class="white-text small-text" name="_ReturnText"/>
-      </VisualElement>
+      <hr:UIButton class="next-button" name="_NextButton">
+        <hr:UILabel class="white-text small-text" name="_NextButtonLabel"/>
+      </hr:UIButton>
 
     </VisualElement>
   </hr:UILuaView>

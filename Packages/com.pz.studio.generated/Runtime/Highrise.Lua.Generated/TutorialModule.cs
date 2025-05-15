@@ -26,6 +26,7 @@ namespace Highrise.Lua.Generated
         private const string s_scriptGUID = "7902d563387287646be5a13673b0d1f1";
         public override string ScriptGUID => s_scriptGUID;
 
+        [SerializeField] public System.Double m_tutorialVersion = 0;
         [SerializeField] public UnityEngine.GameObject m_arrowPrefab = default;
         [SerializeField] public UnityEngine.Transform m_cannonBallCratesParent = default;
         [SerializeField] public UnityEngine.Transform m_cannonsParent = default;
@@ -37,9 +38,10 @@ namespace Highrise.Lua.Generated
 
             return new SerializedPropertyValue[]
             {
-                CreateSerializedProperty(_script.GetPropertyAt(0), m_arrowPrefab),
-                CreateSerializedProperty(_script.GetPropertyAt(1), m_cannonBallCratesParent),
-                CreateSerializedProperty(_script.GetPropertyAt(2), m_cannonsParent),
+                CreateSerializedProperty(_script.GetPropertyAt(0), m_tutorialVersion),
+                CreateSerializedProperty(_script.GetPropertyAt(1), m_arrowPrefab),
+                CreateSerializedProperty(_script.GetPropertyAt(2), m_cannonBallCratesParent),
+                CreateSerializedProperty(_script.GetPropertyAt(3), m_cannonsParent),
             };
         }
         

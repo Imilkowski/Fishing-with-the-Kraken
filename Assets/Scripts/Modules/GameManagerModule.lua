@@ -41,7 +41,9 @@ local showRewards = Event.new("Show Rewards")
 
 local showMessage = Event.new("Show Message")
 
-local generalInfoLocal = {}
+local updateTutorialVersion = Event.new("Update Tutorial Version")
+
+local localStorage = nil
 
 maxUpgradeLevel = 5
 
@@ -68,9 +70,10 @@ function self:ServerAwake()
                 Gems = 0,
                 FishCaught = 0
             },
+            tutorialVersion = 0
         }
 
-        updatePlayerInfoResponse:FireClient(player, players_storage[player].generalInfo)
+        updatePlayerInfoResponse:FireClient(player, players_storage[player])
         updateUpgrades:FireClient(player, upgrades)
 
         CloudSaveModule.LoadPlayerDataFromCloud(player)
@@ -110,7 +113,7 @@ function self:ServerAwake()
         end
 
         CloudSaveModule.SavePlayerDataToCloud(player, players_storage[player])
-        updatePlayerInfoResponse:FireClient(player, players_storage[player].generalInfo)
+        updatePlayerInfoResponse:FireClient(player, players_storage[player])
     end)
 
     --Buy Upgrade
@@ -119,12 +122,20 @@ function self:ServerAwake()
             if(players_storage[player].generalInfo["Gems"] >= upgrades[upgradeId][4]) then
                 upgrades[upgradeId][3] += 1
                 players_storage[player].generalInfo["Gems"] -= upgrades[upgradeId][4]
+                
+                CloudSaveModule.SavePlayerDataToCloud(player, players_storage[player])
 
-                updatePlayerInfoResponse:FireClient(player, players_storage[player].generalInfo)
+                updatePlayerInfoResponse:FireClient(player, players_storage[player])
                 updateUpgrades:FireAllClients(upgrades)
                 showMessage:FireAllClients(player.name .. " upgraded " .. upgrades[upgradeId][1] .. " to level " .. upgrades[upgradeId][3])
             end
         end
+    end)
+
+    --Update Tutorial Version
+    updateTutorialVersion:Connect(function(player: Player, version)
+        players_storage[player].tutorialVersion = version
+        CloudSaveModule.SavePlayerDataToCloud(player, players_storage[player])
     end)
 end
 
@@ -147,7 +158,11 @@ function LoadData(player, dataType, data)
         players_storage[player].generalInfo["Gems"] = data
     end
 
-    updatePlayerInfoResponse:FireClient(player, players_storage[player].generalInfo)
+    if(dataType == "Tutorial") then
+        players_storage[player].tutorialVersion = data
+    end
+
+    updatePlayerInfoResponse:FireClient(player, players_storage[player])
 end
 
 function GameLoopStart()
@@ -343,9 +358,9 @@ function self:ClientAwake()
     end)
 
     --Update Player Info Response
-    updatePlayerInfoResponse:Connect(function(generalInfo)
-        generalInfoLocal = generalInfo
-        UIManagerModule.UpdatePlayerInfo(generalInfoLocal)
+    updatePlayerInfoResponse:Connect(function(storage)
+        localStorage = storage
+        UIManagerModule.UpdatePlayerInfo(localStorage.generalInfo)
     end)
 
     --Update Upgrades
@@ -389,7 +404,16 @@ function UpdatePhaseInfo(st, p)
 end
 
 function GetGeneralInfoLocal()
-    return generalInfoLocal
+    return localStorage.generalInfo
+end
+
+function GetTutorialVersion()
+    return localStorage.tutorialVersion
+end
+
+function SetTutorialVersion(version)
+    localStorage.tutorialVersion = version
+    updateTutorialVersion:FireServer(version)
 end
 
 function BuyUpgrade(upgradeId)

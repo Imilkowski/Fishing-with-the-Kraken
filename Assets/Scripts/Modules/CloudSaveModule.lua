@@ -15,6 +15,10 @@ function SavePlayerDataToCloud(player, storage)
         PrintErrorCode(errorCode)
     end)
 
+    Storage.SetPlayerValue(player, "Tutorial", storage.tutorialVersion, function(errorCode)
+        PrintErrorCode(errorCode)
+    end)
+
     --print(player.name .. " saved Data to cloud")
 end
 
@@ -23,6 +27,10 @@ function LoadPlayerDataFromCloud(player)
 
     Storage.GetPlayerValue(player, "Gems", function(gems)
         GameManagerModule.LoadData(player, "Gems", gems)
+    end)
+
+    Storage.GetPlayerValue(player, "Tutorial", function(tutorialVersion)
+        GameManagerModule.LoadData(player, "Tutorial", tutorialVersion)
     end)
 
     --print(player.name .. " loaded Data from cloud")

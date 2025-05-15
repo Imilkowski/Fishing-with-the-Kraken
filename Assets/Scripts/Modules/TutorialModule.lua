@@ -1,6 +1,9 @@
 --!Type(Module)
 
 --!SerializeField
+local tutorialVersion : number = 0
+
+--!SerializeField
 local arrowPrefab : GameObject = nil
 
 --!SerializeField
@@ -10,6 +13,10 @@ local cannonsParent : Transform = nil
 
 fishing = true
 cannons = true
+
+function GetTutorialVersion()
+    return tutorialVersion
+end
 
 function ResetTutorial()
     fishing = true
