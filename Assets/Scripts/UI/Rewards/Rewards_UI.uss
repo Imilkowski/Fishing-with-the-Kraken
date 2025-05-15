@@ -37,6 +37,12 @@
 
 .text-title{
     top: 8px;
+
+    -unity-text-align: middle-center;
+
+    overflow: hidden;
+    white-space: normal;
+    -unity-text-overflow-position: end;
 }
 
 .white-text {
@@ -71,9 +77,6 @@
 }
 
 .return-button{
-    background-color: rgb(64, 125, 255);
-    border-color: rgb(32, 64, 133);
-
     border-width: 1px;
     border-radius: 22px;
 
@@ -87,6 +90,16 @@
     margin-top: 32px;
 
     width: 256px;
+}
+
+.win-button{
+    background-color: rgb(64, 125, 255);
+    border-color: rgb(32, 64, 133);
+}
+
+.lose-button{
+    background-color: rgb(255, 64, 64);
+    border-color: rgb(133, 32, 32);
 }
 
 .content{

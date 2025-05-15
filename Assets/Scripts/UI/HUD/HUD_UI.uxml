@@ -34,7 +34,7 @@
       </VisualElement>
     </VisualElement>
 
-  <hr:UILabel class="white-text tiny-text message" name="_Message"/>
+  <hr:UILabel class="white-text tiny-text" name="_Message"/>
 
     <VisualElement class="bottom-container" picking-mode="Ignore" name="_BottomParent">
       <VisualElement class="upgrades-button">

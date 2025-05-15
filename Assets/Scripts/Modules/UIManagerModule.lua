@@ -60,8 +60,8 @@ function UpdateUpgrades()
     end
 end
 
-function PrepareRewards(allFishCaught, fishCaught, reward, bonus)
-    rewardsUI.PrepareRewardInfo(allFishCaught, fishCaught, reward, bonus)
+function PrepareRewards(krakenDefeated, allFishCaught, fishCaught, reward, bonus)
+    rewardsUI.PrepareRewardInfo(krakenDefeated, allFishCaught, fishCaught, reward, bonus)
 end
 
 function ShowRewards(prizePoolAvailable)
@@ -73,6 +73,8 @@ end
 
 function ShowMessage(messageText)
     hudUI.ShowMessage(messageText)
+
+    self:GetComponent(AudioSource):Play()
 end
 
 function ShowTutorial(show)

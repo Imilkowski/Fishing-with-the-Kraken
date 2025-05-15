@@ -27,19 +27,20 @@ local _Contribution: UILabel = nil
 --!Bind
 local _RewardLabel: UILabel = nil
 
+local krakenDefeated
 local allFishCaught
 local fishCaught
 local reward
 local bonus
 
 function self:Awake()
-    _Title:SetPrelocalizedText("Kraken defeated!")
     _ReturnText:SetPrelocalizedText("Return to the Docks")
 
     _RewardLabel:SetPrelocalizedText("Your reward:")
 end
 
-function PrepareRewardInfo(afc, fc, r, b)
+function PrepareRewardInfo(kd, afc, fc, r, b)
+    krakenDefeated = kd
     allFishCaught = afc
     fishCaught = fc
     reward = r
@@ -50,6 +51,16 @@ function SetRewardsInfo(prizePoolAvailable)
     _Top10Line:Clear()
     _TotalRewardLine:Clear()
     _FishCaught_2Line:Clear()
+
+    _ReturnButton:ClearClassList()
+    _ReturnButton:AddToClassList("return-button")
+    if(krakenDefeated) then
+        _Title:SetPrelocalizedText("Kraken defeated!")
+        _ReturnButton:AddToClassList("win-button")
+    else
+        _Title:SetPrelocalizedText("Kraken stole some fish...")
+        _ReturnButton:AddToClassList("lose-button")
+    end
 
     if(prizePoolAvailable) then
         local _rewardLabel = UILabel.new()
@@ -65,7 +76,7 @@ function SetRewardsInfo(prizePoolAvailable)
         local _fishCaughtLabel = UILabel.new()
         _fishCaughtLabel:AddToClassList("black-text")
         _fishCaughtLabel:AddToClassList("tiny-text")
-        _fishCaughtLabel:SetPrelocalizedText("Fish caught: " .. fishCaught)
+        _fishCaughtLabel:SetPrelocalizedText("Fish caught: " .. reward)
         _FishCaught_2Line:Add(_fishCaughtLabel)
 
         local _goldIcon = Image.new()

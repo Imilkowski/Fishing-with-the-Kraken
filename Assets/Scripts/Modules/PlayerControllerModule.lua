@@ -59,7 +59,13 @@ end
 
 function self:ClientStart()
     for i, v in ipairs(client.players) do
-        v.character:AddOutfit(fishingRodOutfit)
+        local status, result = pcall(function()
+            v.character:AddOutfit(fishingRodOutfit)
+        end)
+
+        if not status then
+            print("An error occurred: " .. result)
+        end
     end
     
     addFishingRodRequest:FireServer(client.localPlayer)

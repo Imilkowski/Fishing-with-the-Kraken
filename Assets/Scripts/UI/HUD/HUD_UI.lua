@@ -111,13 +111,8 @@ end
 function UpdateCountdown()
     if(startTime == nil) then return end
 
-    if(phaseInfo[1] == "Kraken") then
-        _Countdown:SetPrelocalizedText("")
-    else
-        timeLeft = phaseInfo[2] - (os.time(os.date("*t")) - startTime)
-
-        _Countdown:SetPrelocalizedText(FormatTime(timeLeft))
-    end
+    timeLeft = phaseInfo[2] - (os.time(os.date("*t")) - startTime)
+    _Countdown:SetPrelocalizedText(FormatTime(timeLeft))
 end
 
 function UpdateKrakenHealth(health)
@@ -132,6 +127,7 @@ end
 
 function ShowMessage(text)
     _Message:SetPrelocalizedText(text)
+    _Message:AddToClassList("message")
 
     if (messageTimer) then
         messageTimer:Stop()
@@ -143,6 +139,7 @@ end
 
 function HideMessage()
     _Message:SetPrelocalizedText("")
+    _Message:RemoveFromClassList("message")
 end
 
 function FormatTime(seconds)

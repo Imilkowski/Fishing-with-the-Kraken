@@ -8,9 +8,9 @@ local fishRewardMultiplier : number = 0
 local bonusReward : number = 0
 
 local phaseInfos = {
-    Preparation = {"Preparation", 5, "Fishing starts in:"}, --90
-    Fishing = {"Fishing", 5, "Fishing ends in:"}, --150
-    Kraken = {"Kraken", 0, "Load the cannons to defeat the Kraken"}
+    Preparation = {"Preparation", 90, "Fishing starts in:"}, --90
+    Fishing = {"Fishing", 180, "Fishing ends in:"}, --180
+    Kraken = {"Kraken", 180, "Fire the cannons to defeat the Kraken:"} --180
 }
 
 local CloudSaveModule = require("CloudSaveModule")
@@ -46,6 +46,7 @@ local updateTutorialVersion = Event.new("Update Tutorial Version")
 local localStorage = nil
 
 maxUpgradeLevel = 5
+currentMessageText = ""
 
 players_storage = {}
 phaseStartTime = nil
@@ -174,12 +175,15 @@ end
 
 function CheckPhase()
     if(phaseStartTime == nil) then return end
-    if(phase == "Kraken") then return end
 
     timeLeft = phaseInfos[phase][2] - (os.time(os.date("*t")) - phaseStartTime)
 
     if(timeLeft <= 0) then
         ChangePhase()
+    end
+
+    if(timeLeft == 30 and phase == "Kraken") then
+        ShowMessage("Hurry up, the time's ticking!")
     end
 end
 
@@ -205,16 +209,26 @@ function ChangePhase()
         FishingSpotsModule.StopFishingPhase()
         KrakenSpotsModule.StartKrakenPhase()
     elseif(phase == "Kraken") then
+        print("PREPARATION STARTED")
+
+        phase = "Preparation"
+        startPreparationPhase:FireAllClients(phaseStartTime, phase)
+
         ResetUpgrades()
 
-        Timer.After(3, function()
-            print("PREPARATION STARTED")
+        local delay = 0
+        local krakenDefeated = false
+        if(KrakenFightModule.krakenHealth <= 0) then
+            delay = 3
+            krakenDefeated = true
+        end
 
-            phase = "Preparation"
-            GiveOutRewards()
-            startPreparationPhase:FireAllClients(phaseStartTime, phase)
-    
+        KrakenFightModule.ResetKrakenHealth()
+
+        Timer.After(delay, function()
             KrakenSpotsModule.StopKrakenPhase()
+            
+            GiveOutRewards(krakenDefeated)
 
             Timer.After(3, function()
                 fishCaughtAll = 0
@@ -260,11 +274,17 @@ function FindTopPlayers()
     return topPlayers
 end
 
-function GiveOutRewards()
+function GiveOutRewards(krakenDefeated : boolean)
     topPlayers = FindTopPlayers()
 
     for k, v in pairs(players_storage) do
         reward = math.floor(v.generalInfo["FishCaught"] * fishRewardMultiplier)
+
+        if(not krakenDefeated) then
+            reward *= 0.5
+        end
+
+        reward = Mathf.Ceil(reward)
 
         bonus = 0
         for i = 1, #topPlayers do
@@ -273,7 +293,7 @@ function GiveOutRewards()
             end
         end
 
-        prepareRewards:FireClient(v.player, fishCaughtAll, v.generalInfo["FishCaught"], reward, bonus)
+        prepareRewards:FireClient(v.player, krakenDefeated, fishCaughtAll, v.generalInfo["FishCaught"], reward, bonus)
         TransferGold(v.player, reward + bonus)
     end
 end
@@ -304,6 +324,9 @@ function ResetUpgrades()
 end
 
 function ShowMessage(messageText)
+    if(messageText == currentMessageText) then return end
+
+    currentMessageText = messageText
     showMessage:FireAllClients(messageText)
 end
 
@@ -370,8 +393,8 @@ function self:ClientAwake()
     end)
 
     --Prepare Rewards
-    prepareRewards:Connect(function(allFishCaught, fishCaught, r, b)
-        UIManagerModule.PrepareRewards(allFishCaught, fishCaught, r, b)
+    prepareRewards:Connect(function(krakenDefeated, allFishCaught, fishCaught, r, b)
+        UIManagerModule.PrepareRewards(krakenDefeated, allFishCaught, fishCaught, r, b)
     end)
 
     --Show Rewards

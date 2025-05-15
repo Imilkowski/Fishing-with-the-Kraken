@@ -43,6 +43,11 @@ function KrakenDead()
     GameManagerModule.ChangePhase()
 end
 
+function ResetKrakenHealth()
+    krakenHealth = 0
+    updateKrakenHealthUI:FireAllClients(krakenHealth)
+end
+
 -- [Client Side]
 
 function self:ClientAwake()
