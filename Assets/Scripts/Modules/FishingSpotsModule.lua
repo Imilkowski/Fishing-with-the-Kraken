@@ -135,20 +135,23 @@ end
 function SpawnObject(spotId, objectType)
     fishingPoint = self.transform:GetChild(spotId)
 
+    local tutorialArrow = nil
+    if(TutorialModule.fishing) then
+        tutorialArrow = TutorialModule.SpawnArrow(fishingPoint.transform.position + Vector3.new(0, 2, 0))
+    end
+
     if(objectType == "fish") then
         local spawnedObject = Object.Instantiate(fishPrefab, fishingPoint.transform.position)
         spawnedObject.transform.parent = fishingPoint
         spawnedObject:GetComponent(Fish).SetFishingSpotId(spotId)
+        spawnedObject:GetComponent(Fish).SetTutorialArrow(tutorialArrow)
 
     elseif(objectType == "treasure") then
         local spawnedObject = Object.Instantiate(treasurePrefab, fishingPoint.transform.position)
         spawnedObject.transform.parent = fishingPoint
         spawnedObject.transform.rotation = Quaternion.Euler(0, math.random(0, 360), 0)
         spawnedObject:GetComponent(Treasure).SetFishingSpotId(spotId)
-    end
-
-    if(TutorialModule.fishing) then
-        TutorialModule.SpawnArrow(fishingPoint.transform.position + Vector3.new(0, 2, 0))
+        spawnedObject:GetComponent(Treasure).SetTutorialArrow(tutorialArrow)
     end
 end
 

@@ -11,7 +11,7 @@ maxHealth = 0
 -- [Server Side]
 
 function SetKraken(playersNum)
-    local healthValue = Mathf.Ceil(playersNum / 3)
+    local healthValue = Mathf.Clamp(Mathf.Ceil(playersNum / 2), 0, 10)
     maxHealth = healthValue
 
     krakenHealth = healthValue

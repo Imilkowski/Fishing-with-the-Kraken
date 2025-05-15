@@ -28,6 +28,8 @@ function SpawnArrow(pos)
     local spawnedArrow = Object.Instantiate(arrowPrefab, pos)
     spawnedArrow.transform.rotation = Quaternion.Euler(0, 90, 0)
     spawnedArrow.transform.parent = self.transform
+
+    return spawnedArrow
 end
 
 function HighlightCannonBallCrates()

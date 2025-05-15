@@ -8,8 +8,20 @@ local tapEffect : GameObject = nil
 
 local fishingSpotId = 0
 
+local tutorialArrow = nil
+
+function self:OnDestroy()
+    if(tutorialArrow == nil) then return end
+
+    GameObject.Destroy(tutorialArrow)
+end
+
 function SetFishingSpotId(id)
     fishingSpotId = id
+end
+
+function SetTutorialArrow(arrow)
+    tutorialArrow = arrow
 end
 
 -- Connect to the Tapped event

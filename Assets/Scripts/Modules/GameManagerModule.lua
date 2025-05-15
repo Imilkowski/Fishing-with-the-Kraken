@@ -317,6 +317,7 @@ function self:ClientAwake()
 
         if(currentPhaseInfo[1] == "Kraken") then
             KrakenSpotsModule.LoadKrakenSpots()
+            TutorialModule.HighlightCannonBallCrates()
         end
     end)
 

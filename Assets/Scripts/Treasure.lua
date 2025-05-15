@@ -13,8 +13,20 @@ local gemsContained : number = 0
 
 local fishingSpotId = 0
 
+local tutorialArrow = nil
+
+function self:OnDestroy()
+    if(tutorialArrow == nil) then return end
+
+    GameObject.Destroy(tutorialArrow)
+end
+
 function SetFishingSpotId(id)
     fishingSpotId = id
+end
+
+function SetTutorialArrow(arrow)
+    tutorialArrow = arrow
 end
 
 function SpawnNotification()

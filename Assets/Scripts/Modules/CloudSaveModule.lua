@@ -15,7 +15,7 @@ function SavePlayerDataToCloud(player, storage)
         PrintErrorCode(errorCode)
     end)
 
-    print(player.name .. " saved Data to cloud")
+    --print(player.name .. " saved Data to cloud")
 end
 
 function LoadPlayerDataFromCloud(player)
@@ -25,5 +25,5 @@ function LoadPlayerDataFromCloud(player)
         GameManagerModule.LoadData(player, "Gems", gems)
     end)
 
-    print(player.name .. " loaded Data from cloud")
+    --print(player.name .. " loaded Data from cloud")
 end
