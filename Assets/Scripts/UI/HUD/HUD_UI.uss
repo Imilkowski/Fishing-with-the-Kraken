@@ -158,13 +158,13 @@
     border-color: rgb(172, 123, 59);
 
     border-width: 1px;
-    border-radius: 24px;
+    border-radius: 22px;
 
     flex-direction: row;
     align-items: center;
     justify-content: center;
 
-    padding: 5px;
+    padding: 6px;
     padding-left: 10px;
     padding-right: 10px;
 }
@@ -172,8 +172,8 @@
 .fish-icon{
     background-image: url("project://database/Assets/Art/Icons/Fish.png");
 
-    height: 32px;
-    width: 32px;
+    height: 24px;
+    width: 24px;
 
     margin-left: 4px;
 }

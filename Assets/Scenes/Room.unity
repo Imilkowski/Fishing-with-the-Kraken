@@ -548,6 +548,8 @@ MonoBehaviour:
   m_tutorialVersion: 2
   m_arrowPrefab: {fileID: 4890396803174753064, guid: 075163db478be4942a0e2ecbbc978c90,
     type: 3}
+  m_headArrowPrefab: {fileID: 4890396803174753064, guid: a9197839846bf714297291f949722937,
+    type: 3}
   m_cannonBallCratesParent: {fileID: 729364128}
   m_cannonsParent: {fileID: 1779720004}
   references:
@@ -18688,17 +18690,22 @@ PrefabInstance:
     - target: {fileID: 3551931345751937580, guid: 4db44322431f6d6439fa69e352e81b67,
         type: 3}
       propertyPath: m_pitch
-      value: 60
+      value: 52.5
       objectReference: {fileID: 0}
     - target: {fileID: 3551931345751937580, guid: 4db44322431f6d6439fa69e352e81b67,
         type: 3}
       propertyPath: m_zoomMax
-      value: 80
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 3551931345751937580, guid: 4db44322431f6d6439fa69e352e81b67,
         type: 3}
       propertyPath: m_zoomMin
-      value: 20
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3551931345751937580, guid: 4db44322431f6d6439fa69e352e81b67,
+        type: 3}
+      propertyPath: m_orthographic
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3551931345751937580, guid: 4db44322431f6d6439fa69e352e81b67,
         type: 3}
@@ -18713,6 +18720,11 @@ PrefabInstance:
     - target: {fileID: 3551931345751937580, guid: 4db44322431f6d6439fa69e352e81b67,
         type: 3}
       propertyPath: m_keepPlayerInViewPanDuration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3551931345751937580, guid: 4db44322431f6d6439fa69e352e81b67,
+        type: 3}
+      propertyPath: m_centerOnCharacterWhenSpawned
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5279981243723839846, guid: 4db44322431f6d6439fa69e352e81b67,
@@ -18733,12 +18745,12 @@ PrefabInstance:
     - target: {fileID: 5279981243723839846, guid: 4db44322431f6d6439fa69e352e81b67,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.8064446
+      value: 0.8660254
       objectReference: {fileID: 0}
     - target: {fileID: 5279981243723839846, guid: 4db44322431f6d6439fa69e352e81b67,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.59130967
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5279981243723839846, guid: 4db44322431f6d6439fa69e352e81b67,
         type: 3}
@@ -18753,7 +18765,7 @@ PrefabInstance:
     - target: {fileID: 5279981243723839846, guid: 4db44322431f6d6439fa69e352e81b67,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 72.5
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 5279981243723839846, guid: 4db44322431f6d6439fa69e352e81b67,
         type: 3}
@@ -18767,8 +18779,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7247727291475991689, guid: 4db44322431f6d6439fa69e352e81b67,
         type: 3}
+      propertyPath: orthographic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7247727291475991689, guid: 4db44322431f6d6439fa69e352e81b67,
+        type: 3}
       propertyPath: field of view
-      value: 45
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7247727291475991689, guid: 4db44322431f6d6439fa69e352e81b67,
+        type: 3}
+      propertyPath: orthographic size
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7494135311037265500, guid: 4db44322431f6d6439fa69e352e81b67,
         type: 3}

@@ -28,6 +28,7 @@ namespace Highrise.Lua.Generated
 
         [SerializeField] public System.Double m_tutorialVersion = 0;
         [SerializeField] public UnityEngine.GameObject m_arrowPrefab = default;
+        [SerializeField] public UnityEngine.GameObject m_headArrowPrefab = default;
         [SerializeField] public UnityEngine.Transform m_cannonBallCratesParent = default;
         [SerializeField] public UnityEngine.Transform m_cannonsParent = default;
 
@@ -40,8 +41,9 @@ namespace Highrise.Lua.Generated
             {
                 CreateSerializedProperty(_script.GetPropertyAt(0), m_tutorialVersion),
                 CreateSerializedProperty(_script.GetPropertyAt(1), m_arrowPrefab),
-                CreateSerializedProperty(_script.GetPropertyAt(2), m_cannonBallCratesParent),
-                CreateSerializedProperty(_script.GetPropertyAt(3), m_cannonsParent),
+                CreateSerializedProperty(_script.GetPropertyAt(2), m_headArrowPrefab),
+                CreateSerializedProperty(_script.GetPropertyAt(3), m_cannonBallCratesParent),
+                CreateSerializedProperty(_script.GetPropertyAt(4), m_cannonsParent),
             };
         }
         

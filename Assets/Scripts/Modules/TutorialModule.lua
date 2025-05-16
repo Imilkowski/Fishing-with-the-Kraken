@@ -1,18 +1,43 @@
 --!Type(Module)
 
+local PlayerControllerModule = require("PlayerControllerModule")
+
 --!SerializeField
 local tutorialVersion : number = 0
 
 --!SerializeField
 local arrowPrefab : GameObject = nil
+--!SerializeField
+local headArrowPrefab : GameObject = nil
 
 --!SerializeField
 local cannonBallCratesParent : Transform = nil
 --!SerializeField
 local cannonsParent : Transform = nil
 
+local headArrow : Transform = nil
+
 fishing = true
 cannons = true
+
+function self:ClientStart()
+    headArrow = Object.Instantiate(headArrowPrefab, client.localPlayer.character.transform.position + Vector3.new(0, 5, 0)).transform
+    headArrow.parent = client.localPlayer.character.transform
+end
+
+function self:ClientFixedUpdate()
+    if(headArrow == nil) then return end
+
+    if(self.transform.childCount == 0 or PlayerControllerModule.playerState == "cannon ball") then
+        headArrow.gameObject:SetActive(false)
+        return 
+    end
+
+    headArrow.gameObject:SetActive(true)
+
+    local arrow = self.transform:GetChild(0)
+    headArrow:LookAt(arrow.position)
+end
 
 function GetTutorialVersion()
     return tutorialVersion
