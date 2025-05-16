@@ -8,9 +8,9 @@ local fishRewardMultiplier : number = 0
 local bonusReward : number = 0
 
 local phaseInfos = {
-    Preparation = {"Preparation", 90, "Fishing starts in:"}, --90
-    Fishing = {"Fishing", 180, "Fishing ends in:"}, --180
-    Kraken = {"Kraken", 180, "Fire the cannons to defeat the Kraken:"} --180
+    Preparation = {"Preparation", 5, "Round starts soon!"}, --45
+    Fishing = {"Fishing", 180, "Collect as many fish as you can for the village!"}, --180
+    Kraken = {"Kraken", 180, "The Kraken's here to steal your catch! Load up the cannons and fight off the Kraken!"} --180
 }
 
 local CloudSaveModule = require("CloudSaveModule")

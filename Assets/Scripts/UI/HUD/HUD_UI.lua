@@ -45,7 +45,7 @@ end
 function SetFishCaught(amount)
     if(_FishCaught == nil) then return end
 
-    _FishCaught:SetPrelocalizedText(amount)
+    _FishCaught:SetPrelocalizedText("You've collected: " .. amount)
 end
 
 function SetPhaseInfo(st, cpi)
@@ -78,7 +78,7 @@ function ShowFishCaught(show)
         _FishCaught = UILabel.new();
         _FishCaught:AddToClassList("white-text")
         _FishCaught:AddToClassList("medium-text")
-        _FishCaught:SetPrelocalizedText("0")
+        _FishCaught:SetPrelocalizedText("You've collected: 0")
         _fishContainer:Add(_FishCaught)
 
         local _fishIcon = Image.new()
@@ -112,7 +112,7 @@ function UpdateCountdown()
     if(startTime == nil) then return end
 
     timeLeft = phaseInfo[2] - (os.time(os.date("*t")) - startTime)
-    _Countdown:SetPrelocalizedText(FormatTime(timeLeft))
+    _Countdown:SetPrelocalizedText("Time left: " .. FormatTime(timeLeft))
 end
 
 function UpdateKrakenHealth(health)

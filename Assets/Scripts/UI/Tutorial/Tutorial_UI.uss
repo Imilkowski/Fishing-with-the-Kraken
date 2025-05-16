@@ -119,7 +119,7 @@
 
 .tutorial-description-container{
     width: 100%;
-    height: 100px;
+    height: 150px;
     
     justify-content: center;
 }

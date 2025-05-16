@@ -23,7 +23,7 @@
         </VisualElement>
         
         <VisualElement class="tutorial-description-container">
-          <hr:UILabel class="black-text small-text tutorial-description" name="_TutorialDescription"/>
+          <hr:UILabel class="black-text tiny-text tutorial-description" name="_TutorialDescription"/>
         </VisualElement>
         
       </VisualElement>

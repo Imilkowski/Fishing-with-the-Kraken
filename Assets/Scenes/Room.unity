@@ -3529,12 +3529,13 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 727aa792499fe664a801921c4bd51c3f, type: 3}
   - {fileID: 2800000, guid: e1965a610c23ab042a7f07cd05d304a1, type: 3}
   m_tutorialDescriptions:
-  - 'Fish, fight and earn gold. '
-  - Collect as much fishes as you can. Treasures will allow you to buy upgrades for
-    the whole room.
-  - 'Load the cannon balls into the cannon to fight off the Kraken that''s here to
-    destroy the docks. '
-  - 'Win gold after defeating the Kraken. '
+  - Fish, fight and earn gold.
+  - When the round starts, head to the water and tap on fishes to catch them. The
+    more you catch, the better the rewards. While fishing, collect Treasures to buy
+    upgrades for the whole room.
+  - When the Kraken's tentacles rise, collect cannon balls near the docks and fire
+    at the tentacles to protect your catch.
+  - Defeat the Kraken to earn gold based on your fishing and defending efforts.
   references:
     version: 2
     RefIds:
