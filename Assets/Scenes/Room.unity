@@ -17914,6 +17914,7 @@ MonoBehaviour:
   _uiOutputSettings:
     rid: -2
   _mainMusic: {fileID: 11400000, guid: 80e6fb8b133b7a543bc664b46d2f7b82, type: 2}
+  _fightMusic: {fileID: 11400000, guid: f70ca83014d9d7541be693fd4aeca4e6, type: 2}
   m_fishRewardMultiplier: 1
   m_bonusReward: 10
   m_upgradesIcons:

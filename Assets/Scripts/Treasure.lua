@@ -15,6 +15,8 @@ local fishingSpotId = 0
 
 local tutorialArrow = nil
 
+local tapped = false
+
 function self:OnDestroy()
     if(tutorialArrow == nil) then return end
 
@@ -37,6 +39,9 @@ end
 
 -- Connect to the Tapped event
 self.gameObject:GetComponent(TapHandler).Tapped:Connect(function()
+    if(tapped == true) then return end
+    tapped = true
+
     local spawnedEffect = Object.Instantiate(tapEffect, self.transform.position + Vector3.new(0, 0.5, 0))
 
     SpawnNotification()

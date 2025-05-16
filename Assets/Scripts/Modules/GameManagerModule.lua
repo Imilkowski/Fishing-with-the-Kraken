@@ -3,14 +3,16 @@
 --!SerializeField
 local _mainMusic: AudioShader = nil
 --!SerializeField
+local _fightMusic: AudioShader = nil
+--!SerializeField
 local fishRewardMultiplier : number = 0
 --!SerializeField
 local bonusReward : number = 0
 
 local phaseInfos = {
-    Preparation = {"Preparation", 45, "Round starts soon!"}, --45
-    Fishing = {"Fishing", 180, "Collect as many fish as you can for the village!"}, --180
-    Kraken = {"Kraken", 180, "The Kraken's here to steal your catch! Load up the cannons and fight off the Kraken!"} --180
+    Preparation = {"Preparation", 5, "Round starts soon!"}, --45
+    Fishing = {"Fishing", 10, "Collect as many fish as you can for the village!"}, --180
+    Kraken = {"Kraken", 15, "The Kraken's here to steal your catch! Load up the cannons and fight off the Kraken!"} --180
 }
 
 local CloudSaveModule = require("CloudSaveModule")
@@ -356,12 +358,15 @@ function self:ClientAwake()
         if(currentPhaseInfo[1] == "Kraken") then
             KrakenSpotsModule.LoadKrakenSpots()
             TutorialModule.HighlightCannonBallCrates()
+            Audio:PlayMusic(_fightMusic, 0.15, true, true) -- Play the fight music
         end
     end)
 
     --Start Preparation Phase
     startPreparationPhase:Connect(function(st, p)
         UpdatePhaseInfo(st, p)
+
+        Audio:PlayMusic(_mainMusic, 0.15, true, true) -- Play the main music
 
         TutorialModule.ResetTutorial()
         TutorialModule.ClearArrows()
@@ -375,6 +380,8 @@ function self:ClientAwake()
     --Start Kraken Phase
     startKrakenPhase:Connect(function(st, p)
         UpdatePhaseInfo(st, p)
+
+        Audio:PlayMusic(_fightMusic, 0.15, true, true) -- Play the fight music
 
         FishingModule.CancelFishing(false)
         TutorialModule.HighlightCannonBallCrates()
