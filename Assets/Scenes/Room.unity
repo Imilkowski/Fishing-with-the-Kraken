@@ -17915,8 +17915,8 @@ MonoBehaviour:
     rid: -2
   _mainMusic: {fileID: 11400000, guid: 80e6fb8b133b7a543bc664b46d2f7b82, type: 2}
   _fightMusic: {fileID: 11400000, guid: f70ca83014d9d7541be693fd4aeca4e6, type: 2}
-  m_fishRewardMultiplier: 1
-  m_bonusReward: 10
+  m_fishRewardMultiplier: 0.5
+  m_bonusReward: 5
   m_upgradesIcons:
   - {fileID: 2800000, guid: d987839a97897da4594bcbc637338a1f, type: 3}
   - {fileID: 2800000, guid: fefd27ce071adae4081e3c598f33689c, type: 3}
