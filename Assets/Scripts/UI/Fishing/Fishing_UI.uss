@@ -92,7 +92,7 @@
 
     left: 0px;
 
-    width: 100px;
+    width: 125px;
     height: 30px;
 
     flex-shrink: 0;
@@ -105,4 +105,16 @@
 
     height: 32px;
     width: 32px;
+}
+
+.tutorial-text{
+    width: 320px;
+
+    margin-bottom: 16px;
+
+    -unity-text-align: middle-center;
+
+    overflow: hidden;
+    white-space: normal;
+    -unity-text-overflow-position: end;
 }

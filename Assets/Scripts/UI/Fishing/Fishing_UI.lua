@@ -16,6 +16,8 @@ local _Progress: VisualElement = nil
 local _Fish: Image = nil
 
 --!Bind
+local _TutorialText: UILabel = nil
+--!Bind
 local _PullLabel: UILabel = nil
 
 local catchAreaDistance = 0
@@ -26,6 +28,7 @@ local fishDistance = 0
 local catchProgress = 0
 
 function self:Awake()
+    _TutorialText:SetPrelocalizedText("Tap and keep the hook bar on the fish to make a catch!")
     _PullLabel:SetPrelocalizedText("Pull")
 end
 
@@ -63,8 +66,8 @@ function MoveCatchArea()
     if(catchAreaDistance < 0) then
         catchAreaDistance = 0
         ca_Velocity = -ca_Velocity / 4
-    elseif(catchAreaDistance > 200) then
-        catchAreaDistance = 200
+    elseif(catchAreaDistance > 175) then
+        catchAreaDistance = 175
         ca_Velocity = 0
     end
 
@@ -82,7 +85,7 @@ function Pull()
 end
 
 function CheckCatch()
-    if(fishDistance - catchAreaDistance > 84) then --too much to the right
+    if(fishDistance - catchAreaDistance > 109) then --too much to the right (catch area width - 16)
         catchProgress -= 0.3
         catchProgress = math.clamp(catchProgress, 0, 100)
         return 

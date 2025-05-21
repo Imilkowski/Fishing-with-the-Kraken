@@ -186,7 +186,7 @@
     border-radius: 24px;
 
     position: absolute;
-    bottom: 192px;
+    bottom: 208px;
 
     width: 320px;
 

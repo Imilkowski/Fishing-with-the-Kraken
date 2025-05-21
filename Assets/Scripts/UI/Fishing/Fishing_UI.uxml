@@ -9,6 +9,8 @@
 
   <hr:UILuaView class="fishing_-u-i" picking-mode="Ignore">
     <VisualElement class="bottom-container">
+      <hr:UILabel class="tiny-text white-text tutorial-text" name="_TutorialText"/>
+
       <VisualElement class="progress-background">
         <VisualElement class="progress-foreground" name="_Progress"></VisualElement>
       </VisualElement>
