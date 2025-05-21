@@ -27,6 +27,7 @@ namespace Highrise.Lua.Generated
         public override string ScriptGUID => s_scriptGUID;
 
         [SerializeField] public UnityEngine.GameObject m_collectedNotification = default;
+        [SerializeField] public UnityEngine.GameObject m_healthbarPrefab = default;
         [SerializeField] public UnityEngine.Transform m_attackOrigin = default;
         [SerializeField] public System.Double m_attackRadius = 0;
         [SerializeField] public System.Collections.Generic.List<UnityEngine.AudioClip> m_sounds = default;
@@ -39,9 +40,10 @@ namespace Highrise.Lua.Generated
             return new SerializedPropertyValue[]
             {
                 CreateSerializedProperty(_script.GetPropertyAt(0), m_collectedNotification),
-                CreateSerializedProperty(_script.GetPropertyAt(1), m_attackOrigin),
-                CreateSerializedProperty(_script.GetPropertyAt(2), m_attackRadius),
-                CreateSerializedProperty(_script.GetPropertyAt(3), m_sounds),
+                CreateSerializedProperty(_script.GetPropertyAt(1), m_healthbarPrefab),
+                CreateSerializedProperty(_script.GetPropertyAt(2), m_attackOrigin),
+                CreateSerializedProperty(_script.GetPropertyAt(3), m_attackRadius),
+                CreateSerializedProperty(_script.GetPropertyAt(4), m_sounds),
             };
         }
         

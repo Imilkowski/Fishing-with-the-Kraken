@@ -182,7 +182,7 @@ function SpawnTentacle(spotId, health)
     spawnedObject.transform.rotation = krakenPoint.rotation
     spawnedObject.transform.parent = krakenPoint
 
-    spawnedObject:GetComponent(Tentacle).ChangeHealth(health)
+    spawnedObject:GetComponent(Tentacle).SetHealth(health)
 end
 
 function DamageTentacle(spotId, health, damage)

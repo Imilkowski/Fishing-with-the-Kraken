@@ -4,6 +4,8 @@ local PlayerControllerModule = require("PlayerControllerModule")
 
 --!SerializeField
 local collectedNotification : GameObject = nil
+--!SerializeField
+local healthbarPrefab : GameObject = nil
 
 --!SerializeField
 local attackOrigin : Transform = nil
@@ -14,13 +16,16 @@ local attackRadius : number = 0
 local sounds: { AudioClip } = nil
 
 local animator : Animator
+local healthBar = nil
 
+local maxHealth = 0
 local health = 0
 
 local rising = true
 
 function self:Awake()
     animator = self:GetComponent(Animator)
+    SpawnHealthBar()
 end
 
 function self:Start()
@@ -32,8 +37,31 @@ function self:Start()
     end)
 end
 
+function SpawnHealthBar()
+    local spawnedHealthbar = Object.Instantiate(healthbarPrefab, self.transform.position + Vector3.new(0, 13, 0))
+    spawnedHealthbar.transform.rotation = Quaternion.Euler(45, 0, 0)
+
+    Timer.After(0.1, function()
+        spawnedHealthbar.transform.parent = self.transform
+    end)
+
+    healthBar = spawnedHealthbar:GetComponent(Healthbar_UI)
+end
+
+function SetHealth(value)
+    health = value
+    maxHealth = value
+
+    healthBar.SetHealthbar(health, maxHealth)
+end
+
 function ChangeHealth(value)
     health = value
+
+    healthBar.SetHealthbar(health, maxHealth)
+    if(health <= 0) then
+        GameObject.Destroy(healthBar.gameObject)
+    end
 
     if(health <= 0) then
         Die()
